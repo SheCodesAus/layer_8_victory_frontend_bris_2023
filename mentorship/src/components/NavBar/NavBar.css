@@ -47,7 +47,7 @@ html {
 }
 
 .logo img {
-    height: 430px;
+    height: 60px;
 }
 
 .logo {
@@ -104,15 +104,54 @@ html {
 
 /* responsiveness */
 
-@media (max-width: 1200px) {
-    html {
-        font-size: 55%;
+@media (max-width: 1120px) {
+    .header {
+        padding: 1.2rem 7%;
+    }
+
+    .navbar a {
+        font-size: 1.8rem;
+        margin-left: 3.8rem;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+}
+
+@media (max-width: 950px) {
+    .header {
+        padding: 1.2rem 5%;
+    }
+
+    .navbar a {
+        font-size: 1.6rem;
+        margin-left: 3.6rem;
+    }
+
+    .logo img {
+        height: 45px;
+    }
+}
+
+@media (max-width: 825px) {
+    .header {
+        padding: 1.2rem 4%;
+    }
+
+    .navbar a {
+        font-size: 1.4rem;
+        margin-left: 3.4rem;
+    }
+
+    .logo img {
+        height: 45px;
     }
 }
 
 @media (max-width: 768px) {
     .logo {
-        padding-left: 25px;
+        padding-left: 10px;
     }
 
     .menu-btn {
@@ -187,6 +226,10 @@ html {
 @media (max-width: 450px) {
     html {
         font-size: 50%;
+    }
+
+    .logo img {
+        height: 35px;
     }
 }
 
