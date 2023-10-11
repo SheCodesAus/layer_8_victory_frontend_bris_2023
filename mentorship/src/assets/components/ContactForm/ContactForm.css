@@ -1,0 +1,97 @@
+.container-contact{
+    display: flex;
+    flex-direction: row;
+}
+#contact label, input, textarea {
+    display: block;
+    width:100%;
+    box-shadow: 0 2px 2px 0 rgb(232, 219, 219);
+    border-radius: 10px;
+}
+
+#contact input{
+    margin-bottom:16px;
+}
+
+#contact input, textarea{
+    padding: 8px;
+    background-color: rgb(238, 227, 227)
+
+}
+#address{
+    padding:100px 16px;
+    width:50%;
+    height: 100vh;
+}
+#contact{
+    
+    padding:100px 16px;
+    background-color: rgb(243, 243, 245);
+    width:50%;
+    height: 100vh;
+
+}
+
+#address  h2{
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: 16px;
+}
+#address  p{
+    text-align: center;
+    margin: 0px;
+}
+
+.contact-map{
+    margin-top: 20px;
+    text-align: center;
+}
+
+#contact  h2{
+    text-align: center;
+    font-size: 2rem;
+    padding-bottom: 16px;
+}
+
+.contact-txt{
+    text-align: center;
+    font-style:italic;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#contact form{
+    max-width: 60%;
+    margin: 0 auto;
+
+}
+
+#contact input[type="submit"]{
+    background-color:rgb(77, 148, 158);
+    font-size:24px;
+    border: 0;
+    margin-top: 24px;
+    padding:16px;
+    cursor: pointer;
+}
+
+@media screen and (max-width:900px){
+    .container-contact{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #address{
+        padding-top:200px;
+        width:100%;
+    }
+
+    #contact{
+    
+        margin:5px 16px;
+        background-color: rgb(243, 243, 245);
+        width:100%;
+        
+    
+    }
+}
