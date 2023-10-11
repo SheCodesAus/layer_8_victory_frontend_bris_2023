@@ -29,7 +29,7 @@ html {
 
 .header {
     position: fixed;
-    height: 7.6rem;
+    height: 9rem;
     top: 0;
     left: 0;
     width: 100%;
@@ -47,7 +47,7 @@ html {
 }
 
 .logo img {
-    height: 30px;
+    height: 430px;
 }
 
 .logo {
@@ -55,7 +55,8 @@ html {
 }
 
 .navbar a {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-weight: 400;
     color: var(--text-color);
     margin-left: 4rem;
     transition: 0.3s;
@@ -67,7 +68,7 @@ html {
     content: '';
     width: 0;
     height: 3px;
-    background: var(--main-color);
+    background: var(--dark-blue);
     position: absolute;
     left: 0;
     bottom: -6px;
@@ -87,9 +88,9 @@ html {
 .btn {
     display: inline-block;
     padding: 1rem 2.8rem;
-    background: var(--main-color);
+    background: var(--dark-blue);
     border-radius: 4rem;
-    box-shadow: 0 0 1rem var(--main-color);
+    box-shadow: 0 0 1rem var(--dark-blue);
     font-size: 1.6rem;
     color: var(--text-color);
     letter-spacing: 0.1rem;

@@ -49,7 +49,7 @@ function NavBar() {
         <div>
             <div>
                 <header className="header">
-                    <Link to="/" className="logo"><img src="/mentorship/public/2.png" alt="" /></Link>
+                    <Link to="/" className="logo"><img src="../../../public/3.png" alt="" /></Link>
                     <div className="menu-btn" onClick={toggleMenu}>
                         <div className={`menu-burger ${menuOpen ? 'open' : ''}`}></div>
                     </div>
@@ -65,6 +65,39 @@ function NavBar() {
                         >
                             Home
                         </Link>
+                        <Link 
+                            to="/about" 
+                            id="about"
+                            className={activeLink === "about" ? "active" : ""}
+                            onClick={() => {
+                                setActive("about");
+                                handleLinkClick();
+                            }}
+                            >
+                                About
+                            </Link>
+                            <Link 
+                            to="/events" 
+                            id="events"
+                            className={activeLink === "events" ? "active" : ""}
+                            onClick={() => {
+                                setActive("events");
+                                handleLinkClick();
+                            }}
+                            >
+                                Events
+                            </Link>
+                            <Link 
+                            to="/contact" 
+                            id="contact"
+                            className={activeLink === "contact" ? "active" : ""}
+                            onClick={() => {
+                                setActive("contact");
+                                handleLinkClick();
+                            }}
+                            >
+                                Contact
+                            </Link>
                         {auth.token ? (
                             <>
                             <Link to="/" onClick={handleLogout}>
@@ -96,15 +129,15 @@ function NavBar() {
                                 Log In
                             </Link>
                             <Link 
-                            to="/signup" 
-                            id="signup"
-                            className={activeLink === "signup" ? "active" : ""}
+                            to="/apply" 
+                            id="apply"
+                            className={activeLink === "apply" ? "active" : ""}
                             onClick={() => {
-                                setActive("signup");
+                                setActive("apply");
                                 handleLinkClick();
                             }}
                             >
-                                Sign Up
+                                Apply
                             </Link>
                             </>
                         )}
