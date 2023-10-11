@@ -1,3 +1,14 @@
-.login{
+.login-form{
+    text-align: center;
+    margin-top: 200px;
     padding:20px;
+}
+input, h1{
+
+    padding :20px;
+    border-radius: 5px;
+}
+
+h1{
+    margin-bottom: 30px;
 }
