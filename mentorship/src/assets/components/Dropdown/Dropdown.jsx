@@ -19,7 +19,7 @@ const Dropdown = ({arrayValues=[""],  onChange}) => {
             </option>
           ))}
         </select>
-        {setSelectedValue && <p className="selected-value">Selected Value: {selectedValue}</p>}
+        {/* {setSelectedValue && <p className="selected-value">Selected Value: {selectedValue}</p>} */}
       </div>
     );
   };

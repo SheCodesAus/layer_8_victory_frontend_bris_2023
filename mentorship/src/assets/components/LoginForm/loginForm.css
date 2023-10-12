@@ -1,14 +1,15 @@
 .login-form{
     text-align: center;
     margin-top: 200px;
-    padding:20px;
-}
-input, h1{
+    padding:50px;
 
-    padding :20px;
+}
+.login-input{
+
+    padding :10px 40px;
     border-radius: 5px;
 }
 
-h1{
+.login-form h1{
     margin-bottom: 30px;
 }

@@ -6,9 +6,10 @@ const LoginForm  = () =>{
 return(
     <form className="login-form">
     <div>
-        <h1>Login</h1>
+        <h1 className="login_title">Login</h1>
             <label htmlFor="username">Username </label><br/>
             <input 
+            className="login-input"
             type="text" 
             id="username" 
             placeholder="Enter username"
@@ -16,8 +17,9 @@ return(
     </div>
     <br/>
     <div>
-        <label htmlFor="password">Password </label><br/>
+        <label htmlFor="password" className="label-login">Password </label><br/>
         <input 
+            className="login-input"
             type="password" 
             id="password" 
             placeholder="Password"

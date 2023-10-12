@@ -5,107 +5,132 @@ import Dropdown from "../Dropdown/Dropdown";
 const ApplyForm = () =>{
 
     return(
+        <div className="container-apply">
         
+        <h1 className="apply-title">Apply Now</h1><br/>
+
         <form className="apply-form">
-        <div>
-        <h1>Apply Now</h1>
-                <label htmlFor="First Name">First Name </label><br/>
+            
+
+            
+       <div className="input-container">
+        <label htmlFor="name ">First Name </label><br/>
                 <input 
                 className="text-input"
                 type="text" 
                 id="first_name" 
-                placeholder="First Name"
+            
            />
         </div>
-        <br/>
-        <div>
-            <label htmlFor="Last Name">Last Name </label><br/>
+        
+        
+        
+        <div className="input-container">
+        <label htmlFor="name ">Last Name </label><br/>
             <input 
                 className="text-input"
                 type="text" 
                 id="last_name" 
-                placeholder="Last Name"
+              
             />      
         </div>
-        <br/>
-        <div>
-            <label htmlFor="Email">Email </label><br/>
-            <input 
+        <div className="input-container">
+        <label htmlFor="email ">Email </label><br/>
+        <input 
                 className="text-input"
                 type="email" 
                 id="email" 
-                placeholder="Email"
-            />      
+          
+              
+            />
         </div>
-        <br/>
-        <div>
-            <label htmlFor="Mobile">Mobile </label><br/>
+        <div className="input-container">
+        <label htmlFor="mobile ">Mobile </label><br/>
             <input 
                 className="text-input"
                 type="text" 
                 id="mobile" 
                 placeholder="Mobile"
-            />      
-        </div>
-        <br/>
-        <div>
-            <label htmlFor="Location ">Location </label><br/>
-            <div>
-                <Dropdown arrayValues={["Brisbane"," Melbourne", "Sidney"]}  onChange={(event)}/>
-            </div>    
-        </div><br/>
-        <div>
-            <label htmlFor="Skills ">Skills </label><br/>
-            <div>
-                <Dropdown arrayValues={["Junior"," Mid-level", "Lead"]}  onChange={(event)}/>
-            </div>    
-        </div>
-        <br/>
-        <div>
-            <label htmlFor="CV ">CV </label><br/>
+               
+            />   
+            </div>
+
+            <div className="input-container">
+           <label htmlFor="cv ">CV </label><br/>
             <input 
                 className="text-input"
                 type="text" 
                 id="cv" 
                 placeholder="URL"
-            
+         
             />     
         </div>
-        <br/>
-        <div>
-            <label htmlFor="Username">Username </label><br/>
-            <input 
+
+
+    <div className="input-container">
+    <label htmlFor="username ">Username</label><br/>
+    <input 
                 className="text-input"
                 type="text" 
                 id="username" 
-                placeholder="Username"
+  
+      
             />      
+        
+        
         </div>
-        <br/>
-        <div>
-            <label htmlFor="Password">Password </label><br/>
-            <input 
+
+        <div className="input-container">
+        <label htmlFor="password ">Password</label><br/>
+            <input  
                 className="text-input"
-                type="text" 
+                type="password" 
                 id="password" 
-                placeholder="Password"
-            />      
-        </div>
-        <br/>
+
+           
+            />  
+</div>
+    
+            <div className="input-container">
+            <label htmlFor="Location ">Location </label><br/>
+            <div>
+                <Dropdown arrayValues={["Brisbane"," Melbourne", "Sidney"]}  onChange={(event)}/>
+            </div> 
+            </div>
+           
+            <div className="input-container">
+            <label htmlFor="Skills ">Skills </label><br/>
+            <div>
+                <Dropdown arrayValues={["Junior"," Mid-level", "Lead"]}  onChange={(event)}/>
+            </div>    
+             </div>
+
+
+    <div>
+    <label htmlFor="mentor" className="label-checkbox">Have you mentored with us before? </label><br/>
+    
+    <label className="checkbox-apply">
+        <input type="checkbox" />
+        Yes
+      </label>
+    <label className="checkbox-apply">
+        <input type="checkbox" />
+        No
+      </label>
+    </div>
+    
+
+      
+
+
+
         <div>
-            <label >Have you mentored with us before? </label><br/>
-            <label className="checkbox" >
-        <input type="checkbox" />
-         Yes
-      </label>  
-      <label>
-        <input type="checkbox" />
-         No
-      </label>   
-        </div>
-        <br/>
         <Button text={"Submit"} btnClass = "btn-info " />
+        </div>
+
     </form> 
+
+    </div>
     )
 }
 

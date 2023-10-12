@@ -30,12 +30,12 @@ const ContactForm = () =>{
             <form
             action="https://formspree.io/f/xpzenjjg"
             method="POST"
-              >      <label htmlFor="name">Your Name</label>
-                     <input type="text" name="your-name"/>
-                    <label htmlFor="email">Your Email</label>
-                    <input name="Email" id="email" type="email"/>
-                    <label htmlFor="message">Your Message</label>
-                    <textarea name="message-text" id="message" rows="4"></textarea>
+              >      <label htmlFor="name" className="label-contact">Your Name</label>
+                     <input type="text" name="your-name" className="text-contact"/>
+                    <label htmlFor="email" className="label-contact">Your Email</label>
+                    <input name="Email" id="email" type="email" className="text-contact"/>
+                    <label htmlFor="message" className="label-contact">Your Message</label>
+                    <textarea name="message-text" id="message" rows="4" className="text-area-contact"></textarea>
                     <input type="submit" value="Email us  📩"/>
                    
                   </form>

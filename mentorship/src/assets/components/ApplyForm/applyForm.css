@@ -1,13 +1,59 @@
-.apply-form {
-    padding:10px;
+.container-apply{
+    margin:200px 300px;
+  
 }
+
+.apply-title{
+
+    text-align: center;
+
+}
+
+.apply-form {
+   
+    margin:20px 0 ;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    
+} 
 
 
 .text-input{
-    width: 200px;
-    padding:10px 5px;
+    width: 300px;
+    padding :10px;
+    background-color:rgb(238, 227, 227);
+    border-radius: 5px;
+
+
 }
 
-.checkbox{
-    margin: 0px 10px;
+.label-checkbox{
+    font-size: 20px;
+}
+
+.checkbox-apply{
+    margin-left:20px;
+}
+.input-container{
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 767px) {
+    .apply-form {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .container-apply{
+        margin:100px 30px;
+      
+    }
+    
+
+
+
 }
