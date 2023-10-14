@@ -1,0 +1,40 @@
+.event-container{
+    margin-top: 100px;
+    text-align: center;
+}
+
+#card-container {
+    display: grid;
+    grid-template-columns: 30%30%30%;
+    text-align: center;
+    column-gap: 10px;
+    row-gap: 10px;
+    margin:  80px 20px;
+}
+
+@media screen and (max-width:900px){
+    #card-container{
+    display: grid;
+    grid-template-columns: 50%50%;
+    column-gap: 10px;
+    row-gap: 10px;
+    }
+
+    
+}
+
+@media screen and (max-width:600px){
+    #card-container {
+    display: grid;
+    grid-template-columns: 100%;
+    column-gap: 10px;
+    row-gap: 10px;
+    }
+
+
+}
+
+p{
+    margin: 20px;
+    font-size: 20px;
+}
