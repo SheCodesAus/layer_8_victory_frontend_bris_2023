@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+  
 import useAuth from "../../hooks/use-auth";
 
 import "./NavBar.css";

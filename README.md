@@ -1,5 +1,5 @@
 # Instructions For Setting Up This Repo
-
+   
 ## FIRST, One Person In The Group Should:
 1. Clone this repo down using `git clone insert_quick_setup_link_here`
 2. Create a Vite project with `npm create vite@latest insert_project_name_frontend -- --template react`
