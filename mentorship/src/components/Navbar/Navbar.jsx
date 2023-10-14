@@ -1,34 +1,151 @@
-import React, {useState} from "react";
-import{ Link, Outlet }from"react-router-dom";
-import {GiHamburgerMenu} from "react-icons/gi";
-import {FaTimes} from "react-icons/fa";
-import "./navbar.css";
+import { Link, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
 
+import useAuth from "../../hooks/use-auth";
 
-const NavBar = () =>
-{
-    const [isMobile, setIsMobile] = useState(false)
+import "./NavBar.css";
+
+function NavBar() {
+    const {auth, setAuth} = useAuth();
+
+    const [activeLink, setActiveLink] = useState("");
+
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const handleLogout = () => {
+        window.localStorage.removeItem("token");
+        setAuth({
+            token: null,
+            userId: null
+        });
+    };
+
+    const setActive = (link) => {
+        setActiveLink(link);
+    };
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+    const handleLinkClick = () => {
+        setMenuOpen(false);
+    };
+
+    useEffect(() => {
+        const navbar = document.querySelector('.navbar');
+        const mobileNavbar = document.querySelector('#navbar');
+
+        if (menuOpen) {
+            navbar.classList.add('active');
+            mobileNavbar.classList.add('active');
+        } else {
+            navbar.classList.remove('active');
+            mobileNavbar.classList.remove('active');
+        }
+    }, [menuOpen]);
+
     return (
-    <>
-        <nav className="navbar">
-        <h3 className="logo">MentorShip</h3>
-        <ul className={isMobile ? "nav-links-mobile":"nav-links"}
-onClick = {()=>  setIsMobile(false)}>
-     
-            <Link to="/events" className="events" ><li>Events</li></Link>
-            <Link to="/apply" className="apply"><li>Apply</li></Link>
-            <Link to="/login" className="login" ><li>Login</li></Link>
-            <Link to="/contact" className="contact" ><li>Contact</li></Link>
-                
-        </ul> 
-        <button className="mobile-menu-icon"
-    onClick={()=>setIsMobile(!isMobile)}>
-      {isMobile?(<i><FaTimes/> </i>):(<i ><GiHamburgerMenu/></i>)}
-    </button>
-        </nav>
-        <Outlet />  
-    </>
-        
+        <div>
+            <div>
+                <header className="header">
+                    <Link to="/" className="logo"><img src="../../../public/3.png" alt="" /></Link>
+                    <div className="menu-btn" onClick={toggleMenu}>
+                        <div className={`menu-burger ${menuOpen ? 'open' : ''}`}></div>
+                    </div>
+                    <nav className="navbar flex-nav" id="navbar">
+                        <Link 
+                        to="/" 
+                        className={activeLink === "home" ? "active" : ""}
+                        id="home"
+                        onClick={() => {
+                            setActive("home");
+                            handleLinkClick();
+                        }}
+                        >
+                            Home
+                        </Link>
+                        <Link 
+                            to="/about" 
+                            id="about"
+                            className={activeLink === "about" ? "active" : ""}
+                            onClick={() => {
+                                setActive("about");
+                                handleLinkClick();
+                            }}
+                            >
+                                About
+                            </Link>
+                            <Link 
+                            to="/events" 
+                            id="events"
+                            className={activeLink === "events" ? "active" : ""}
+                            onClick={() => {
+                                setActive("events");
+                                handleLinkClick();
+                            }}
+                            >
+                                Events
+                            </Link>
+                            <Link 
+                            to="/contact" 
+                            id="contact"
+                            className={activeLink === "contact" ? "active" : ""}
+                            onClick={() => {
+                                setActive("contact");
+                                handleLinkClick();
+                            }}
+                            >
+                                Contact
+                            </Link>
+                        {auth.token ? (
+                            <>
+                            <Link to="/" onClick={handleLogout}>
+                                Log Out
+                            </Link>
+                            <Link 
+                            to="/profile" 
+                            id="profile"
+                            className={activeLink === "profile" ? "active" : ""}
+                            onClick={() => {
+                                setActive("profile");
+                                handleLinkClick();
+                            }}
+                            >
+                                Profile
+                            </Link>
+                            </>
+                        ) : (
+                            <>
+                            <Link 
+                            to="/login"
+                            id="login"
+                            className={activeLink === "login" ? "active" : ""}
+                            onClick={() => {
+                                setActive("login");
+                                handleLinkClick();
+                            }}
+                            >
+                                Log In
+                            </Link>
+                            <Link 
+                            to="/apply" 
+                            id="apply"
+                            className={activeLink === "apply" ? "active" : ""}
+                            onClick={() => {
+                                setActive("apply");
+                                handleLinkClick();
+                            }}
+                            >
+                                Apply
+                            </Link>
+                            </>
+                        )}
+                    </nav>
+                </header>
+                <Outlet />
+            </div>
+        </div>  
     );
 }
 
