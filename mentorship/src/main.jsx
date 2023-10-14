@@ -1,6 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import{ createBrowserRouter, RouterProvider }from"react-router-dom";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from './assets/components/pages/Home';
 import AboutPage from './assets/components/pages/AboutPage';
 import ApplyPage from './assets/components/pages/ApplyPage';
