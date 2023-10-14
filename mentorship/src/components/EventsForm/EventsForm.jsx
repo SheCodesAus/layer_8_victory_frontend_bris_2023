@@ -1,5 +1,5 @@
-import EventData from "../../data/events"
-import EventCard from "../Cards/EventCard"
+import EventData from "../../assets/data/events"
+import EventCard from "../../components/Cards/EventCard"
 import "./EventsForm.css";
 
 

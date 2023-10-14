@@ -1,6 +1,6 @@
-import Button from "../Buttton/Button";
+import Button from "../../components/Buttton/Button";
 import "./ApplyForm.css";
-import Dropdown from "../Dropdown/Dropdown";
+import Dropdown from "../../components/Dropdown/Dropdown";
 
 const ApplyForm = () =>{
 
