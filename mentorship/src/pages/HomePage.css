@@ -27,6 +27,13 @@ html {
     overflow-x: hidden;
 }
 
-section.section {
+/* section.section {
     min-height: 100vh;
+} */
+
+.welcome img.header-image {
+    margin-top: 9rem;
+    height: 91.55vh;
+    object-fit: cover;
+    width: 100vw;
 }
