@@ -1,0 +1,15 @@
+.login-form{
+    text-align: center;
+    margin-top: 200px;
+    padding:50px;
+
+}
+.login-input{
+
+    padding :10px 40px;
+    border-radius: 5px;
+}
+
+.login-form h1{
+    margin-bottom: 30px;
+}
