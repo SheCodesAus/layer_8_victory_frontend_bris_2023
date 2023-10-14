@@ -1,4 +1,4 @@
-import ApplyForm from "../ApplyForm/ApplyForm"
+import ApplyForm from "../components/ApplyForm/ApplyForm";
 
 const ApplyPage = () =>{
    

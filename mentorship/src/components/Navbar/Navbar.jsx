@@ -14,8 +14,8 @@ const NavBar = () =>
         <h3 className="logo">MentorShip</h3>
         <ul className={isMobile ? "nav-links-mobile":"nav-links"}
 onClick = {()=>  setIsMobile(false)}>
-            <Link to="/" className="home"> <li>Home</li></Link>
-            <Link to="/about" className="about"><li>About</li></Link>
+     
+            <Link to="/events" className="events" ><li>Events</li></Link>
             <Link to="/apply" className="apply"><li>Apply</li></Link>
             <Link to="/login" className="login" ><li>Login</li></Link>
             <Link to="/contact" className="contact" ><li>Contact</li></Link>
