@@ -8,7 +8,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import ApplyPage from './pages/ApplyPage.jsx';
 import EventsPage from './pages/EventsPage.jsx';
-import NavBar from './components/Navbar/Navbar.jsx';
+import NavBar from './components/NavBar/NavBar.jsx';
 
 
 
