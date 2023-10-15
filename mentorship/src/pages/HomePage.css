@@ -27,13 +27,78 @@ html {
     overflow-x: hidden;
 }
 
-/* section.section {
-    min-height: 100vh;
-} */
-
 .welcome img.header-image {
     margin-top: 9rem;
-    height: 91.55vh;
+    height: 60vh;
     object-fit: cover;
     width: 100vw;
 }
+
+.information {
+    width: 100%;
+}
+
+.about-us {
+    width: 50%;
+    float: left;
+    padding: 75px;
+}
+
+.about-us h1, .next-event h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 6rem;
+    color: var(--dark-blue);
+}
+
+.about-us p, .next-event p {
+    font-size: 2rem;
+    padding: 10px 0px;
+}
+
+.about-us p, .paragraph {
+    padding: 20px 0px;
+}
+
+.paragraph {
+    height: 212px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.next-event {
+    margin-left: 50%;
+    padding: 70px;
+}
+
+.button {
+    background-color: var(--dark-blue);
+    border: 2px solid var(--dark-blue);
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: var(--cream);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 2rem;
+    line-height: normal;
+    min-height: 60px;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    touch-action: manipulation;
+    width: 200px;
+    will-change: transform;
+}
+
+.button:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.button:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
