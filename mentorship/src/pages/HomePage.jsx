@@ -1,15 +1,44 @@
-// import { useRef} from 'react';
-// import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
+
+import Banner_1 from '../../public/Banner_1.jpeg'
+import Banner_2 from '../../public/Banner_2.jpeg'
+import Banner_3 from '../../public/Banner_3.jpeg'
 
 import "./HomePage.css";
 
+const images = [Banner_1, Banner_2, Banner_3];
 
 function HomePage() {
 
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImageIndex(prevIndex =>
+                (prevIndex + 1) % images.length
+            );
+        }, 5000); 
+    
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <section className="section home">
-            <div className="welcome">
-                <img className="header-image" src="../../public/placeholder-image.jpeg" alt="" />
+            <div className="overlay">
+                <div className="text">
+                    <h1>Get Onboard</h1>
+                    <p>Apply now to become a She Codes mentor</p>
+                </div>
+            </div>
+            <div className="banner">
+                {images.map((image, index) => (
+                    <img
+                    key={index}
+                    className={`banner-image ${currentImageIndex === index ? 'active' : ''}`}
+                    src={image}
+                    alt={`Image ${index + 1}`}
+                    />
+                ))}
             </div>
             <div className="information">
                 <div className="about-us">
