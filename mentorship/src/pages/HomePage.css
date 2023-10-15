@@ -102,3 +102,34 @@ html {
     transform: translateY(0);
 }
 
+@media (max-width: 768px) {
+    .information {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .about-us {
+        width: 100%;
+    }
+
+    .next-event {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .about-us, .next-event {
+        padding: 65px;
+    }
+}
+
+@media (max-width: 565px) {
+    .about-us, .next-event {
+        padding: 55px;
+    }
+}
+
+@media (max-width: 425px) {
+    .about-us, .next-event {
+        padding: 45px;
+    }
+}
