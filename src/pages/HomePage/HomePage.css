@@ -45,7 +45,7 @@ html {
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    z-index: 100;
+    z-index: 99;
     padding-bottom: 120px;
 }
 
