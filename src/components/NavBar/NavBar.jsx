@@ -50,6 +50,20 @@ function NavBar() {
             <div>
                 <header className="header">
                     <Link to="/" className="logo"><img src="../../../3.png" alt="" /></Link>
+
+
+                    <Link 
+                            to="/dashboard" 
+                            id="apply"
+                            className={activeLink === "apply" ? "active" : ""}
+                            onClick={() => {
+                                setActive("apply");
+                                handleLinkClick();
+                            }}
+                            >
+                                Dashbaord
+                            </Link>
+                           
                     <div className="menu-btn" onClick={toggleMenu}>
                         <div className={`menu-burger ${menuOpen ? 'open' : ''}`}></div>
                     </div>
@@ -140,6 +154,7 @@ function NavBar() {
                                 Apply
                             </Link>
                             </>
+                            
                         )}
                     </nav>
                 </header>

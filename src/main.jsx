@@ -8,6 +8,8 @@ import ContactPage from './pages/ContactPage.jsx';
 import ApplyPage from './pages/ApplyPage.jsx';
 import EventsPage from './pages/EventsPage.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
+import StaffDashboard from './pages/StaffDashboard.jsx'
+import AssignMentors from './components/AssignMentors/AssignMentors.jsx'
 
 
 
@@ -22,6 +24,8 @@ const router = createBrowserRouter([
       {path:"/login",element:<LoginPage />},
       {path:"/contact",element:<ContactPage />},
       {path:"/events",element:<EventsPage />},
+      {path:"/dashboard",element:<StaffDashboard />},
+      {path:"/assign", element: <AssignMentors />}
     ],
   },
 ]);
