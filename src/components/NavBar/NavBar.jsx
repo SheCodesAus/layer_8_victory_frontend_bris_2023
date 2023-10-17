@@ -89,7 +89,7 @@ function NavBar() {
                             </Link>
                             <Link 
                             to="/contact" 
-                            id="contact"
+                            id="contact_us"
                             className={activeLink === "contact" ? "active" : ""}
                             onClick={() => {
                                 setActive("contact");
