@@ -29,15 +29,11 @@ function HomePage() {
                 <div className="text">
                     <h1>Get Onboard</h1>
                     <Link 
-                        to="/apply" 
-                        id="apply"
-                        onClick={() => {
-                            setActive("apply");
-                            handleLinkClick();
-                        }}
-                        >
-                            <p>Apply now to become a mentor</p>
-                        </Link>
+                    to="/apply" 
+                    id="apply"
+                    >
+                        <p>Apply now to become a mentor</p>
+                    </Link>
                 </div>
             </div>
             <div className="banner">
