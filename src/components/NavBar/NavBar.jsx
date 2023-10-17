@@ -49,7 +49,7 @@ function NavBar() {
         <div>
             <div>
                 <header className="header">
-                    <Link to="/" className="logo"><img src="../../../3.png" alt="" /></Link>
+                    <img className="logo" src="../../../3.png" alt="" />
                     <div className="menu-btn" onClick={toggleMenu}>
                         <div className={`menu-burger ${menuOpen ? 'open' : ''}`}></div>
                     </div>
