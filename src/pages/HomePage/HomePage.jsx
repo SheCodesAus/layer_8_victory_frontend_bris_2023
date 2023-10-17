@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
 import Banner_1 from '../../../public/banner1.jpeg';
@@ -27,7 +28,16 @@ function HomePage() {
             <div className="overlay">
                 <div className="text">
                     <h1>Get Onboard</h1>
-                    <p>Apply now to become a She Codes mentor</p>
+                    <Link 
+                        to="/apply" 
+                        id="apply"
+                        onClick={() => {
+                            setActive("apply");
+                            handleLinkClick();
+                        }}
+                        >
+                            <p>Apply now to become a mentor</p>
+                        </Link>
                 </div>
             </div>
             <div className="banner">

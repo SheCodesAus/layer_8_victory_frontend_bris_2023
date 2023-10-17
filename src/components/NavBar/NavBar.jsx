@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-  
+
 import useAuth from "../../hooks/use-auth";
 
 import "./NavBar.css";
@@ -66,38 +66,38 @@ function NavBar() {
                             Home
                         </Link>
                         <Link 
-                            to="/about" 
-                            id="about"
-                            className={activeLink === "about" ? "active" : ""}
-                            onClick={() => {
-                                setActive("about");
-                                handleLinkClick();
-                            }}
-                            >
-                                About
-                            </Link>
-                            <Link 
-                            to="/events" 
-                            id="events"
-                            className={activeLink === "events" ? "active" : ""}
-                            onClick={() => {
-                                setActive("events");
-                                handleLinkClick();
-                            }}
-                            >
-                                Events
-                            </Link>
-                            <Link 
-                            to="/contact" 
-                            id="contact_us"
-                            className={activeLink === "contact" ? "active" : ""}
-                            onClick={() => {
-                                setActive("contact");
-                                handleLinkClick();
-                            }}
-                            >
-                                Contact
-                            </Link>
+                        to="/about" 
+                        id="about"
+                        className={activeLink === "about" ? "active" : ""}
+                        onClick={() => {
+                            setActive("about");
+                            handleLinkClick();
+                        }}
+                        >
+                            About
+                        </Link>
+                        <Link 
+                        to="/events" 
+                        id="events"
+                        className={activeLink === "events" ? "active" : ""}
+                        onClick={() => {
+                            setActive("events");
+                            handleLinkClick();
+                        }}
+                        >
+                            Events
+                        </Link>
+                        <Link 
+                        to="/contact" 
+                        id="contact_us"
+                        className={activeLink === "contact" ? "active" : ""}
+                        onClick={() => {
+                            setActive("contact");
+                            handleLinkClick();
+                        }}
+                        >
+                            Contact
+                        </Link>
                         {auth.token ? (
                             <>
                             <Link to="/" onClick={handleLogout}>
