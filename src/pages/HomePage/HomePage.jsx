@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import Banner_1 from '../../../public/banner1.jpeg'
-import Banner_2 from '../../../public/banner2.jpeg'
-import Banner_3 from '../../../public/banner3.jpeg'
+import Banner_1 from '../../../public/banner1.jpeg';
+import Banner_2 from '../../../public/banner2.jpeg';
+import Banner_3 from '../../../public/banner3.jpeg';
 
 import "./HomePage.css";
 
@@ -17,7 +17,7 @@ function HomePage() {
             setCurrentImageIndex(prevIndex =>
                 (prevIndex + 1) % images.length
             );
-        }, 5000); 
+        }, 3000); 
     
         return () => clearInterval(interval);
     }, []);
