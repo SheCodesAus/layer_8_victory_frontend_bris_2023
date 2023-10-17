@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 
-import Banner_1 from '../../../public/banner1.jpeg';
-import Banner_2 from '../../../public/banner2.jpeg';
-import Banner_3 from '../../../public/banner3.jpeg';
+import Banner_1 from '/banner1.jpeg';
+import Banner_2 from '/banner2.jpeg';
+import Banner_3 from '/banner3.jpeg';
 
 import "./HomePage.css";
 
