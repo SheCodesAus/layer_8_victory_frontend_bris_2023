@@ -29,6 +29,7 @@ function EventsList({activeEvent, onChangeActiveEvent}) {
 
     return (
         <div className='event-list'>
+            <p>Events List</p>
             
             {/* <input className='search-box'
                 type='text' 
@@ -44,11 +45,11 @@ function EventsList({activeEvent, onChangeActiveEvent}) {
                 }).filter(o => o.title.includes(searchTerm)).map((eventData, key) => {
 
                     const formattedDateObj = new Date(eventData.start_date)
-
+                    //: {formattedDateObj.getDay()}/{formattedDateObj.getMonth()}/{formattedDateObj.getFullYear()}
                     return(
                     <li key={key}>
-                        {eventData.title} : {formattedDateObj.getDay()}/{formattedDateObj.getMonth()}/{formattedDateObj.getFullYear()}
-                    <button onClick={handleAssignMentors} value={eventData.id}>Assign Mentors</button> 
+                        
+                        Event ID {eventData.id}    <button onClick={handleAssignMentors} value={eventData.id}>Assign Mentors</button> 
                     </li>
                     )
                 })}
