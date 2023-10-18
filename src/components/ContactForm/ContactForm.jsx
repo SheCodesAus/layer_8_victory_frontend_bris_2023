@@ -23,7 +23,7 @@ const ContactForm = () =>{
     </div>
 </section>
 
-<section id="contact">
+<section id="contact_section">
             <h1 className="contact_title">Get in touch ✍🏻</h1>
             <p className="contact-txt">Feel free to get in touch. We are always open to discussing new partnerships.</p>
             <form
@@ -44,6 +44,9 @@ const ContactForm = () =>{
 }
 
 export default ContactForm
+
+
+
 
 
 
