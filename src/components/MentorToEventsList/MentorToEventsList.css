@@ -3,7 +3,29 @@
     border: solid black 4px;
 }
 
-.mentor-event-list ul li {
+.mentor-event-list li {
+    margin-left: 30px;
+}
+
+
+.mentor-event-list ul {
     font-size: 2rem;
-    margin: 30px;
+    margin: 20px;
+}
+
+.mentor-changes-title {
+    margin-top: 50px;
+    text-align: center;
+}
+
+
+.mentor-changes {
+ 
+    display: flex;
+
+}
+
+
+.confirm {
+    margin-top: 100px;
 }

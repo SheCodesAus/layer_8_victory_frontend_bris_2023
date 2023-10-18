@@ -1,29 +1,38 @@
-import { useState } from 'react'
+import { useState, setState } from 'react'
 import useMentors from '../../hooks/use-mentors'
 import './MentorList.css'
 
-function MentorList({mentorListAssigned, onChangeMentorList}) {
+function MentorList({
+    mentorsToAdd, 
+    onMentorsAdd}) {
 
     const { mentors, isMentorsLoading, isMentorsError } = useMentors()
 
-
-
+   
     const handleAssignEventMentor = (event) => {
 
-        onChangeMentorList([...mentorListAssigned, event.target.value])
+        let index = mentorsToAdd.indexOf(event.target.value)
 
+        if (index === -1 ){
+            onMentorsAdd([...mentorsToAdd, event.target.value])
+        }
     }
 
 
     const handleUnAssignEventMentor = (event) => {
 
-        let index = mentorListAssigned.indexOf(event.target.value)
+        let index = mentorsToAdd.indexOf(event.target.value)
 
-        let unsassigned = [...mentorListAssigned]
+        let unsassigned = [...mentorsToAdd]
 
-        unsassigned.splice(index,1)
+        if (index !== -1) {
+            unsassigned.splice(index,1)
+        } else {
+            unsassigned
+        }
+        
   
-        onChangeMentorList(unsassigned)
+        onMentorsAdd(unsassigned)
 
     }
 
@@ -37,12 +46,25 @@ function MentorList({mentorListAssigned, onChangeMentorList}) {
             <p>Full Mentor List</p>
             <ul>
                 {mentors.map((mentorDataDetails, key) => {
+
+                    if( mentorsToAdd.indexOf(mentorDataDetails.id) !== -1 ){
+                        console.log("yes")
+                    }
                     
                     return(<div>
 
-                        <li key={key}>Mentor ID: {mentorDataDetails.id} </li>
-                        <button onClick={handleAssignEventMentor} value={mentorDataDetails.id}>Assign</button>
+                        <li key={key}>Mentor ID: {mentorDataDetails.id} 
+                        
+                        
+                        { (mentorsToAdd.indexOf(mentorDataDetails.id) !== -1)  ? 
+                                
                         <button onClick={handleUnAssignEventMentor} value={mentorDataDetails.id}>UnAssign</button>
+                        :
+                        <button onClick={handleAssignEventMentor} value={mentorDataDetails.id}>Assign</button>
+                        }
+                
+                        
+                        </li>
                     </div>
                     )
                 })}

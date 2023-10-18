@@ -6,16 +6,38 @@ import './EventCrud.css'
 
 function EventCrud({activeEvent}) {
 
-    const [mentorListAssigned, setMentorListAssigned] = useState([])
+    const [mentorsToAdd, setMentorsToAdd] = useState([])
 
-    const onChangeMentorList = (mentorList) => {
-        setMentorListAssigned(mentorList)
+    const onMentorsAdd = (mentorAddList) => {
+        setMentorsToAdd(mentorAddList)
     }
+
+    const [mentorsToRemove, setMentorsToRemove] = useState([])
+
+    const onRemoveMentors = (mentorRemoveList) => {
+        setMentorsToRemove(mentorRemoveList)
+    }
+
+    const [currentMentors, setCurrentMentors] = useState([])
+
+    const onCurrentMentorsChange = (currentMentorsList) => {
+        setCurrentMentors(currentMentorsList)
+    }
+
 
     return (
         <div className='event-crud'>
-             <MentorEventsList activeEvent={activeEvent} mentorListAssigned={mentorListAssigned}/>
-            <MentorList mentorListAssigned={mentorListAssigned} onChangeMentorList={onChangeMentorList} />
+            <MentorEventsList   activeEvent={activeEvent} 
+                                mentorsToAdd={mentorsToAdd} 
+                                mentorsToRemove={mentorsToRemove} 
+                                onRemoveMentors={onRemoveMentors}
+                                currentMentors={currentMentors}
+                                onCurrentMentorsChange={onCurrentMentorsChange}/>
+
+            <MentorList         mentorsToAdd={mentorsToAdd} 
+                                onMentorsAdd={onMentorsAdd} 
+                                mentorsToRemove={mentorsToRemove}  
+                                onRemoveMentors={onRemoveMentors} />
         </div>
     )
 
