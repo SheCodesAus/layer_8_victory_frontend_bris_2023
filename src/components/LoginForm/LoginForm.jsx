@@ -51,7 +51,6 @@ return(
             className="login-input"
             type="text" 
             id="username" 
-            placeholder="Username"
             onChange={handleChange}
        />
     </div>
@@ -62,7 +61,6 @@ return(
             className="login-input"
             type="password" 
             id="password" 
-            placeholder="Password"
             onChange={handleChange}
         />      
     </div>
