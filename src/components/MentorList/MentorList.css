@@ -1,0 +1,9 @@
+.mentor-list{
+    margin: 20px;
+    border: solid black 4px;
+}
+
+.mentor-list ul li {
+    font-size: 2rem;
+    margin: 30px;
+}

@@ -1,0 +1,7 @@
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    margin-top: 300px;
+    justify-content: space-between;
+    border: red solid 8px
+}

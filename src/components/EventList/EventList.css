@@ -1,0 +1,9 @@
+.event-list{
+    margin: 20px;
+    border: solid black 4px;
+}
+
+.event-list ul li {
+    font-size: 2rem;
+    margin: 20px;
+}
