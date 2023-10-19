@@ -1,31 +1,80 @@
 .mentor-event-list{
-    margin: 20px;
-    border: solid black 4px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-right:10px;
+    border: solid #a5778e 4px;
+    border-radius: 8px;
+    width: 100%;
 }
 
-.mentor-event-list li {
-    margin-left: 30px;
+.assigned-mentors {
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    background-color:#a5778e;
+    color:white;
 }
 
 
-.mentor-event-list ul {
-    font-size: 2rem;
-    margin: 20px;
+.current {
+    background-color: white;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    margin-top:20px;
 }
+
 
 .mentor-changes-title {
-    margin-top: 50px;
     text-align: center;
+    height: 50px;
+    font-size: 20px;
+    margin-top:30px;
+
 }
 
 
 .mentor-changes {
- 
+    background: #e7cdda;
     display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-bottom:20px;
 
 }
 
+.remove-mentors, .add-mentors {
+    text-align: center;
+    font-size: 16px;
+}
+
+.remove-mentors .mentors{
+    color:#a5778e
+}
+
+.mentors-remove {
+    margin: 8px;
+    color:#724a5e;
+    font-weight: bold;
+}
+
+.confirm-div {
+    display: flex;
+    flex-direction: row-reverse;
+}
 
 .confirm {
     margin-top: 100px;
+    align-content: right;
+    background-color: #a5778e;
+    color: white;
 }
+
+.remove {
+    height: 30px;
+    width: 120px;
+    padding: 4px;
+}
+
+

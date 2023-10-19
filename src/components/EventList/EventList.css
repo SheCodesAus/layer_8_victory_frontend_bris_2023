@@ -1,9 +1,98 @@
 .event-list{
     margin: 20px;
-    border: solid black 4px;
+    border: solid #134f5c 4px;
+    border-radius: 8px;
+    background-color: white;
+    text-align: center;
+    width: 30%;
+
 }
 
 .event-list ul li {
     font-size: 2rem;
     margin: 20px;
+}
+
+.event-detail {
+    display: flex;
+    margin: 10px;
+    border: solid #134f5c;
+    border-radius: 4px;
+    
+
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    border-radius: 12px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.search-box {
+    border: solid #a5778e;
+    border-radius: 4px;
+    margin: 10px;
+    margin-left: 20px;
+    width:50%;
+    height: 50px;
+    padding-left: 10px;
+}
+
+.search-box::placeholder{
+    color: #5a243f;
+    opacity: 0.7;
+}
+  
+  .search-box:hover {
+
+    border: 2px solid #a5778e;
+    background: linear-gradient(to left top, #00000023, #a5778e4d) fixed;
+  }
+  .search-box:focus {
+    color: #a5778e;
+    border: 2px solid #a5778e;
+    
+  }
+
+.create-event {
+    color: #a5778e;
+    font-weight: bold;
+    border: solid #a5778e;
+    border-radius: 4px;
+    height: 50px;
+    margin: 10px;
+    width:50%;
+    background: #e7cdda;
+    cursor: pointer;
+}
+
+
+
+.event-top{
+    display: flex;
+    flex-direction: row;
+    align-content:start;
+}
+
+.assign{
+    color: #9c6882;
+    font-weight: bold;
+    border: solid #a5778e;
+    background: #e7cdda;
+}
+
+
+.edit-event {
+    color: white;
+    font-weight: bold;
+    border: solid #134f5c;
+    background: #45818e;
 }

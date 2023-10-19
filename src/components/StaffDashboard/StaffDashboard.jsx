@@ -21,8 +21,15 @@ function StaffDashboard() {
     return (
         <div className='dashboard'>
 
-            <EventsList activeEvent={activeEvent} onChangeActiveEvent={onChangeActiveEvent}/>
+           <EventsList activeEvent={activeEvent} onChangeActiveEvent={onChangeActiveEvent}/>
+
+           {activeEvent != ''?
            <EventCrud activeEvent={activeEvent}  />
+           :
+           <p>Get Started with an event</p>
+            }
+           
+           
         </div>
     
         )

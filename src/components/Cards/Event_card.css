@@ -1,9 +1,19 @@
 .card{
     background-color: rgb(223, 216, 216);
-    padding:1.5rem;
+    padding:1rem;
     border: 2px solid transparent;
     border-radius: 2rem;
     transition:all 500ms ease ;
-    margin: 10px;
+    margin: 4px;
     box-sizing: border-box;
+    width: 80%;
     }
+
+.card p{
+        margin:10px;
+    }
+
+.card h2{
+    margin: 10px;
+    font-size: 20px;
+}

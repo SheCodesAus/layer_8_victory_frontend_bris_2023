@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import getMentorEvents from '../../api/get-mentor-events';
+import postMentorEvents from '../../api/post-mentor-events';
 
-export default function useMentorEvents() {
+export default function usePostMentorEvents() {
 
     const [mentorevents, setMentorEvents] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -14,6 +14,7 @@ export default function useMentorEvents() {
         .then((mentorevents) => {
             setMentorEvents(mentorevents);
             setIsLoading(false);
+            console.log("use effect here", isLoading, mentorevents)
         })
         .catch((error) => {
             setError(error);

@@ -1,6 +1,8 @@
 .mentor-list{
-    margin: 20px;
-    border: solid black 4px;
+    margin-top: 20px;
+    border:  solid #a5778e 4px;
+    width:100%;
+    border-radius: 8px;
 }
 
 .mentor-list ul li {
@@ -8,8 +10,19 @@
     margin: 30px;
 }
 
-.mentor-list button {
-    margin-left: 10px;
-    padding: 8px;
-    outline: solid black;
+
+.mentors {
+    font-size: 20px;
+    border: solid #553043;
+    border-radius: 4px;
+    background-color: #a5778e;
+    margin: 8px;
+}
+
+.assigning {
+    height: 30px;
+    border-radius: 4px;
+    background-color: #e7cdda;
+    border: solid #ffffff;
+    color: #553043;
 }

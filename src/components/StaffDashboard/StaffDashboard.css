@@ -3,5 +3,6 @@
     flex-direction: row;
     margin-top: 300px;
     justify-content: space-between;
-    border: red solid 8px
+    border: solid #134f5c;
+    border-radius: 20px;
 }

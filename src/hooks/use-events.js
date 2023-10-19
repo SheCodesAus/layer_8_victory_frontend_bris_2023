@@ -14,7 +14,6 @@ export default function useEvents() {
         .then((events) => {
             setEvents(events);
             setIsLoading(false);
-            console.log("use effect here", isLoading, events)
         })
         .catch((error) => {
             setError(error);

@@ -1,19 +1,19 @@
-async function postMentorEvents(event_id, mentor_id) {
+async function putMentorEvents(id, is_deleted) {
 
-    const url = `${import.meta.env.VITE_API_URL}/mentor-events/`
+    const url = `${import.meta.env.VITE_API_URL}/mentor-events/${id}/`
     
     const token = window.localStorage.getItem("token")
 
-
+    console.log(url)
     const response = await fetch(url, { 
-        method: "POST",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
             "Authorization": "Token " + token
         },
         body: JSON.stringify({
-            "event_id": event_id,
-            "mentor_id": mentor_id
+            "is_deleted": is_deleted,
+
         })
     });
 
@@ -33,4 +33,4 @@ return await response.json();
 
 }
 
-export default postMentorEvents;
+export default putMentorEvents;
