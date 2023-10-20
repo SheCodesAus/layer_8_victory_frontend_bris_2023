@@ -56,7 +56,11 @@ function HomePage() {
                     voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat 
                     non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
-                    <button className="button">More Info</button>
+                    <Link
+                    to="/about" 
+                    >
+                        <button className="button">More Info</button>
+                    </Link>
                 </div>
                 <div className="next-event">
                     <h1>Next Event</h1>
@@ -65,7 +69,11 @@ function HomePage() {
                         <p>TITLE</p>
                         <p>LOCATION</p>
                     </div>
-                    <button className="button">More Events</button>
+                    <Link
+                    to="/events" 
+                    >
+                        <button className="button">More Events</button>
+                    </Link>
                 </div>
             </div>
         </section>
