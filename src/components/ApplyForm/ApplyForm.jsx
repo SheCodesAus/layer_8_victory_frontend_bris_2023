@@ -1,17 +1,21 @@
 import Button from "../../components/Buttton/Button";
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import useAuth from "../../hooks/use-auth"
 import Dropdown from "../Dropdown/Dropdown";
+import postCreateAccount from "../../api/post_create_account";
+import postLogin from "../../api/post_login";
 import "./ApplyForm.css";
+
 
 const ApplyForm = () =>{
     const navigate = useNavigate();
-    const {auth, setAuth } = useAuth()
+
 
     const [errorMessage, setErrorMessage] = useState("")
     const [formInvalid, setFormInvalid] = useState("")
     const [checkedState, setCheckedState] = useState([]);
+    const [checked, setChecked] = useState(false)
+
     // until we have a separate get request for skills list:
     const skills = [ "Python", "Django", "DRF", "React", "Javascript", "Front-end",  "Back-end", "HTML-CSS"]
 
@@ -25,22 +29,20 @@ const ApplyForm = () =>{
         github_profile: "",
         username: "",
         password: "",
-        has_mentored: false,
+        has_mentored:false,
         location: "",
         skills: [],
     })
 
     const handleChange = (event) => {
-        if (!auth.token) {
+
             const {id, value} = event.target;
             setSignupDetails((prevDetails) => ({
                 ...prevDetails,
                 [id]: value,
             }))
-            console.log(signupdetails)
-    }   else {
-        setFormInvalid("Already signed in")
-    }
+            
+
     }
 
     const handleCheckboxChange = (event) => {
@@ -64,60 +66,59 @@ const ApplyForm = () =>{
         location: value})
     }
 
-    const handleSubmit = (event) => {
+    const handleBooleanChange = () => {
+        setChecked(!checked);
+        setSignupDetails({...signupdetails,
+            has_mentored: checked})
+     
+      }
 
-        console.log(signupdetails.skills)
+   
 
-        console.log(signupdetails)
-
-         event.preventDefault()
-
-        // if (!auth.token){
-        //     if(signupdetails.username && 
-        //         signupdetails.password && 
-        //         signupdetails.first_name && 
-        //         signupdetails.last_name && 
-        //         signupdetails.email &&
-        //         signupdetails.mobile &&
-        //         signupdetails.location &&
-        //         signupdetails.cv && 
-        //         signupdetails.skills &&
-        //         signupdetails.social_account &&
-        //         signupdetails.linkedin_account) {
-                // postCreateAccount(
-                //     signupdetails.username,
-                //     signupdetails.password,
-                //     signupdetails.first_name,
-                //     signupdetails.last_name,
-                //     signupdetails.email,
-                //     signupdetails.mobile,
-                //     signupdetails.location,
-                //     signupdetails.cv,
-                //     signupdetails.skills,
-                //     signupdetails.social_account,
-                //     signupdetails.linkedin_account
-                // ).then((response) => {
-                    // Endpoint not yet available
-                    // postLogin(
-                    //     signupdetails.username, 
-                    //     signupdetails.password).then(
-                    //     (response) => {
-                    //         window.localStorage.setItem("token", response.token)
-                    //         window.localStorage.setItem("id", response.id)
-                    //         navigate(`../user/${window.localStorage.getItem("id")}`)
-                    //         setAuth({token: response.token, id: response.id})
-                    //     }
-                        
-                    // ).catch((error)=>{setErrorMessage(`${[error.message]}`)})
-        //         }).catch((error)=>{setErrorMessage(`${[error.message]}`)})
-                
-        //     } else {
-        //         setFormInvalid("Please complete the form")
-        //     }
-        // } else {
-        //     setFormInvalid("Already signed in")
-        // }
-        }
+        const handleSubmit = (event) => {
+            console.log(signupdetails)  
+            event.preventDefault()
+    
+          
+                if(
+                    signupdetails.first_name &&
+                    signupdetails.last_name &&
+                    signupdetails.email &&
+                    signupdetails.mobile &&
+                    signupdetails.social_account &&
+                    signupdetails.linkedin_account &&
+                    signupdetails.github_profile &&
+                    signupdetails.username &&
+                    signupdetails.password &&
+                    signupdetails.has_mentored &&
+                    signupdetails.location &&
+                    signupdetails.skills ) {
+                        postCreateAccount(
+                            signupdetails.first_name,
+                            signupdetails.last_name,
+                            signupdetails.email,
+                            signupdetails.mobile,
+                            signupdetails.social_account,
+                            signupdetails.linkedin_account,
+                            signupdetails.github_profile,
+                            signupdetails.username,
+                            signupdetails.password,
+                            signupdetails.has_mentored,
+                            signupdetails.location,
+                            signupdetails.skills,
+                            )
+                    .then((response) => {
+                        postLogin(
+                            signupdetails.username, 
+                            signupdetails.password)
+                        .catch((error)=>{setErrorMessage(`${[error.message]}`)})
+                    }).catch((error)=>{setErrorMessage(`${[error.message]}`)})
+                    
+                } else {
+                    setFormInvalid("Please complete the form")
+                }
+         
+            }
 
     
 
@@ -140,8 +141,6 @@ const ApplyForm = () =>{
             
            />
         </div>
-        
-        
         
         <div className="input-container">
         <label htmlFor="last_name ">Last Name </label><br/>
@@ -219,8 +218,6 @@ const ApplyForm = () =>{
   
       
             />      
-        
-        
         </div>
 
         <div className="input-container">
@@ -239,14 +236,23 @@ const ApplyForm = () =>{
 
 <div>
     <label htmlFor="mentor" className="label-checkbox">Have you mentored with us before? </label><br/>
-    
-    <label className="checkbox-apply">
-        <input type="checkbox" />
-        Yes
-      </label>
-    <label className="checkbox-apply">
-        <input type="checkbox" />
+    <label>
         No
+        <input
+         
+          type="checkbox"
+          checked={checked === true}
+          onChange={handleBooleanChange}
+        />
+      </label>
+      <label>
+        Yes
+        <input
+      
+          type="checkbox"
+          checked={checked === false}
+          onChange={handleBooleanChange}
+        />
       </label>
     </div>
             <div className="input-container">
@@ -270,7 +276,6 @@ const ApplyForm = () =>{
                 </div>
     
                 ))}
-            {/* <div>{`Items checked are: ${checkedItems}`}</div> */}
         </div>
 
         </div>
@@ -290,10 +295,3 @@ const ApplyForm = () =>{
 }
 
 export default ApplyForm
-
-{/* <div className="input-container">
-<label htmlFor="Skills ">Skills </label><br/>
-<div>
-    <Dropdown arrayValues={["Junior"," Mid-level", "Lead"]}  onChange={(event)}/>
-</div>    
- </div> */}
