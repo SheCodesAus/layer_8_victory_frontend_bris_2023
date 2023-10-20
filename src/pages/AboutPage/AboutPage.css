@@ -45,6 +45,7 @@ html {
     font-family: 'Dancing Script', cursive;
     font-size: 6rem;
     color: var(--dark-blue);
+    padding-bottom: 15px;
 }
 
 .about-text p {
