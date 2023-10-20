@@ -10,6 +10,7 @@ import ApplyPage from './pages/ApplyPage.jsx';
 import EventsPage from './pages/EventsPage.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
 import Footer from './components/Footer/Footer.jsx';
+import AboutPage from './pages/AboutPage/AboutPage.jsx';
 
 
 
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {path:"/",element:<HomePage />},
-      // {path:"/about",element:<AboutPage />},
+      {path:"/about",element:<AboutPage />},
       {path:"/apply",element:<ApplyPage />},
       {path:"/login",element:<LoginPage />},
       {path:"/contact",element:<ContactPage />},
