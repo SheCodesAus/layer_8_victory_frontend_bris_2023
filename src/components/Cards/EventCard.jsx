@@ -6,7 +6,7 @@ function EventCard(props) {
 
 const { eventData } = props
 const eventLink = `event/${props.id}`
-console.log(eventData)
+
 
 const formattedDateObj = new Date(eventData.start_date)
 

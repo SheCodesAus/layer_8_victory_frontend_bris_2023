@@ -1,13 +1,14 @@
 import { useState, setState} from 'react';
 import useEvents from '../../hooks/use-events'
 import EventCard from '../Cards/EventCard'
+import CreateEventForm from '../CreateEventForm/CreateEventForm';
+import EditEventForm from '../EditEventsForm/EditEventsForm';
 import './EventList.css'
 
 
-function EventsList({activeEvent, onChangeActiveEvent}) {
+function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreateEventClick, editEventOpen, onEditEventClick}) {
 
     const { events,  isEventsLoading, isEventsError } = useEvents();
-    console.log(events)
 
     const [searchTerm, setSearchTerm] = useState("")
 
@@ -22,8 +23,24 @@ function EventsList({activeEvent, onChangeActiveEvent}) {
     const handleAssignMentors = (event) => {
                
         onChangeActiveEvent(event.target.value)
+        onCreateEventClick("false")
+        onEditEventClick("false")
         
     }
+
+    const handleCreateEventClick = (event) => {
+        onCreateEventClick(event.target.value)
+        onEditEventClick("false")
+    }
+
+    const handleEditEventClick = (event) => {
+
+        onChangeActiveEvent(event.target.value)
+        
+        onEditEventClick("true")
+        onCreateEventClick("false")
+    }
+
     const handleChange = e => setSearchTerm(e.target.value)
 
     return (
@@ -37,8 +54,12 @@ function EventsList({activeEvent, onChangeActiveEvent}) {
                 placeholder='Find an event'>
             </input>
 
-            <button className='create-event'>Create an event</button>
+            <button className='create-event' onClick={handleCreateEventClick} value="true">Create an event</button>
+
+
             </div>
+
+
             <div>
                 <ul>
                 {events.sort((a,b) => {
@@ -51,7 +72,7 @@ function EventsList({activeEvent, onChangeActiveEvent}) {
                             <EventCard key={key} eventData={eventData} />
                             <div className='action-buttons'>
                                 <button className='assign' onClick={handleAssignMentors} value={eventData.id}>Assign Mentors</button>
-                                 <button className='edit-event'>Edit Event</button>
+                                 <button className='edit-event' onClick={handleEditEventClick} value={eventData.id}>Edit Event</button>
                              </div>
                        {/* {eventData.id}    <button onClick={handleAssignMentors} value={eventData.id}>Assign Mentors</button> */}
                         </div>)
@@ -59,7 +80,6 @@ function EventsList({activeEvent, onChangeActiveEvent}) {
                 </ul>
 
             </div>
-
 
 
             </div>

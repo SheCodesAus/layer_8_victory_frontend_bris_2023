@@ -5,7 +5,7 @@ import MentorList from '../MentorList/MentorList'
 import MentorEventsList from '../MentorToEventsList/MentorToEventsList'
 import './EventCrud.css'
 
-function EventCrud({activeEvent}) {
+function EventCrud({activeEvent, onCreateEventClick, createEventOpen}) {
 
     const { events,  isEventsLoading, isEventsError } = useEvents();
 
@@ -27,7 +27,11 @@ function EventCrud({activeEvent}) {
         setCurrentMentors(currentMentorsList)
     }
 
+
+
     
+
+
 
     return (
         <div className='event-crud'>
@@ -51,6 +55,8 @@ function EventCrud({activeEvent}) {
                 </div>
                 }
             </div>
+
+
 
             <div className='crud-elements'>
                 <MentorEventsList   activeEvent={activeEvent} 
