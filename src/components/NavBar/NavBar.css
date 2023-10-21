@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
-  
+
 * {
     margin: 0;
     padding: 0;
@@ -46,12 +46,8 @@ html {
     border-bottom: 0.1rem solid rgba(0, 0, 0, 0.2);
 }
 
-.logo img {
-    height: 60px;
-}
-
 .logo {
-    cursor: pointer;
+    height: 60px;
 }
 
 .navbar a {
@@ -114,14 +110,20 @@ html {
         margin-left: 3.8rem;
     }
 
-    .logo img {
+    .logo {
         height: 50px;
+    }
+}
+
+@media (max-width: 1020px) {
+    .header {
+        padding: 1.2rem 4%;
     }
 }
 
 @media (max-width: 950px) {
     .header {
-        padding: 1.2rem 5%;
+        padding: 1.2rem 4%;
     }
 
     .navbar a {
@@ -129,8 +131,18 @@ html {
         margin-left: 3.6rem;
     }
 
-    .logo img {
+    .logo {
         height: 45px;
+    }
+}
+
+@media (max-width: 905px) {
+    .header {
+        padding: 1.2rem 3%;
+    }
+
+    .logo {
+        height: 50px;
     }
 }
 
@@ -144,7 +156,7 @@ html {
         margin-left: 3.4rem;
     }
 
-    .logo img {
+    .logo {
         height: 45px;
     }
 }
@@ -228,7 +240,7 @@ html {
         font-size: 50%;
     }
 
-    .logo img {
+    .logo {
         height: 35px;
     }
 }
