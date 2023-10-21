@@ -92,9 +92,6 @@ const ApplyForm = () =>{
         signupdetails.last_name &&
         signupdetails.email &&
         signupdetails.mobile &&
-        signupdetails.social_account &&
-        signupdetails.linkedin_account &&
-        signupdetails.github_profile &&
         signupdetails.username &&
         signupdetails.password &&
         signupdetails.location &&
