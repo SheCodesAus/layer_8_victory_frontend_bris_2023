@@ -124,7 +124,7 @@ const ApplyForm = () =>{
                                             setAuth({
                                                 token: response.token,
                                             });
-                                            navigate("/");
+                                            navigate("/events");
 
                                         }
                                        
