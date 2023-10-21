@@ -9,13 +9,19 @@ import ContactPage from './pages/ContactPage.jsx';
 import ApplyPage from './pages/ApplyPage.jsx';
 import EventsPage from './pages/EventsPage.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
+import Footer from './components/Footer/Footer.jsx';
 
 
 
 const router = createBrowserRouter([
   {
     path:"/",
-    element:<NavBar />,
+    element: (
+      <div>
+        <NavBar />
+        <Footer />
+      </div>
+    ),
     children: [
       {path:"/",element:<HomePage />},
       // {path:"/about",element:<AboutPage />},
