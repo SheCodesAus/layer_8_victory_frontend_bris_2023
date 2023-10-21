@@ -34,6 +34,14 @@ const ApplyForm = () => {
     skills: [],
   });
 
+  if (skillsLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (skillsError) {
+    return <p>{skillsError.message}</p>;
+  }
+  
   const handleChange = (event) => {
     const { id, value } = event.target;
     setSignupDetails((prevDetails) => ({
