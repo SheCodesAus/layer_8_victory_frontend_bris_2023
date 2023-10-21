@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 import "./NotFound404Page.css"
 
 function NotFound404Page() {
-    const Page404 = ( {location} )
     return (
         <article id="not-found">
             <h1>Error 404</h1>
