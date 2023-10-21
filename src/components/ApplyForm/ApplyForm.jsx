@@ -80,11 +80,13 @@ const ApplyForm = () =>{
 
    
 
-        const handleSubmit = (event) => {
-            console.log(signupdetails)  
-            event.preventDefault()
+    const handleSubmit = (event) => {
+        console.log(signupdetails)  
+        event.preventDefault();
+        setFormInvalid("");
+        setErrorMessage("");
             
-if (!auth.token){
+
       if(
         signupdetails.first_name &&
         signupdetails.last_name &&
@@ -113,21 +115,24 @@ if (!auth.token){
                             signupdetails.location,
                             signupdetails.skills,
                             )
-                    .then((response) => {
+                    .then(() => {
                                 postLogin(
                                     signupdetails.username, 
                                      signupdetails.password).then(
-                                        (response)=>{
-                                            window.localStorage.setItem("token", response.token)
-                                            navigate("/events")
+                                        (response) => {
+                                            window.localStorage.setItem("token", response.token);
+                                            setAuth({
+                                                token: response.token,
+                                            });
+                                            navigate("/");
 
                                         }
                                        
-                                     )
-                                .catch((error)=>{setErrorMessage(`${[error.message]}`)})
+                                     );
+
                                 
                                 
-                            }).catch((error)=>{setErrorMessage(`${[error.message]}`)})
+                            }).catch((error) => {setErrorMessage(`${[error.message]}`)})
                
                     
                
@@ -135,10 +140,7 @@ if (!auth.token){
                         } else {
                             setFormInvalid("Invalid form")
                         }
-                    } else {
-                        setFormInvalid("Already signed in")
-                    }
-
+                    
         }
 
     
