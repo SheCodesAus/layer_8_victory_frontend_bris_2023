@@ -26,6 +26,7 @@ function HomePage() {
     const [activeLink, setActiveLink] = useState("");
 
     const [setMenuOpen] = useState(false);
+
     const setActive = (link) => {
         setActiveLink(link);
     };
