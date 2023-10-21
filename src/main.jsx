@@ -8,8 +8,7 @@ import ContactPage from './pages/ContactPage.jsx';
 import ApplyPage from './pages/ApplyPage.jsx';
 import EventsPage from './pages/EventsPage.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
-
-
+import ErrorPage from './components/NotFound404Page/NotFound404Page.jsx';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +21,7 @@ const router = createBrowserRouter([
       {path:"/login",element:<LoginPage />},
       {path:"/contact",element:<ContactPage />},
       {path:"/events",element:<EventsPage />},
+      {path:"/ErrorPage",element:<ErrorPage />},
     ],
   },
 ]);
