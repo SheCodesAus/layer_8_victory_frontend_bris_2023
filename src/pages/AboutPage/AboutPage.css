@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Urbanist', sans-serif;
+    /* font-family: 'Dancing Script', cursive; */
+}
+
+:root {
+    --bg-color: #f3f6f4;
+    --text-color: #000000;
+    --dark-blue: #134f5c;
+    --light-blue: #45818e;
+    --cream: #eadbd1;
+    --pink: #e7cdda;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+.photo {
+    margin-top: 9rem;
+    transform: scaleX(-1);
+}
+
+.photo img {
+    height: 60vh;
+    object-fit: cover;
+    width: 100vw;
+}
+
+.about-text {
+    padding: 50px;
+}
+
+.about-text h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 6rem;
+    color: var(--dark-blue);
+    padding-bottom: 15px;
+}
+
+.about-text p {
+    font-size: 2.2rem;
+    padding: 10px 0px;
+    margin: 0px;
+}
