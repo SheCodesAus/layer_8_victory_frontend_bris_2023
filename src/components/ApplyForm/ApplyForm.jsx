@@ -1,6 +1,6 @@
 import Button from "../../components/Buttton/Button";
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 import Dropdown from "../Dropdown/Dropdown";
 import postCreateAccount from "../../api/post_create_account";
 import postLogin from "../../api/post_login";
@@ -14,10 +14,10 @@ const ApplyForm = () =>{
     const [errorMessage, setErrorMessage] = useState("")
     const [formInvalid, setFormInvalid] = useState("")
     const [checkedState, setCheckedState] = useState([]);
-    const [checked, setChecked] = useState(false)
+    const [mentored, setMentored] = useState(true);
 
     // until we have a separate get request for skills list:
-    const skills = [ "Python", "Django", "DRF", "React", "Javascript", "Front-end",  "Back-end", "HTML-CSS"]
+    const skills = [ "Python", "Django", "DRF", "React", "Javascript", "Frontend",  "Backend", "HTML-CSS"]
 
     const [signupdetails, setSignupDetails] = useState({
         first_name: "",
@@ -61,17 +61,21 @@ const ApplyForm = () =>{
         })
     }
 
+
+
     const handleSelectionChange =(value) =>{
         setSignupDetails({...signupdetails,
         location: value})
     }
 
-    const handleBooleanChange = () => {
-        setChecked(!checked);
+    const handleBooleanChange =(mentored) =>{
+        console.log(mentored)
+        
+        
         setSignupDetails({...signupdetails,
-            has_mentored: checked})
-     
-      }
+        has_mentored:mentored})
+        console.log(signupdetails)
+    }
 
    
 
@@ -79,20 +83,20 @@ const ApplyForm = () =>{
             console.log(signupdetails)  
             event.preventDefault()
     
-          
-                if(
-                    signupdetails.first_name &&
-                    signupdetails.last_name &&
-                    signupdetails.email &&
-                    signupdetails.mobile &&
-                    signupdetails.social_account &&
-                    signupdetails.linkedin_account &&
-                    signupdetails.github_profile &&
-                    signupdetails.username &&
-                    signupdetails.password &&
-                    signupdetails.has_mentored &&
-                    signupdetails.location &&
-                    signupdetails.skills ) {
+      if(
+        signupdetails.first_name &&
+        signupdetails.last_name &&
+        signupdetails.email &&
+        signupdetails.mobile &&
+        signupdetails.social_account &&
+        signupdetails.linkedin_account &&
+        signupdetails.github_profile &&
+        signupdetails.username &&
+        signupdetails.password &&
+        signupdetails.location &&
+        signupdetails.skills 
+      )
+              {
                         postCreateAccount(
                             signupdetails.first_name,
                             signupdetails.last_name,
@@ -108,17 +112,26 @@ const ApplyForm = () =>{
                             signupdetails.skills,
                             )
                     .then((response) => {
-                        postLogin(
-                            signupdetails.username, 
-                            signupdetails.password)
-                        .catch((error)=>{setErrorMessage(`${[error.message]}`)})
-                    }).catch((error)=>{setErrorMessage(`${[error.message]}`)})
+                                postLogin(
+                                    signupdetails.username, 
+                                     signupdetails.password).then(
+                                        (response)=>{
+                                            window.localStorage.setItem("token", response.token)
+                                            navigate("/events")
+
+                                        }
+                                       
+                                     )
+                                .catch((error)=>{setErrorMessage(`${[error.message]}`)})
+                                
+                                
+                            }).catch((error)=>{setErrorMessage(`${[error.message]}`)})
+               
                     
-                } else {
-                    setFormInvalid("Please complete the form")
-                }
+               
          
             }
+        }
 
     
 
@@ -236,24 +249,29 @@ const ApplyForm = () =>{
 
 <div>
     <label htmlFor="mentor" className="label-checkbox">Have you mentored with us before? </label><br/>
-    <label>
-        No
-        <input
-         
-          type="checkbox"
-          checked={checked === true}
-          onChange={handleBooleanChange}
-        />
-      </label>
-      <label>
-        Yes
-        <input
-      
-          type="checkbox"
-          checked={checked === false}
-          onChange={handleBooleanChange}
-        />
-      </label>
+      <input
+      className="checkbox-apply"
+        type="checkbox"
+        checked={mentored === false}
+        onChange={() => {
+            setMentored(false);
+            handleBooleanChange(false);
+        }
+        }
+        
+      />
+      No
+      <input
+       className="checkbox-apply"
+       id="false_checkbox"
+       type="checkbox"
+       checked={mentored === true}
+        onChange={() => 
+            {setMentored(true);
+            handleBooleanChange(true)
+        }}
+      />
+      Yes
     </div>
             <div className="input-container">
             <label htmlFor="Location ">Location </label><br/>
