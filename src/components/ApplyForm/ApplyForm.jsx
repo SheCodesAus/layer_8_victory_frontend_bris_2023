@@ -59,7 +59,7 @@ const ApplyForm = () => {
     }
     setCheckedState(updatedList);
 
-    console.log(updatedList);
+    // console.log(updatedList);
     setSignupDetails({ ...signupdetails, skills: updatedList });
   };
 
@@ -68,14 +68,14 @@ const ApplyForm = () => {
   };
 
   const handleBooleanChange = (mentored) => {
-    console.log(mentored);
+    // console.log(mentored);
 
     setSignupDetails({ ...signupdetails, has_mentored: mentored });
-    console.log(signupdetails);
+    // console.log(signupdetails);
   };
 
   const handleSubmit = (event) => {
-    console.log(signupdetails);
+    // console.log(signupdetails);
     event.preventDefault();
     setFormInvalid("");
     setErrorMessage("");
@@ -136,7 +136,7 @@ const ApplyForm = () => {
           setErrorMessage(`${[error.message]}`);
         });
     } else {
-      setFormInvalid("Invalid form");
+      setFormInvalid("Please complete all required fields and ensure you are entering a valid email address.");
     }
   };
 
@@ -145,9 +145,9 @@ const ApplyForm = () => {
       <h1 className="apply-title">Apply Now</h1>
       <br />
 
-      <form className="apply-form">
+      <form className="apply-form" id="form">
         <div className="input-container">
-          <label htmlFor="first_name ">First Name </label>
+          <label htmlFor="first_name">First Name<span className={formInvalid ? "" : "hidden"}>*</span> </label>
           <br />
           <input
             className="text-input"
@@ -159,7 +159,7 @@ const ApplyForm = () => {
         </div>
 
         <div className="input-container">
-          <label htmlFor="last_name ">Last Name </label>
+          <label htmlFor="last_name">Last Name<span className={formInvalid ? "" : "hidden"}>*</span> </label>
           <br />
           <input
             className="text-input"
@@ -170,7 +170,7 @@ const ApplyForm = () => {
           />
         </div>
         <div className="input-container">
-          <label htmlFor="email ">Email </label>
+          <label htmlFor="email">Email<span className={formInvalid ? "" : "hidden"}>*</span> </label>
           <br />
           <input
             className="text-input"
@@ -182,7 +182,7 @@ const ApplyForm = () => {
         </div>
 
         <div className="input-container">
-          <label htmlFor="mobile ">Mobile </label>
+          <label htmlFor="mobile">Mobile<span className={formInvalid ? "" : "hidden"}>*</span> </label>
           <br />
           <input
             className="text-input"
@@ -229,7 +229,7 @@ const ApplyForm = () => {
           />
         </div>
         <div className="input-container">
-          <label htmlFor="username ">Username </label>
+          <label htmlFor="username">Username<span className={formInvalid ? "" : "hidden"}>*</span> </label>
           <br />
           <input
             className="text-input"
@@ -241,7 +241,7 @@ const ApplyForm = () => {
         </div>
 
         <div className="input-container">
-          <label htmlFor="password ">Password </label>
+          <label htmlFor="password">Password<span className={formInvalid ? "" : "hidden"}>*</span> </label>
           <br />
           <input
             className="text-input"
@@ -280,7 +280,7 @@ const ApplyForm = () => {
             Yes
           </div>
           <div className="input-container">
-            <label htmlFor="Location ">Location </label>
+            <label htmlFor="Location ">Location<span className={formInvalid ? "" : "hidden"}>*</span> </label>
             <br />
             <div>
               <Dropdown
@@ -294,14 +294,13 @@ const ApplyForm = () => {
                   "Darwin",
                 ]}
                 onChange={handleSelectionChange}
-                required
               />
             </div>
           </div>
 
           <div className="skills-container">
-            <label htmlFor="skills" className="label-checkbox" required>
-              Select skills{" "}
+            <label htmlFor="skills" className="label-checkbox">
+              Select skills<span className={formInvalid ? "" : "hidden"}>*</span>{" "}
             </label>
             {skills.map((item, index) => (
               <div key={index}>
@@ -318,11 +317,11 @@ const ApplyForm = () => {
         </div>
 
         <div>
-          <Button text={"Submit"} btnClass="btn-info " onClick={handleSubmit} />
+            <Button text={"Submit"} btnClass="btn-info" onClick={handleSubmit} />
         </div>
         <div>
           <p>{errorMessage}</p>
-          <sub className={errorMessage ? "" : "hidden"}>
+          <sub className={errorMessage ? "hidden" : ""}>
             <p>{formInvalid}</p>
           </sub>
           {urlError && <p>{urlError}</p>}
