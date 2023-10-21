@@ -1,11 +1,9 @@
 .btn-info {
-    color:white;
-    background-color:rgb(21, 129, 129);
+    background-color:#134F5C;
+    color:#F3F6F4;
     padding:10px 60px;
     border-radius:10px ;
     margin:5px;
-  font-size: 20px;
+   font-size: 20px;
     
-
-
 }

@@ -1,6 +1,10 @@
 .event-container{
-    margin-top: 100px;
+    margin-top: 200px;
     text-align: center;
+}
+
+.event_title{
+    font-size: 30px;
 }
 
 #card-container {

@@ -6,6 +6,7 @@
 .apply-title{
 
     text-align: center;
+    font-size: 30px;
 
 }
 
@@ -17,6 +18,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    font-size: 15px;
     
 } 
 
@@ -24,21 +26,31 @@
 .text-input{
     width: 300px;
     padding :10px;
-    background-color:rgb(238, 227, 227);
+    background-color: #eadbd1;
     border-radius: 5px;
-
 
 }
 
 .label-checkbox{
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .checkbox-apply{
-    margin-left:20px;
+    margin-left:10px;
 }
 .input-container{
     margin-top: 20px;
+}
+
+.skills-container{
+    margin: 20px 30px;
+   
+   }
+
+   .multiple-selection{
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
 }
 
 @media screen and (max-width: 767px) {
@@ -53,7 +65,15 @@
       
     }
     
+.skills-container{
+ margin: 20px 0;
 
+}
+.multiple-selection{
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+}
 
 
 }
