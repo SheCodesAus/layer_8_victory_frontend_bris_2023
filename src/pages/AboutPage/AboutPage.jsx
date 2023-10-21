@@ -10,7 +10,7 @@ function AboutPage() {
                 <img src="/mentoring1.jpeg" alt="" />
             </div>
             <div className='about-text'>
-                <h1>About US</h1>
+                <h1>About Us</h1>
                 <p>MentorShip connects professionals in the technology industry with aspiring coders.</p>
                 <p>
                     At MentorShip, we believe that guidance and support can make all the difference to one&apos;s career route, and we make it easy for both mentors and learners to connect, exchange insights, and develop their coding skills.
