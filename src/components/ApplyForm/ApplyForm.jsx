@@ -5,6 +5,7 @@ import {  useNavigate } from 'react-router-dom';
 import Dropdown from "../Dropdown/Dropdown";
 import postCreateAccount from "../../api/post_create_account";
 import postLogin from "../../api/post_login";
+import useSkills from "../../hooks/use-skills";
 import "./ApplyForm.css";
 
 
@@ -18,7 +19,10 @@ const ApplyForm = () =>{
     const [mentored, setMentored] = useState(true);
 
     // until we have a separate get request for skills list:
-    const skills = [ "Python", "Django", "DRF", "React", "Javascript", "Frontend",  "Backend", "HTML-CSS"]
+    const {skills, skillsLoading, skillsError} = useSkills([]);
+    // for (let skill in skills){
+    //     console.log(skills[skill]["name"])
+    // }
 
     const [signupdetails, setSignupDetails] = useState({
         first_name: "",
@@ -55,7 +59,7 @@ const ApplyForm = () =>{
         }
         setCheckedState(updatedList)
 
-
+        console.log(updatedList)
         setSignupDetails({...signupdetails,
             skills: updatedList
     
