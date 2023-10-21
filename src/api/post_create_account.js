@@ -40,7 +40,7 @@ async function postCreateAccount(first_name, last_name, email, mobile, social_ac
             throw new Error(fallbackError);
         });
     
-        const errorMessage = data?.detail ?? fallbackError;
+        const errorMessage = data?.detail ?? data?.username ?? fallbackError;
         throw new Error(errorMessage);
     }
     

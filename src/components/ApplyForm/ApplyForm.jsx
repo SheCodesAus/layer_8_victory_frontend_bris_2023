@@ -6,6 +6,7 @@ import Dropdown from "../Dropdown/Dropdown";
 import postCreateAccount from "../../api/post_create_account";
 import postLogin from "../../api/post_login";
 import useSkills from "../../hooks/use-skills";
+import { isSchemeValid, isUrlValid } from "../../utlities/urlValidation";
 import "./ApplyForm.css";
 
 
@@ -17,13 +18,8 @@ const ApplyForm = () =>{
     const [formInvalid, setFormInvalid] = useState("")
     const [checkedState, setCheckedState] = useState([]);
     const [mentored, setMentored] = useState(true);
-
-    // until we have a separate get request for skills list:
+    const [urlError, setUrlError] = useState("");
     const {skills, skillsLoading, skillsError} = useSkills([]);
-    // for (let skill in skills){
-    //     console.log(skills[skill]["name"])
-    // }
-
     const [signupdetails, setSignupDetails] = useState({
         first_name: "",
         last_name: "",
@@ -40,14 +36,12 @@ const ApplyForm = () =>{
     })
 
     const handleChange = (event) => {
-
             const {id, value} = event.target;
             setSignupDetails((prevDetails) => ({
                 ...prevDetails,
                 [id]: value,
             }))
             
-
     }
 
     const handleCheckboxChange = (event) => {
@@ -62,7 +56,6 @@ const ApplyForm = () =>{
         console.log(updatedList)
         setSignupDetails({...signupdetails,
             skills: updatedList
-    
         })
     }
 
@@ -89,8 +82,18 @@ const ApplyForm = () =>{
         event.preventDefault();
         setFormInvalid("");
         setErrorMessage("");
-            
-
+        setUrlError("");
+        
+        const urls = [signupdetails.social_account, signupdetails.linkedin_account,signupdetails.github_profile]
+        for (let url in urls) {
+            if (urls[url] != ""){
+                if (isSchemeValid(urls[url]) && isUrlValid(urls[url])) {
+                    setUrlError("");
+                  } else {
+                    setUrlError("Invalid URL, ensure you are including the protocol. Valid protocols include 'http', 'https', 'ftp' and 'ftps'");
+                  }
+            }         
+        }
       if(
         signupdetails.first_name &&
         signupdetails.last_name &&
@@ -162,7 +165,7 @@ const ApplyForm = () =>{
                 type="text" 
                 id="first_name" 
                 onChange={handleChange}
-            
+                required
            />
         </div>
         
@@ -173,7 +176,7 @@ const ApplyForm = () =>{
                 type="text" 
                 id="last_name" 
                 onChange={handleChange}
-              
+                required
             />      
         </div>
         <div className="input-container">
@@ -183,8 +186,7 @@ const ApplyForm = () =>{
                 type="email" 
                 id="email" 
                 onChange={handleChange}
-          
-              
+                required
             />
         </div>
 
@@ -195,7 +197,7 @@ const ApplyForm = () =>{
                 type="text" 
                 id="mobile" 
                 onChange={handleChange}
-               
+                required
             />   
             </div>
 
@@ -239,8 +241,7 @@ const ApplyForm = () =>{
                 type="text" 
                 id="username" 
                 onChange={handleChange}
-  
-      
+                required
             />      
         </div>
 
@@ -251,8 +252,7 @@ const ApplyForm = () =>{
                 type="password" 
                 id="password" 
                 onChange={handleChange}
-
-           
+                required
             />  
 </div>
 <div className="multiple-selection">
@@ -287,13 +287,13 @@ const ApplyForm = () =>{
             <div className="input-container">
             <label htmlFor="Location ">Location </label><br/>
             <div>
-                <Dropdown arrayValues={["Brisbane", "Sydney", "Melbourne", "Adelaide", "Perth", "Canberra",  "Darwin"]}  onChange={handleSelectionChange}/>
+                <Dropdown arrayValues={["Brisbane", "Sydney", "Melbourne", "Adelaide", "Perth", "Canberra",  "Darwin"]}  onChange={handleSelectionChange} required/>
             </div> 
             </div>
            
          
             <div className="skills-container">
-            <label htmlFor="skills" className="label-checkbox">Select skills </label>
+            <label htmlFor="skills" className="label-checkbox" required>Select skills </label>
             {skills.map((item, index) => (
               <div key={index}>
                     <input
@@ -308,13 +308,14 @@ const ApplyForm = () =>{
         </div>
 
         </div>
-
+        
         <div>
         <Button text={"Submit"} btnClass = "btn-info " onClick={handleSubmit}/>
         </div>
         <div>
             <p>{errorMessage}</p>
             <sub className={errorMessage ? "" : "hidden"}><p>{formInvalid}</p></sub>
+            {urlError && <p>{urlError}</p>}
         </div>
 
     </form> 
