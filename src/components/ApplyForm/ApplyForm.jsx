@@ -1,6 +1,7 @@
 import Button from "../../components/Buttton/Button";
 import { useState } from 'react'
-import { redirect, useNavigate } from 'react-router-dom';
+import useAuth from "../../hooks/use-auth";
+import {  useNavigate } from 'react-router-dom';
 import Dropdown from "../Dropdown/Dropdown";
 import postCreateAccount from "../../api/post_create_account";
 import postLogin from "../../api/post_login";
@@ -9,7 +10,7 @@ import "./ApplyForm.css";
 
 const ApplyForm = () =>{
     const navigate = useNavigate();
-
+    const {auth, setAuth } = useAuth()
 
     const [errorMessage, setErrorMessage] = useState("")
     const [formInvalid, setFormInvalid] = useState("")
@@ -82,7 +83,8 @@ const ApplyForm = () =>{
         const handleSubmit = (event) => {
             console.log(signupdetails)  
             event.preventDefault()
-    
+            
+if (!auth.token){
       if(
         signupdetails.first_name &&
         signupdetails.last_name &&
@@ -130,7 +132,13 @@ const ApplyForm = () =>{
                     
                
          
-            }
+                        } else {
+                            setFormInvalid("Invalid form")
+                        }
+                    } else {
+                        setFormInvalid("Already signed in")
+                    }
+
         }
 
     
