@@ -39,7 +39,7 @@ function Footer() {
                 </Link>
                 <Link 
                 className="icon"
-                to="https://join.slack.com/t/shecodesaus/shared_invite/enQtNzQ3ODk1OTQzODc3LTQ2ZWFmNzM0N[…]JkMWMyYWVjMDU3ZThhODJmMTk4YmRjZGMzZDRhZDBhODQwNzdlYmJhNDg1YjE" 
+                to="https://shecodesaus.slack.com/join/shared_invite/enQtNzQ3ODk1OTQzODc3LTQ2ZWFmNzM0NjE1MjA0NTI3YjJkMWMyYWVjMDU3ZThhODJmMTk4YmRjZGMzZDRhZDBhODQwNzdlYmJhNDg1YjE#/shared-invite/email" 
                 id="slack"
                 >
                     <img src={SlackIcon} alt="" />
