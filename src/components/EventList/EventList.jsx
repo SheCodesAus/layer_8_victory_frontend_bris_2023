@@ -12,7 +12,7 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
 
     const [searchTerm, setSearchTerm] = useState("")
 
-   if (isEventsLoading){
+    if (isEventsLoading){
         return<div>Events loading...</div>
     }
 
@@ -21,11 +21,10 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
     }
 
     const handleAssignMentors = (event) => {
-               
+        console.log(event.target.value)
         onChangeActiveEvent(event.target.value)
         onCreateEventClick("false")
         onEditEventClick("false")
-        
     }
 
     const handleCreateEventClick = (event) => {
@@ -34,9 +33,7 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
     }
 
     const handleEditEventClick = (event) => {
-
         onChangeActiveEvent(event.target.value)
-        
         onEditEventClick("true")
         onCreateEventClick("false")
     }
@@ -63,17 +60,16 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
             <div>
                 <ul>
                 {events.sort((a,b) => {
-                 return b.start_date - a.start_date
+                return b.start_date - a.start_date
                 }).filter(o => o.title.includes(searchTerm)).map((eventData, key) => {
 
-                    
                     return(
-                        <div className='event-detail'>
+                        <div key={key} className='event-detail'>
                             <EventCard key={key} eventData={eventData} />
                             <div className='action-buttons'>
                                 <button className='assign' onClick={handleAssignMentors} value={eventData.id}>Assign Mentors</button>
-                                 <button className='edit-event' onClick={handleEditEventClick} value={eventData.id}>Edit Event</button>
-                             </div>
+                                <button className='edit-event' onClick={handleEditEventClick} value={eventData.id}>Edit Event</button>
+                            </div>
                        {/* {eventData.id}    <button onClick={handleAssignMentors} value={eventData.id}>Assign Mentors</button> */}
                         </div>)
                 })}

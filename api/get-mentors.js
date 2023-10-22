@@ -20,7 +20,7 @@ async function getMentors() {
             throw new Error(fallbackError);
         });
 
-        const errorMessage = data?.detail ?? fallbackError;
+        const errorMessage = data ?? fallbackError;
         throw new Error(errorMessage)
     }
     

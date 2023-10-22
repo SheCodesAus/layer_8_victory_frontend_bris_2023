@@ -36,9 +36,9 @@ export default function useMentorEvents() {
             setIsLoading(false);
         });
 
-    }, [refreshData]);
+    }, []);
 
 
     // return { mentorevents, isLoading, error, refreshComp };
-    return { mentorevents, isLoading, error, refreshComp };
+    return { mentorevents, isLoading, error};
 }

@@ -16,17 +16,17 @@ function MentorEventsList({activeEvent,
 
     const { mentorevents, isMentorEventsLoading, isMentorEventsError, refreshComp} = useMentorEvents()
 
-    const [stateBoi, updateStateBoi] = useState(null)
+    //const [stateBoi, updateStateBoi] = useState(null)
 
     // ideally these should be state from parent? Repeating API calls from MentorList and EventList
     const { mentors, isMentorsLoading, isMentorsError } = useMentors()
     const {events, isEventsLoading, isEventsError } = useEvents()
 
-    useEffect(() => {
-        updateStateBoi(mentorevents)
-        console.log("state boi", stateBoi)
-    }, [mentorevents]
-    )
+    // useEffect(() => {
+    //     updateStateBoi(mentorevents)
+    //     console.log("state boi", stateBoi)
+    // }, [mentorevents]
+    // )
 
 
     
@@ -53,21 +53,30 @@ function MentorEventsList({activeEvent,
 
         // fix this to just refresh assignment window
         //window.location.reload(true)
-        refreshComp
+        //refreshComp
 
+    }
+
+    const handleRemoveUndo = (event) => {
+        let index = mentorsToRemove.indexOf(event.target.value)
+        let unRemove = [...mentorsToRemove]
+
+        if (index !== -1) {
+            unRemove.splice(index,1)
+        } else {
+            unRemove
+        }
+        onRemoveMentors(unRemove)
     }
 
 
     const handleRemoveList = (event) => {
-        console.log(event.target.value)
         // get ids of mentors to remove/update
         let index = mentorsToRemove.indexOf(event.target.value)
-
-        console.log(index)
-
         if (index == -1) {
             onRemoveMentors([...mentorsToRemove, event.target.value])
-        } 
+        }
+        
     }
 
     return (
@@ -76,14 +85,16 @@ function MentorEventsList({activeEvent,
         <div className="current">Currently Assigned Mentors</div>
             <div className="assigned-mentors">
 
-
+                {!isMentorEventsLoading && !isMentorsLoading && eventID?
+                
+                <>
                 {mentorevents.filter(key => key.event_id == eventID && key.is_deleted == false).length > 0 ?
             
                     <div>
                         {mentorevents.filter(key => (key.event_id == eventID && key.is_deleted == false)).map((mentorData, key) => {
                             const mentorDetails = mentors.find(mentor => {return mentor.id === mentorData.mentor_id})
                             return ( 
-                                    <div>
+                                    <div key={key}>
                                         {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})
                                         <button className='remove' onClick={handleRemoveList} value={mentorData.id}>Remove</button>
                                     </div>
@@ -91,40 +102,44 @@ function MentorEventsList({activeEvent,
                             })
                         }
                     </div>
+
+                    
                 : 
-                <div>No mentors currently assigned</div>
+                    <div>No mentors currently assigned</div>
+                }
+                <div className="mentor-changes-title">Mentor Changes</div>
+
+                    <div className="mentor-changes">   
+                        <div className="add-mentors">
+                            <p>Adding</p>
+                            {mentorIDs.length > 0 ?
+                                <div>
+                                {mentorIDs.map((mentorIDData, key) => {
+                                    const mentorDetails = mentors.find(mentor => {return mentor.id == mentorIDData})
+                                    return(<div className="mentors" key={key}> {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})</div>)
+                                })} 
+                            </div>
+                            : 
+                            <></>
+                            }
+                        </div>
+
+                        <div className="remove-mentors">
+                            <p>Removing</p>
+                            {mentorsToRemove.map((removeMentorID, key) => {
+                                const mentorDetails = mentors.find(mentor => {
+                                    return mentor.id === mentorevents.filter(key=>key.id == removeMentorID)[0].mentor_id
+                                    })
+                                    return(<div className="mentors-remove">{mentorDetails.first_name} {mentorDetails.last_name}
+                                    <button value={removeMentorID} onClick={handleRemoveUndo}>Undo</button></div>)
+                                })} 
+                        </div>
+                    </div> 
+                </>
+                :
+                <>Loading details</>
                 }
             </div>
-
-                
-            <div className="mentor-changes-title">Mentor Changes</div>
-
-            <div className="mentor-changes">   
-                <div className="add-mentors">
-                    <p>Adding</p>
-                    {mentorIDs.length > 0 ?
-                        <div>
-                        {mentorIDs.map((mentorIDData, key) => {
-                            const mentorDetails = mentors.find(mentor => {return mentor.id == mentorIDData})
-                            return(<div className="mentors" key={key}> {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})</div>)
-                        })} 
-                    </div>
-                    : 
-                    <></>
-                    }
-                </div>
-
-                <div className="remove-mentors">
-                    <p>Removing</p>
-                    {mentorsToRemove.map((removeMentorID, key) => {
-                        const mentorDetails = mentors.find(mentor => {
-                            return mentor.id === mentorevents.filter(key=>key.id == removeMentorID)[0].mentor_id
-                            })
-                            return(<div className="mentors-remove">{mentorDetails.first_name} {mentorDetails.last_name}</div>)
-                        })} 
-                </div>
-
-            </div> 
             <div className="confirm-div"><button className="confirm" onClick={handleConfirm}>Confirm</button></div>
             
 

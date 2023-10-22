@@ -28,7 +28,7 @@ async function postMentorEvents(event_id, mentor_id) {
             throw new Error(fallbackError);
         });
 
-        const errorMessage = data?.detail ?? fallbackError;
+        const errorMessage = data ?? fallbackError;
         throw new Error(errorMessage)
     }
     
