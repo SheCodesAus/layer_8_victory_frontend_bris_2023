@@ -31,7 +31,7 @@ function StaffDashboard() {
     // Current event view
     const onChangeActiveEvent = (eventID) => {
 
-        console.log("here", eventID)
+        console.log("here in dashbaord jsx", eventID)
         setActiveEvent(eventID)
     }
 

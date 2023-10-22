@@ -53,8 +53,7 @@ function CreateEventForm({createEventOpen, onCreateEventClick, activeEvent, onCh
 
                             onChangeActiveEvent(eventid)
                             onCreateEventClick(event.target.value)
-                                                    
-                                                 
+                            
                             }
                         
                     //postLogin(eventdetails.username, signupdetails.password).then(

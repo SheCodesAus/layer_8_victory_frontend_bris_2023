@@ -4,6 +4,9 @@ async function postMentorEvents(event_id, mentor_id) {
     
     const token = window.localStorage.getItem("token")
 
+    console.log("in post mentor events")
+    console.log(event_id, mentor_id)
+
 
     const response = await fetch(url, { 
         method: "POST",

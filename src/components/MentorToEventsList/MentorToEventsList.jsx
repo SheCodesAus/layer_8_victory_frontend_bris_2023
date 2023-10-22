@@ -14,11 +14,19 @@ function MentorEventsList({activeEvent,
     currentMentors,
     onCurrentMentorsChange}) {
 
-    const { mentorevents, isMentorEventsLoading, isMentorEventsError} = useMentorEvents()
+    const { mentorevents, isMentorEventsLoading, isMentorEventsError, refreshComp} = useMentorEvents()
+
+    const [stateBoi, updateStateBoi] = useState(null)
 
     // ideally these should be state from parent? Repeating API calls from MentorList and EventList
     const { mentors, isMentorsLoading, isMentorsError } = useMentors()
     const {events, isEventsLoading, isEventsError } = useEvents()
+
+    useEffect(() => {
+        updateStateBoi(mentorevents)
+        console.log("state boi", stateBoi)
+    }, [mentorevents]
+    )
 
 
     
@@ -35,6 +43,7 @@ function MentorEventsList({activeEvent,
         console.log("ids to remove ", mentorsToRemove)
 
         await Promise.all(mentorsToAdd.map((mentorID) => {
+            
             postMentorEvents(eventID, mentorID)
         }))
 
@@ -43,7 +52,8 @@ function MentorEventsList({activeEvent,
         }))
 
         // fix this to just refresh assignment window
-        window.location.reload(true)
+        //window.location.reload(true)
+        refreshComp
 
     }
 

@@ -4,7 +4,8 @@ async function putMentorEvents(id, is_deleted) {
     
     const token = window.localStorage.getItem("token")
 
-    console.log(url)
+
+    console.log(url, is_deleted)
     const response = await fetch(url, { 
         method: "PUT",
         headers: {
