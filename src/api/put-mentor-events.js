@@ -1,11 +1,9 @@
-async function putMentorEvents(id, is_deleted) {
+async function putMentorEvents(id, confirmed) {
 
     const url = `${import.meta.env.VITE_API_URL}/mentor-events/${id}/`
     
     const token = window.localStorage.getItem("token")
 
-
-    console.log(url, is_deleted)
     const response = await fetch(url, { 
         method: "PUT",
         headers: {
@@ -13,7 +11,7 @@ async function putMentorEvents(id, is_deleted) {
             "Authorization": "Token " + token
         },
         body: JSON.stringify({
-            "is_deleted": is_deleted,
+            "confirmed": confirmed,
 
         })
     });

@@ -9,7 +9,7 @@ import EventCrud from '../EventCrud/EventCrud'
 import './StaffDashboard.css'
 
 
-function StaffDashboard() {
+function EventDashboard() {
 
     const [activeEvent, setActiveEvent] = useState("")
     const [createEventOpen, setCreateEventOpen] = useState("false")
@@ -40,7 +40,7 @@ function StaffDashboard() {
     return (
         <div className='dashboard'>
 
-           <EventsList onEditEventClick={onEditEventClick} activeEvent={activeEvent} onChangeActiveEvent={onChangeActiveEvent} onCreateEventClick={onCreateEventClick} createEventOpen={createEventOpen}/>
+            <EventsList onEditEventClick={onEditEventClick} activeEvent={activeEvent} onChangeActiveEvent={onChangeActiveEvent} onCreateEventClick={onCreateEventClick} createEventOpen={createEventOpen}/>
 
             {createEventOpen === "true" ?
                 <CreateEventForm onCreateEventClick={onCreateEventClick} createEventOpen={createEventOpen} onChangeActiveEvent={onChangeActiveEvent} activeEvent={activeEvent} />
@@ -55,13 +55,11 @@ function StaffDashboard() {
                                 editEventOpen={editEventOpen} onEditEventClick={onEditEventClick}/>
                             :
                                 <p>Find/click on an event, or create a new event</p>
-                    
+                            
                             }
                         </div>
                     }
-               </>
-
-            
+                </>
             }
 
 
@@ -73,4 +71,4 @@ function StaffDashboard() {
 
 }
 
-export default StaffDashboard
+export default EventDashboard

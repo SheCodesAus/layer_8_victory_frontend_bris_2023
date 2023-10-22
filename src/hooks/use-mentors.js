@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import getMentors from '../../api/get-mentors';
+import getMentors from '../api/get-mentors';
 
 export default function useMentors() {
 
@@ -7,14 +7,11 @@ export default function useMentors() {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState();
 
-       
-
     useEffect(() => {
         getMentors()
         .then((mentors) => {
             setMentors(mentors);
             setIsLoading(false);
-           
         })
         .catch((error) => {
             setError(error);

@@ -1,5 +1,5 @@
 import { useState } from "react"; 
-import postCreateEvent from "../../../api/post-create-event";
+import postCreateEvent from "../../api/post-create-event";
 import useEvents from '../../hooks/use-events'
 import './CreateEventForm.css'
 

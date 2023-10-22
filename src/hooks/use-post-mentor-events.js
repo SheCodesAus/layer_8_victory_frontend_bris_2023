@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import postMentorEvents from '../../api/post-mentor-events';
+import postMentorEvents from '../api/post-mentor-events';
 
 export default function usePostMentorEvents() {
 

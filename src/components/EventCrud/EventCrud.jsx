@@ -27,27 +27,16 @@ function EventCrud({activeEvent, onCreateEventClick, createEventOpen}) {
         setCurrentMentors(currentMentorsList)
     }
 
-
-
-    
-
-
-
     return (
         <div className='event-crud'>
-
             <div className='event-crud-details'>
-                
                 {activeEvent == "" ? 
-            
                 <p>Select an event to get started</p>
-                
                 :
                 <div>
                 {events.filter(event => (event.id == activeEvent)).map((eventData,key) => {
                     const formattedDateObj = new Date(eventData.start_date)
                     return(<div key={key}>
-                        
                         <p>Title: {eventData.title}</p>
                         <p>Date: {formattedDateObj.getDay()} / {formattedDateObj.getMonth()} / {formattedDateObj.getFullYear()}</p>
                         </div>)
@@ -55,8 +44,6 @@ function EventCrud({activeEvent, onCreateEventClick, createEventOpen}) {
                 </div>
                 }
             </div>
-
-
 
             <div className='crud-elements'>
                 <MentorEventsList   activeEvent={activeEvent} 

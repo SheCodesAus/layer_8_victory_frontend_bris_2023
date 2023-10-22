@@ -52,11 +52,7 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
             </input>
 
             <button className='create-event' onClick={handleCreateEventClick} value="true">Create an event</button>
-
-
             </div>
-
-
             <div>
                 <ul>
                 {events.sort((a,b) => {
@@ -74,14 +70,9 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
                         </div>)
                 })}
                 </ul>
-
             </div>
-
-
-            </div>
-    
+        </div>
         )
-
 }
 
 export default EventsList

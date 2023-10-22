@@ -1,5 +1,5 @@
 import { useState } from "react"; 
-import putEditEvent from "../../api/put-edit-event";
+import putEditEvent from "../../../api/put-edit-event";
 import useEvents from '../../hooks/use-events'
 import './EditEventsForm.css'
 

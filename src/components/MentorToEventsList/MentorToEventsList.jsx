@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import useMentorEvents from "../../hooks/use-mentor-events"
-import postMentorEvents from "../../../api/post-mentor-events"
-import putMentorEvents from "../../../api/put-mentor-events"
+import postMentorEvents from "../../api/post-mentor-events"
+import putMentorEvents from "../../api/put-mentor-events"
 import './MentorToEventsList.css'
 import useMentors from "../../hooks/use-mentors"
 import useEvents from "../../hooks/use-events"
@@ -43,12 +43,18 @@ function MentorEventsList({activeEvent,
         console.log("ids to remove ", mentorsToRemove)
 
         await Promise.all(mentorsToAdd.map((mentorID) => {
+            if (mentorevents.filter(key => 
+                (key.event_id == eventID && key.mentor_id == mentorID) )){
+                    putMentorEvents(key.id, true)  //mentor previously assigned, update confirmed to true
+                } else if (key.event_id == eventID) { // no previous assignment
+                    postMentorEvents(eventID, mentorID)// create new record
+                }
+
             
-            postMentorEvents(eventID, mentorID)
         }))
 
         await Promise.all(mentorsToRemove.map((id) => {
-            putMentorEvents(id, true)
+            putMentorEvents(id, true) // update assignment to unassigned by confirmed is false
         }))
 
         // fix this to just refresh assignment window
@@ -88,10 +94,10 @@ function MentorEventsList({activeEvent,
                 {!isMentorEventsLoading && !isMentorsLoading && eventID?
                 
                 <>
-                {mentorevents.filter(key => key.event_id == eventID && key.is_deleted == false).length > 0 ?
+                {mentorevents.filter(key => key.event_id == eventID && key.confirmed == false).length > 0 ?
             
                     <div>
-                        {mentorevents.filter(key => (key.event_id == eventID && key.is_deleted == false)).map((mentorData, key) => {
+                        {mentorevents.filter(key => (key.event_id == eventID && key.confirmed == false)).map((mentorData, key) => {
                             const mentorDetails = mentors.find(mentor => {return mentor.id === mentorData.mentor_id})
                             return ( 
                                     <div key={key}>
