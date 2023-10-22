@@ -12,7 +12,8 @@ import NavBar from './components/NavBar/NavBar.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import AboutPage from './pages/AboutPage/AboutPage.jsx';
 import NotFound404Page from './components/NotFound404Page/NotFound404Page.jsx';
-import StaffDashboard from './components/StaffDashboard/StaffDashboard.jsx';
+import EventDashboard from './components/EventDashboard/EventDashboard.jsx';
+import MentorDashboard from './components/MentorDashboard/MentorDashboard.jsx';
 
 
 
@@ -33,7 +34,8 @@ const router = createBrowserRouter([
       {path:"/contact",element:<ContactPage />},
       {path:"/events",element:<EventsPage />},
       {path:"*",element:<NotFound404Page />},
-      {path: "/dashboard", element: <StaffDashboard />},
+      {path: "/event-dashboard", element: <EventDashboard />},
+      {path: "/mentor-dashboard", element: <MentorDashboard />}
     ],
   },
 ]);

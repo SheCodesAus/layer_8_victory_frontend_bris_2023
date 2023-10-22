@@ -6,7 +6,7 @@ import CreateEventForm from '../CreateEventForm/CreateEventForm'
 import EditEventForm from '../EditEventsForm/EditEventsForm'
 
 import EventCrud from '../EventCrud/EventCrud'
-import './StaffDashboard.css'
+import './EventDashboard.css'
 
 
 function EventDashboard() {
@@ -17,25 +17,18 @@ function EventDashboard() {
 
     // Creating events
     const onCreateEventClick = (event) => {
-        console.log('eevnet creat eopen', event)
         setCreateEventOpen(event)
     }
 
     // Editing events
     const onEditEventClick = (event) => {
-        console.log("Event eidt opn", event)
         setEditEventOpen(event)
-
     }
 
     // Current event view
     const onChangeActiveEvent = (eventID) => {
-
-        console.log("here in dashbaord jsx", eventID)
         setActiveEvent(eventID)
     }
-
-
 
     return (
         <div className='dashboard'>
@@ -61,14 +54,8 @@ function EventDashboard() {
                     }
                 </>
             }
-
-
-           
-           
         </div>
-    
         )
-
 }
 
 export default EventDashboard

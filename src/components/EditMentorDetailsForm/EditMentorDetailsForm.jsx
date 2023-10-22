@@ -1,34 +1,38 @@
 import { useState } from "react"; 
-import putEditEvent from "../../../api/put-edit-event";
-import useEvents from '../../hooks/use-events'
-import './EditEventsForm.css'
+import putEditMentor from "../../api/put-edit-mentor";
+import useMentors from '../../hooks/use-mentors'
+// import './EditEventsForm.css'
 
-// --- Needs authentication handling to check token belongs to staff ---///
+// // --- Needs authentication handling to check token belongs to staff ---///
 
-function EditEventForm({editEventOpen, onEditEventClick, activeEvent, onChangeActiveEvent}) {
-    console.log(activeEvent)
-    const {events, isEventsLoading, isEventsError } =useEvents()
-    console.log(events)
+function EditMentorForm({editMentorOpen, onEditMentorClick, activeMentor, onChangeActiveMentor}) {
+    const {mentors, isMentorsLoading, isMentorsError } = useMentors()
 
-    const locations = [ "Brisbane", "Sydney", "Melbourne", "Adelaide", "Perth", "Canberra",  "Darwin"]
+    //const locations = [ "Brisbane", "Sydney", "Melbourne", "Adelaide", "Perth", "Canberra",  "Darwin"]
 
-    const [selectedLocation, setSelectedLocation] = useState('Brisbane')
+    //const [selectedLocation, setSelectedLocation] = useState('Brisbane')
+
+    const [selectedRank, setSelectedRank] = useState("")
+    
+    const statuses = [ "Applied","Validated","Interviewed","Ranked","Accepted","Onboarded","Ready" ]
+    
+    const [selectedStatus, setSelectedStatus] = useState("")
+
+    const ranks = ["Junior","Mid-level","Lead"]
 
     const [errorMessage, setErrorMessage] = useState("")
     const [formInvalid, setFormInvalid] = useState("")
-    const [eventdetails, setEventDetails] = useState({
-        id: activeEvent,
-        title: "",
-        start_date: "",
-        end_date: "",
-        location: "Brisbane",
-        is_published: "",
+    const [mentordetails, setMentorDetails] = useState({
+        id: activeMentor,
+        onboarding_status: "",
+        rank: "",
+        private_notes: "",
     })
 
     const handleChange = (event) => {
         // if (auth.token){
         const {id, value} = event.target;
-        setEventDetails((prevDetails) => ({
+        setMentorDetails((prevDetails) => ({
             ...prevDetails,
             [id]: value,
         }))
@@ -38,39 +42,20 @@ function EditEventForm({editEventOpen, onEditEventClick, activeEvent, onChangeAc
     }
 
     const handleSubmit = (event) => {
-        
         event.preventDefault()
-
         // if (auth.token){
-            if(eventdetails.id && eventdetails.title && eventdetails.start_date && eventdetails.end_date && eventdetails.location && eventdetails.is_published) {
+            if(mentordetails.id && mentordetails.onboarding_status && mentordetails.rank && mentordetails.private_notes ) {
                 putEditEvent(
-                    eventdetails.id,
-                    eventdetails.title,
-                    eventdetails.start_date,
-                    eventdetails.end_date,
-                    eventdetails.location,
-                    eventdetails.is_published
+                    mentordetails.id,
+                    mentordetails.onboarding_status,
+                    mentordetails.rank,
+                    mentordetails.private_notes,
                 ).then(
                     (response) => {
-
-                            const eventid = response.id 
-
-                            onChangeActiveEvent(eventid)
-                            onEditEventClick(event.target.value)
-                            
-                                                    
-                                                 
+                            const mentorid = response.id 
+                            onChangeActiveMentor(mentorid)
+                            onEditMentorClick(event.target.value)
                             }
-                        
-                    //postLogin(eventdetails.username, signupdetails.password).then(
-                        // (response) => {
-                        //     window.localStorage.setItem("token", response.token)
-                        //     window.localStorage.setItem("id", response.id)
-                        //     navigate(`../user/${window.localStorage.getItem("id")}`)
-                        //     setAuth({token: response.token, id: response.id})
-                        // 
-                    
-                        
                 ).catch((error)=>{setErrorMessage(`${[error.message]}`)})
                 
             } else {
@@ -84,41 +69,37 @@ function EditEventForm({editEventOpen, onEditEventClick, activeEvent, onChangeAc
         }
 
 
-        const handleSelectChange = (event) => {
+        const handleSelectRankChange = (event) => {
 
-            setSelectedLocation(event.target.value)
+            setSelectedRank(event.target.value)
 
-            setEventDetails({...eventdetails,
-                location: event.target.value
+            setMentorDetails({...mentordetails,
+                rank: event.target.value
             })
         }
 
-       const handleRadioChange = (event) => {
-
-        console.log(event.target.value)
-        setEventDetails({...eventdetails,
-            is_published: event.target.value
+       const handleSelectStatusChange = (event) => {
+        setMentorDetails({...mentordetails,
+            onboarding_status: event.target.value
         })
-
         }
 
     return(
 
-        <div className="edit-event-container">
-        <div className="edit-event-header">
+        <div className="edit-mentor-container">
+        <div className="edit-mentor-header">
                 <div className="user-banner">
-                <h2>Editing Event: {activeEvent}</h2>
-                <h3>Enter details below</h3>
+                <h2>Updating: {activeMentor}</h2>
+                <h3>{mentor.first_name}{mentor.last_name}</h3>
                 </div>
             </div>
 
-            <form className="form-edit-event">
+            <form className="form-edit-mentor">
                     <div className="form-field">
-                        <label htmlFor="title">Event Title:</label>
+                        <label htmlFor="title">Mentor Name:</label>
                         <input 
                             type="text"
                             id="title"
-                            placeholder={event.title}
                             onChange={handleChange}
                             />
                     </div>
