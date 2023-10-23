@@ -146,6 +146,7 @@ const ApplyForm = () => {
       <br />
 
       <form className="apply-form" id="form">
+<div className="normal-input">
         <div className="input-container">
           <label htmlFor="first_name">First Name<span className={formInvalid ? "" : "hidden"}>*</span> </label>
           <br />
@@ -251,8 +252,10 @@ const ApplyForm = () => {
             required
           />
         </div>
+        </div>
+
         <div className="multiple-selection">
-          <div>
+          <div className="skills-container">
             <label htmlFor="mentor" className="label-checkbox">
               Have you mentored with us before?{" "}
             </label>
