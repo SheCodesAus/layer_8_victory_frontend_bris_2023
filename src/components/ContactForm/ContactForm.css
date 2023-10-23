@@ -79,15 +79,28 @@
 
 #contact_section input[type="submit"]{
     background-color:#134F5C;
-    color:#F3F6F4;
+    color: #eadbd1;
     font-size:24px;
     border: 0;
     margin-top: 24px;
     padding:16px;
     border-radius: 10px;
     cursor: pointer;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    touch-action: manipulation;
     width:100%;
 }
+
+
+#contact_section input[type="submit"]:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-3px);
+  }
+  
+  #contact_section input[type="submit"]:active {
+    box-shadow: none;
+    transform: translateY(0);
+  }
 
 @media screen and (max-width:900px){
     .container-contact{
