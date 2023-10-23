@@ -1,26 +1,20 @@
 import "./Event_card.css";
-import { useState } from 'react'
-import {Link} from 'react-router-dom'
+import Button from "../Buttton/Button";
+import { useNavigate } from "react-router-dom";
 
-function EventCard(props) {
-
-const { eventData } = props
-const eventLink = `event/${props.id}`
-
-
-const formattedDateObj = new Date(eventData.start_date)
-
+const EventCard = (props) => {
+    
+const navigate = useNavigate();
+const handleSendApply = ()=>{
+    navigate("/apply")
+}
 return(
     <>
-    <div className="card">
-        
-        
-        <h2>{eventData.title}</h2>
-        <p>Date: {formattedDateObj.getDay()} / {formattedDateObj.getMonth()} / {formattedDateObj.getFullYear()}</p>
-        <p>Location: {eventData.location}</p>
-        <p>Created by: {eventData.created_by}</p>
-        <p>Published: {eventData.is_published.toString()}</p>
-        <Link to={eventLink}>See more</Link>
+    <div className="event-card">
+        <h2 className="event-title">{props.EventData.title}</h2>
+        <p className="event-text">Date: {props.EventData.start_date.split("T")[0]}</p>
+        <p className="event-text">Location: {props.EventData.location}</p>
+        <Button text={"Apply"} btnClass = "btn-info " onClick={handleSendApply}/>
     </div>
     </>
 )
