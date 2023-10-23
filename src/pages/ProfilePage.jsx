@@ -1,4 +1,4 @@
-import useSelf from "../../hooks/use-self";
+import useSelf from "../hooks/use-self";
 import useEvents from "../hooks/use-events";
 import { Link } from "react-router-dom";
 
