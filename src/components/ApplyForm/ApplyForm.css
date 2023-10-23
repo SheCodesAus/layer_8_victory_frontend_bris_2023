@@ -1,5 +1,5 @@
 .container-apply{
-    margin:200px 300px;
+    margin:200px 100px;
   
 }
 
@@ -45,35 +45,60 @@
 .skills-container{
     margin: 20px 30px;
    
-   }
+}
 
-   .multiple-selection{
+.multiple-selection{
     margin: 20px;
     display: flex;
     flex-direction: row;
 }
 
-@media screen and (max-width: 767px) {
+.hidden {
+    display: none;
+  }
+
+
+.normal-input{
+    margin-top:50px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+@media screen and (max-width: 900px) {
     .apply-form {
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
-
-    .container-apply{
-        margin:100px 30px;
+    
+.container-apply{
+   margin:200px 30px;
       
     }
     
 .skills-container{
- margin: 20px 0;
+   margin: 10px 0;
 
 }
 .multiple-selection{
     margin: 20px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.normal-input{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:space-evenly;
+    gap:5px;
+    
+}
 }
 
 
-}
+
