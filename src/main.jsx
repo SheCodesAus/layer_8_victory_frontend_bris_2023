@@ -8,10 +8,11 @@ import LoginPage from './pages/LoginPage.jsx';
 import ContactPage from './pages/ContactPage.jsx';
 import ApplyPage from './pages/ApplyPage.jsx';
 import EventsPage from './pages/EventsPage.jsx';
+import AboutPage from './pages/AboutPage/AboutPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
+import NotFound404Page from './components/NotFound404Page/NotFound404Page.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
 import Footer from './components/Footer/Footer.jsx';
-import AboutPage from './pages/AboutPage/AboutPage.jsx';
-import NotFound404Page from './components/NotFound404Page/NotFound404Page.jsx';
 
 
 
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       {path:"/login",element:<LoginPage />},
       {path:"/contact",element:<ContactPage />},
       {path:"/events",element:<EventsPage />},
+      {path:"/profile", element:}
       {path:"*",element:<NotFound404Page />},
     ],
   },
