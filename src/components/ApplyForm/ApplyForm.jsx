@@ -59,7 +59,7 @@ const ApplyForm = () => {
     }
     setCheckedState(updatedList);
 
-    // console.log(updatedList);
+
     setSignupDetails({ ...signupdetails, skills: updatedList });
   };
 
@@ -68,14 +68,14 @@ const ApplyForm = () => {
   };
 
   const handleBooleanChange = (mentored) => {
-    // console.log(mentored);
+ 
 
     setSignupDetails({ ...signupdetails, has_mentored: mentored });
-    // console.log(signupdetails);
+  
   };
 
   const handleSubmit = (event) => {
-    // console.log(signupdetails);
+
     event.preventDefault();
     setFormInvalid("");
     setErrorMessage("");
