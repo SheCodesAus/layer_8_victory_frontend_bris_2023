@@ -48,7 +48,7 @@ function MentorListDetails({onEditMentorClick, editMentorOpen,  onChangeActiveMe
                 <ul>
                     {mentors.sort((a,b) => {
                     return a.first_name - b.first_name 
-                        }).filter(o => o.location.includes(searchTermLocation)).map((mentorDataDetails) => {
+                        }).filter(o => o.location.includes(searchTermLocation) && !o.is_superuser).map((mentorDataDetails) => {
                         return(
                             <div className='mentors-detail' key={mentorDataDetails.id}>
                                 <div className='mentor-info'>

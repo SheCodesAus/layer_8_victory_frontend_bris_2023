@@ -89,7 +89,7 @@ function MentorList({activeEvent,
                 <ul>
                     {mentors.sort((a,b) => {
                     return a.first_name - b.first_name 
-                }).filter(o => o.location.includes(searchTermLocation)).map((mentorDataDetails) => {
+                }).filter(o => o.location.includes(searchTermLocation) && !o.is_superuser).map((mentorDataDetails) => {
                         return(
                             <div className='mentors' key={mentorDataDetails.id}>{mentorDataDetails.first_name} {mentorDataDetails.last_name} ({mentorDataDetails.rank}) {mentorDataDetails.mobile} available: {mentorDataDetails.is_active.toString()} 
                                 <div className='assign-buttons'>

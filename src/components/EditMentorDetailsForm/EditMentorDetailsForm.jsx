@@ -1,24 +1,29 @@
-import { useState } from "react"; 
-import putEditMentor from "../../api/put-edit-mentor";
+import { useEffect, useState } from "react"; 
 import useMentors from '../../hooks/use-mentors'
-// import './EditEventsForm.css'
+import useEvents from "../../hooks/use-events";
+import putEditMentorAsStaff from "../../api/put-edit-mentor-as-staff";
+import useMentorEvents from "../../hooks/use-mentor-events";
+import './EditMentorDetailsForm.css'
+import { useNavigate } from "react-router-dom";
 
 // // --- Needs authentication handling to check token belongs to staff ---///
 
 function EditMentorForm({editMentorOpen, onEditMentorClick, activeMentor, onChangeActiveMentor}) {
+    const navigate = useNavigate()
     const {mentors, isMentorsLoading, isMentorsError } = useMentors()
+    const {mentorevents, isMentorEventsLoading, isMentorEventsError} = useMentorEvents()
+    const {events, isEventsLoading, isEventsError} = useEvents()
 
     //const locations = [ "Brisbane", "Sydney", "Melbourne", "Adelaide", "Perth", "Canberra",  "Darwin"]
 
     //const [selectedLocation, setSelectedLocation] = useState('Brisbane')
 
     const [selectedRank, setSelectedRank] = useState("")
-    
-    const statuses = [ "Applied","Validated","Interviewed","Ranked","Accepted","Onboarded","Ready" ]
-    
     const [selectedStatus, setSelectedStatus] = useState("")
-
     const ranks = ["Junior","Mid-level","Lead"]
+    const statuses = [ "Applied","Validated","Interviewed","Ranked","Accepted","Onboarded","Ready" ]
+
+   
 
     const [errorMessage, setErrorMessage] = useState("")
     const [formInvalid, setFormInvalid] = useState("")
@@ -27,7 +32,12 @@ function EditMentorForm({editMentorOpen, onEditMentorClick, activeMentor, onChan
         onboarding_status: "",
         rank: "",
         private_notes: "",
+        skills: ""
     })
+
+    const handleNavigate = (event) => {
+       navigate(`/events/${event.target.value}`)
+    }
 
     const handleChange = (event) => {
         // if (auth.token){
@@ -43,13 +53,26 @@ function EditMentorForm({editMentorOpen, onEditMentorClick, activeMentor, onChan
 
     const handleSubmit = (event) => {
         event.preventDefault()
+        console.log(mentordetails)
         // if (auth.token){
             if(mentordetails.id && mentordetails.onboarding_status && mentordetails.rank && mentordetails.private_notes ) {
-                putEditEvent(
+
+                const mentor = mentors.find(key => (key.id == activeMentor))
+
+                let skill = ''
+                let mentorskills = []
+                for (skill in mentor.skills) {
+                    console.log( mentor.skills[skill].name)
+                    mentorskills.push(mentor.skills[skill].name)
+                }
+
+                console.log(mentor)
+                putEditMentorAsStaff(
                     mentordetails.id,
                     mentordetails.onboarding_status,
                     mentordetails.rank,
                     mentordetails.private_notes,
+                    mentorskills
                 ).then(
                     (response) => {
                             const mentorid = response.id 
@@ -65,20 +88,19 @@ function EditMentorForm({editMentorOpen, onEditMentorClick, activeMentor, onChan
         //     setFormInvalid("Must be staff to create an event")
         // }
         
-
         }
 
 
         const handleSelectRankChange = (event) => {
-
             setSelectedRank(event.target.value)
-
+            console.log(event.target.value)
             setMentorDetails({...mentordetails,
                 rank: event.target.value
             })
         }
 
        const handleSelectStatusChange = (event) => {
+        setSelectedStatus(event.target.value)
         setMentorDetails({...mentordetails,
             onboarding_status: event.target.value
         })
@@ -88,61 +110,92 @@ function EditMentorForm({editMentorOpen, onEditMentorClick, activeMentor, onChan
 
         <div className="edit-mentor-container">
         <div className="edit-mentor-header">
-                <div className="user-banner">
-                <h2>Updating: {activeMentor}</h2>
-                <h3>{mentor.first_name}{mentor.last_name}</h3>
-                </div>
-            </div>
+            {mentors.filter(key => (key.id == activeMentor)).map((mentorDetails,key) => {
 
-            <form className="form-edit-mentor">
-                    <div className="form-field">
-                        <label htmlFor="title">Mentor Name:</label>
-                        <input 
-                            type="text"
-                            id="title"
-                            onChange={handleChange}
-                            />
-                    </div>
-                    <div className="form-field">
-                        <label htmlFor="start_date">Start Date:</label>
-                        <input type="date" id="start_date" placeholder={event.start_date} onChange={handleChange} />
-                    </div> 
-                    <div className="form-field">
-                        <label htmlFor="end_date">End Date:</label>
-                        <input type="date" id="end_date" placeholder={event.end_date} onChange={handleChange} />
-                    </div> 
-                    <div className="form-field">
-                    <div className="location-label">Location?</div>
-                    <select className="event-location" value={selectedLocation} onChange={handleSelectChange}>
-                            {locations.map((item)=>{
-                                return(<option key={item} value={item}>{item}</option>)
-                            })}
-                        </select>
-                        {/* <label htmlFor="location">Location:</label>
-                        <input type="text" id="location" placeholder="Location" onChange={handleChange} /> */}
-                    </div> 
-                    <div className="form-field-radios" >
-                        <label htmlFor="is_published">Publish event?</label>
-                        <div className="radios">
-                            <div className="radio-button">
-                            <input type="radio" value="true" name="is_published" onChange={handleRadioChange} /> 
-                            <div>Yes</div>
+                return (<div>
+                            <h2 key={key}>{mentorDetails.first_name} {mentorDetails.last_name}</h2>
+                            <div className="mentor-information">
+                                <p>Mobile: {mentorDetails.mobile}</p>
+                                <p>Email: {mentorDetails.email} </p>
+                                <a href={mentorDetails.github_profile}>GitHub Link</a>
+                                <a href={mentorDetails.linkedin_account}>LinkedIn Account</a>
+                                <a href={mentorDetails.linkedin_account}>Socials Account</a>
+                                <p>Location: {mentorDetails.location}  </p>
+                                <p>Skills: {mentorDetails.skills.map((skill, key) => { 
+                                    return(<li>{skill.name}</li>)
+                                })}   
+                                </p>
+                                <p>Has mentored before?  {mentorDetails.has_mentored ? 'Yes' : 'No'}</p>
+                                <p>Available to mentor? {mentorDetails.is_active ? 'Yes' : 'No'}</p>
                             </div>
-                            <div className="radio-button">
-                            <input type="radio" value="false" name="is_published" onChange={handleRadioChange} /> 
-                            <div>No</div>
+
+                            <div className="previous-mentored">
+                                <p>Previously mentored at: </p>
+                                {mentorevents.filter(key => (key.mentor_id == activeMentor && key.confirmed == true)).length > 0 ?
+                                <>{mentorevents.filter(key => (key.mentor_id == activeMentor && key.confirmed == true)).map((mentorEvents, key) => {
+
+                                    const mentorEventDetails = events.find(eventDetails => (eventDetails.id === mentorEvents.event_id))
+                                    return ( 
+                                            <div key={key}>
+                                                {mentorEventDetails ? 
+                                                <div>
+                                                    <li onClick={handleNavigate} value={mentorEventDetails.id} className="event-details">{mentorEventDetails.title}</li>
+                                                </div>
+                                                : <div>No events</div>}
+                                            
+                                            </div>
+                                            )
+                                    })
+                                }</>:
+                                <p>No events</p>
+
+                                }
+                                
                             </div>
-                        </div>
-                    </div> 
-                    <div className="create-submit-cont">
-                    <button id="create-submit" type="submit" onClick={handleSubmit} value="false">Confirm Edits</button>
-                    </div>
-                    <div>
-                        <p>{errorMessage}</p>
-                        <sub className={errorMessage ? "" : "hidden"}><p>{formInvalid}</p></sub>
-                        
-                    </div>
-                </form>
+                            <form>
+                                <div className="drop-downs">
+                                    <div>
+                                        <p className="rank">Mentor Rank:  {!mentorDetails.rank? <>Not yet assigned</>: mentorDetails.rank} </p>
+                                        <select onChange={handleSelectRankChange} value={selectedRank}>
+                                        <option value={""}>Select from options...</option>
+                                            {ranks.map((currentValue, index) => (
+                                                <option key={index} value={currentValue}>
+                                                {currentValue}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    
+                                    </div>
+
+                                    <div>
+                                        <p className="onboarding-status">Onboarding Status: {mentorDetails.onboarding_status} </p>
+                                        <select onChange={handleSelectStatusChange} value={selectedStatus}>
+                                        <option value={"Applied"}>Select from options...</option>
+                                        {statuses.map((currentValue, index) => (
+                                            <option key={index} value={currentValue}>
+                                            {currentValue}
+                                            </option>
+                                        ))}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="input-area">
+                                    <label htmlFor="private_notes">Private Notes</label>
+                                    <textarea rows='5' cols='6' id="private_notes" placeholder="Any notes or comments about mentor?" onChange={handleChange}/>
+                                </div>
+                                <div>
+                                    <button id="edit-mentor-submit" type="submit" onClick={handleSubmit} value="false">Confirm Edits</button>
+                                </div>
+                                <div>
+                                    <p>{errorMessage}</p>
+                                    <sub className={errorMessage ? "" : "hidden"}><p>{formInvalid}</p></sub>
+                                        
+                                </div>
+                        </form>
+
+                    </div>)
+                })}
+        </div>
     </div>);
 }
-export default EditEventForm   
+export default EditMentorForm   

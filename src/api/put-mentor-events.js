@@ -3,7 +3,8 @@ async function putMentorEvents(id, confirmed) {
     const url = `${import.meta.env.VITE_API_URL}/mentor-events/${id}/`
     
     const token = window.localStorage.getItem("token")
-
+    
+    console.log('putting', id, confirmed)
     const response = await fetch(url, { 
         method: "PUT",
         headers: {
@@ -12,7 +13,6 @@ async function putMentorEvents(id, confirmed) {
         },
         body: JSON.stringify({
             "confirmed": confirmed,
-
         })
     });
 

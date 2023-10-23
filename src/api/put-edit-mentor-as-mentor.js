@@ -1,4 +1,5 @@
-async function putEditMentor(
+async function putEditMentorAsMentor(
+    id,
     username, 
     first_name, 
     last_name, 
@@ -56,4 +57,4 @@ async function putEditMentor(
 }
 
 
-export default putEditMentor
+export default putEditMentorAsMentor

@@ -1,4 +1,4 @@
-async function postMentorEvents(event_id, mentor_id) {
+async function postMentorEvents(event_id, mentor_id, confirmed) {
 
     const url = `${import.meta.env.VITE_API_URL}/mentor-events/`
     
@@ -16,7 +16,8 @@ async function postMentorEvents(event_id, mentor_id) {
         },
         body: JSON.stringify({
             "event_id": event_id,
-            "mentor_id": mentor_id
+            "mentor_id": mentor_id,
+            "confirmed": confirmed
         })
     });
 

@@ -1,0 +1,34 @@
+.event-full-details {
+    margin-top: 300px;
+    margin-left: 50px;
+    margin-bottom: 200px;
+    font-size: large;
+}
+
+.event-summary h2{
+    color: #134f5c;
+    font-size: 30px;
+    padding: 0px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.event-mentors h3 {
+    color: #134f5c;
+    font-size: 20px;
+    padding: 0px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+} 
+
+.event-summary h5 {
+    color: #134f5c;
+    font-size:20px;
+    margin-left: 50px;
+    padding-bottom: 10px;
+}
+
+.event-mentors {
+    margin-left: 50px;
+}

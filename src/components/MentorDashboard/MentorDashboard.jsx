@@ -28,7 +28,7 @@ function MentorDashboard() {
             <MentorListDetails editMentorOpen={editMentorOpen} onEditMentorClick={onEditMentorClick} activeMentor={activeMentor} onChangeActiveMentor={onChangeActiveMentor}/>
 
             {editMentorOpen === "true" ?
-                <EditMentorForm onEditMentorClick={onEditMentorClick} editMentorOpen={editMentorOpen} onChangeActiveMentor={onChangeActiveMentor} activeMentor={activeMentor} />
+                <EditMentorDetailsForm onEditMentorClick={onEditMentorClick} editMentorOpen={editMentorOpen} onChangeActiveMentor={onChangeActiveMentor} activeMentor={activeMentor} />
             :
                 <div className='no-content-yet'>
                     Filter/click on a mentor to get started.

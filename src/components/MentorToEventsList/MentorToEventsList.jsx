@@ -35,30 +35,46 @@ function MentorEventsList({activeEvent,
 
     // Get ids from interaction with mentor list
     const mentorIDs = mentorsToAdd
-
-
+    
 
     async function handleConfirm (event)  {
         console.log("ids to add ", mentorsToAdd)
         console.log("ids to remove ", mentorsToRemove)
+        
+        const mentorsPUTRequest = []
+        const mentorsPOSTRequest = []
+        let m = ""
 
-        await Promise.all(mentorsToAdd.map((mentorID) => {
-            if (mentorevents.filter(key => 
-                (key.event_id == eventID && key.mentor_id == mentorID) )){
-                    putMentorEvents(key.id, true)  //mentor previously assigned, update confirmed to true
-                } else if (key.event_id == eventID) { // no previous assignment
-                    postMentorEvents(eventID, mentorID)// create new record
-                }
+        for (m in mentorsToAdd) {
 
-            
+            let mentorCheck = mentorevents.find(elm => elm.mentor_id == mentorsToAdd[m] && elm.event_id == eventID && !elm.confirmed)
+
+            if (mentorCheck) {
+                mentorsPUTRequest.push(mentorCheck.id)
+            } else {
+                mentorsPOSTRequest.push(mentorsToAdd[m])
+            }
+        }
+
+        //mentor previously assigned, update confirmed to true
+        await Promise.all(mentorsPUTRequest.map((mentorID) => {
+                        console.log("put", mentorID)
+                        putMentorEvents(mentorID, "true")  
         }))
 
+        //mentor not previously assigned, create new
+                await Promise.all(mentorsPOSTRequest.map((mentorID) => {
+                    console.log("post",eventID, mentorID )
+                    postMentorEvents(eventID, mentorID, "true")  
+         }))
+
         await Promise.all(mentorsToRemove.map((id) => {
-            putMentorEvents(id, true) // update assignment to unassigned by confirmed is false
+            console.log('put -set to remove/ false')
+            putMentorEvents(id, "false") // update assignment to unassigned by confirmed is false
         }))
 
         // fix this to just refresh assignment window
-        //window.location.reload(true)
+        window.location.reload(true)
         //refreshComp
 
     }
@@ -91,18 +107,23 @@ function MentorEventsList({activeEvent,
         <div className="current">Currently Assigned Mentors</div>
             <div className="assigned-mentors">
 
-                {!isMentorEventsLoading && !isMentorsLoading && eventID?
+                {!isMentorEventsLoading && !isMentorsLoading && eventID ?
+
                 
                 <>
-                {mentorevents.filter(key => key.event_id == eventID && key.confirmed == false).length > 0 ?
+                {mentorevents.filter(key => key.event_id == eventID && key.confirmed == true).length > 0 ?
             
                     <div>
-                        {mentorevents.filter(key => (key.event_id == eventID && key.confirmed == false)).map((mentorData, key) => {
-                            const mentorDetails = mentors.find(mentor => {return mentor.id === mentorData.mentor_id})
+                        {mentorevents.filter(key => (key.event_id == eventID && key.confirmed == true)).map((mentorData, key) => {
+                            const mentorDetails = mentors.find(mentor => (mentor.id === mentorData.mentor_id))
                             return ( 
                                     <div key={key}>
-                                        {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})
-                                        <button className='remove' onClick={handleRemoveList} value={mentorData.id}>Remove</button>
+                                        {mentorDetails ? 
+                                         <div>
+                                            {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})
+                                         <button className='remove' onClick={handleRemoveList} value={mentorData.id}>Remove</button></div>
+                                         : <div>Loading</div>}
+                                       
                                     </div>
                                     )
                             })
