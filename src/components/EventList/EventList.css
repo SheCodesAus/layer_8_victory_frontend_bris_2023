@@ -41,7 +41,7 @@ button {
 }
 
 .search-box {
-    border: solid #a5778e;
+    border: solid #45818e;
     border-radius: 4px;
     margin: 10px;
     margin-left: 20px;
@@ -51,30 +51,30 @@ button {
 }
 
 .search-box::placeholder{
-    color: #5a243f;
+    color: #45818e;
     opacity: 0.7;
 }
   
   .search-box:hover {
 
-    border: 2px solid #a5778e;
-    background: linear-gradient(to left top, #00000023, #a5778e4d) fixed;
+    border: 2px solid #45818e;
+    background: linear-gradient(to left top, #00000023, #1967694d) fixed;
   }
   .search-box:focus {
-    color: #a5778e;
-    border: 2px solid #a5778e;
+    color: #45818e;
+    border: 2px solid #45818e;
     
   }
 
 .create-event {
-    color: #a5778e;
+    color: white;
     font-weight: bold;
-    border: solid #a5778e;
+    border: solid #134f5c;
     border-radius: 4px;
     height: 50px;
     margin: 10px;
     width:50%;
-    background: #e7cdda;
+    background: #45818e;
     cursor: pointer;
 }
 
