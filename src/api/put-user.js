@@ -6,36 +6,28 @@ async function putUser(
     email, 
     mobile,
     location,
-    is_active, 
-    onboarding_status,
-    rank,
-    private_notes,
     github_profile,
-    has_mentored,
-    skills,
     social_account,
-    linkedin_account
+    linkedin_account,
+    has_mentored,
+    skills
     ){
     const url = `${import.meta.env.VITE_API_URL}/users/${id}/`;
     
     //const {auth, setAuth} = useAuth()
     const token = window.localStorage.getItem("token")
     const body = {
+        "username":username, 
         "first_name": first_name, 
         "last_name": last_name, 
         "email": email, 
         "mobile": mobile, 
+        "location": location, 
+        "github_profile": github_profile,
         "social_account": social_account,
         "linkedin_account": linkedin_account,
-        "github_profile": github_profile, 
-        "username":username, 
-        "is_active": is_active, 
         "has_mentored": has_mentored, 
-        "location": location, 
         "skills":skills,
-        "onboarding_status": onboarding_status,
-        "rank": rank,
-        "private_notes": private_notes,
     }
 
     for (let bod in body) {
@@ -43,6 +35,7 @@ async function putUser(
             delete body[bod]
           }
         }
+    console.log(body)
 
     const response = await fetch(url, {
         method: "PUT",
@@ -60,7 +53,7 @@ async function putUser(
             throw new Error(fallbackError);
         })
 
-        const errorMessage = data?.detail ?? data?.username ?? data?.skills ?? data?.first_name ?? data?.last_name ?? data?.is_active ?? fallbackError
+        const errorMessage = data?.detail ?? data?.username ?? data?.skills ?? data?.first_name ?? data?.last_name ?? data?.is_active ?? data?.onboarding_status?? fallbackError
         throw new Error(errorMessage)
     }
 
