@@ -17,6 +17,9 @@
     margin-bottom: 50px;
     text-align: center;
     font-size: 30px;
+    /* font-family: 'Dancing Script', cursive;
+    font-size: 6rem;
+    color: var(--dark-blue); */
 }
 
 .label-login{
