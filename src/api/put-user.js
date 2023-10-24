@@ -35,7 +35,6 @@ async function putUser(
             delete body[bod]
           }
         }
-    console.log(body)
 
     const response = await fetch(url, {
         method: "PUT",

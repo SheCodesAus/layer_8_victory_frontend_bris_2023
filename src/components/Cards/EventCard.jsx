@@ -10,10 +10,10 @@ const handleSendApply = ()=>{
 }
 return(
     <>
-    <div className="event-card">
-        <h2 className="event-title">{props.EventData.title}</h2>
-        <p className="event-text">Date: {props.EventData.start_date.split("T")[0]}</p>
-        <p className="event-text">Location: {props.EventData.location}</p>
+    <div className="card">
+        <h2>{props.EventData.title}</h2>
+        <p>Date: {props.EventData.start_date.split("T")[0]}</p>
+        <p>Location: {props.EventData.location}</p>
         <Button text={"Apply"} btnClass = "btn-info " onClick={handleSendApply}/>
     </div>
     </>

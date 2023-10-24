@@ -46,7 +46,7 @@ function Profile() {
           {self.onboarding_status == "Ready" ? "Onboarded" : "Being reviewed"}{" "}
         </p>
         <p>Rank: {self.rank}</p>
-        <p>
+        <div>
           Skills:{" "}
           {skills.map((item, index) => (
             <div key={index}>
@@ -54,7 +54,7 @@ function Profile() {
               <label htmlFor={`skills-checkbox-${item}`}> {item}</label>
             </div>
           ))}
-        </p>
+        </div>
         <br></br>
       </section>
     </article>

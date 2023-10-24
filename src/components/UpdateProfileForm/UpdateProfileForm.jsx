@@ -7,19 +7,17 @@ import Dropdown from "../Dropdown/Dropdown";
 import useSkills from "../../hooks/use-skills";
 import { isSchemeValid, isUrlValid } from "../../utlities/urlValidation";
 
-function UserUpdateForm() {
+function UserUpdateForm({editing, setEditing}) {
 
   const [errorMessage, setErrorMessage] = useState("");
   const { self, isLoading, error } = useSelf();
-  const [ editing, setEditing ] = useState(true);
-
-
   const [formInvalid, setFormInvalid] = useState("");
   const [checkedState, setCheckedState] = useState([]);
   const [mentored, setMentored] = useState(true);
   const [urlError, setUrlError] = useState("");
   const { skills, skillsLoading, skillsError } = useSkills([]);
   const [formData, setFormData ] = useState({
+    username: "",
     first_name: "",
     last_name: "",
     email: "",
@@ -27,7 +25,6 @@ function UserUpdateForm() {
     social_account: "",
     linkedin_account: "",
     github_profile: "",
-    username: "",
     has_mentored: false,
     location: "",
     skills: [],
@@ -41,7 +38,6 @@ function UserUpdateForm() {
     return <p>{error.message}</p>;
   }
   
- 
     if (skillsLoading) {
       return <p>Loading...</p>;
     }
@@ -49,7 +45,13 @@ function UserUpdateForm() {
     if (skillsError) {
       return <p>{skillsError.message}</p>;
     }
-    
+    // if (formData.skills == []){
+    //   for (let skill in self.skills){
+    //     formData.skills.push(self.skills[skill]['name'])
+    //   }
+    // }
+
+
     const handleChange = (event) => {
       const { id, value } = event.target;
       setFormData((prevDetails) => ({
@@ -60,11 +62,12 @@ function UserUpdateForm() {
   
     const handleCheckboxChange = (event) => {
       let updatedList = [...checkedState];
-      console.log(event.target.value)
       if (event.target.checked) {
         updatedList = [...checkedState, event.target.value];
       } else {
+
         updatedList.splice(checkedState.indexOf(event.target.value), 1);
+
       }
       setCheckedState(updatedList);
       setFormData({ ...formData, skills: updatedList });
@@ -78,7 +81,7 @@ function UserUpdateForm() {
       setFormData({ ...formData, has_mentored: mentored });
     
     };
-  
+
     const handleSubmit = (event) => {
       event.preventDefault();
       setFormInvalid("");
@@ -115,12 +118,12 @@ function UserUpdateForm() {
         formData.has_mentored) ||
         formData.skills 
       ) {
-        putUser(      // This function does not exist yet - will need to team up with Maya to see where she's at with the update functions
+        putUser(
           self.id,
+          formData.username,
           formData.first_name,
           formData.last_name,
           formData.email,
-          formData.username,
           formData.mobile,
           formData.location,
           formData.github_profile,
@@ -129,8 +132,8 @@ function UserUpdateForm() {
           formData.has_mentored,
           formData.skills
         )
-        .then(() => {
-          setEditing(false);
+        .then((editing) => {
+          setEditing(!editing);
         })
           .catch((error) => {
             setErrorMessage(`${[error.message]}`);
@@ -303,6 +306,7 @@ function UserUpdateForm() {
                     type="checkbox"
                     onChange={handleCheckboxChange}
                     value={item}
+                    defaultChecked={self.skills.filter(skill => skill.name === item).length > 0}
                   />
   
                   <label htmlFor={`skills-checkbox-${item}`}>{item}</label>
@@ -325,68 +329,5 @@ function UserUpdateForm() {
       </div>
     );
   };
-  
-
-  
-//   return (
-//     <form className="form">
-//       <div>
-//         <label htmlFor="first_name">First Name:</label>
-//         <input
-//           type="text"
-//           id="first_name"
-//           name="first_name"
-//           defaultValue={self.first_name}
-//           onChange={handleChange}
-//         />
-//       </div>
-//       <div>
-//         <label htmlFor="last_name">Surname:</label>
-//         <input
-//           type="text"
-//           id="last_name"
-//           name="last_name"
-//           defaultValue={self.last_name}
-//           onChange={handleChange}
-//         />
-//       </div>
-//       <div>
-//         <label htmlFor="email" className={formIsInvalid ? "error-message" : ""}>
-//           Email<span className={formIsInvalid ? "" : "hidden"}>*</span>:
-//         </label>
-//         <input
-//           type="email"
-//           id="email"
-//           name="email"
-//           defaultValue={self.email}
-//           onChange={handleChange}
-//         />
-//       </div>
-//       <div>
-//         <label
-//           htmlFor="username"
-//           className={formIsInvalid ? "error-message" : ""}>
-//           Username<span className={formIsInvalid ? "" : "hidden"}>*</span>:
-//         </label>
-//         <input
-//           type="text"
-//           id="username"
-//           name="username"
-//           defaultValue={self.username}
-//           onChange={handleChange}
-//         />
-//       </div>
-//       <button type="submit" className="button" onClick={handleSubmit}>
-//         Update Details
-//       </button>
-//       <div className="error-message">
-//         {Object.values(errorMessage).map((error, key) => (
-//           <p key={key}>Error: {error}</p>
-//         ))}
-//       </div> 
-//       <p className="error-message">{formIsInvalid}</p>
-//     </form>
-//   );
-
 
 export default UserUpdateForm;
