@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"; 
 import useMentors from '../../hooks/use-mentors'
 import useEvents from "../../hooks/use-events";
-import putEditMentorAsStaff from "../../api/put-edit-mentor-as-staff";
+import putUser from "../../api/put-user";
 import useMentorEvents from "../../hooks/use-mentor-events";
 import './EditMentorDetailsForm.css'
 import { useNavigate } from "react-router-dom";

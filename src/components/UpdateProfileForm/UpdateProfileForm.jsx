@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom";
+
 import { useState } from "react";
+import putUser from "../../api/put-user";
 import useSelf from "../../hooks/use-self";
 import Button from "../Buttton/Button";
-import useAuth from "../../hooks/use-auth";
 import Dropdown from "../Dropdown/Dropdown";
 import useSkills from "../../hooks/use-skills";
 import { isSchemeValid, isUrlValid } from "../../utlities/urlValidation";
@@ -12,8 +12,7 @@ function UserUpdateForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const { self, isLoading, error } = useSelf();
   const [ editing, setEditing ] = useState(true);
-  const navigate = useNavigate();
-  const { auth, setAuth } = useAuth();
+
 
   const [formInvalid, setFormInvalid] = useState("");
   const [checkedState, setCheckedState] = useState([]);
@@ -61,14 +60,13 @@ function UserUpdateForm() {
   
     const handleCheckboxChange = (event) => {
       let updatedList = [...checkedState];
+      console.log(event.target.value)
       if (event.target.checked) {
         updatedList = [...checkedState, event.target.value];
       } else {
         updatedList.splice(checkedState.indexOf(event.target.value), 1);
       }
       setCheckedState(updatedList);
-  
-  
       setFormData({ ...formData, skills: updatedList });
     };
   
@@ -77,19 +75,16 @@ function UserUpdateForm() {
     };
   
     const handleBooleanChange = (mentored) => {
-   
-  
       setFormData({ ...formData, has_mentored: mentored });
     
     };
   
     const handleSubmit = (event) => {
-  
       event.preventDefault();
       setFormInvalid("");
       setErrorMessage("");
       setUrlError("");
-  
+      console.log(formData)
       const urls = [
         formData.social_account,
         formData.linkedin_account,
@@ -150,7 +145,7 @@ function UserUpdateForm() {
         <h1 className="apply-title">Update Details</h1>
         <br />
   
-        <form className="apply-form" id="form">
+        <form className="user-form" id="user-form">
   <div className="normal-input">
           <div className="input-container">
             <label htmlFor="first_name">First Name </label>
@@ -300,16 +295,14 @@ function UserUpdateForm() {
   
             <div className="skills-container">
               <label htmlFor="skills" className="label-checkbox">
-                Select skills<span className={formInvalid ? "" : "hidden"}>*</span>{" "}
+                Select skills{" "}
               </label>
               {skills.map((item, index) => (
                 <div key={index}>
                   <input
                     type="checkbox"
-                    checked={self.item}
-                    value={skills.includes(item)}
                     onChange={handleCheckboxChange}
-                    defaultValue={self.item}
+                    value={item}
                   />
   
                   <label htmlFor={`skills-checkbox-${item}`}>{item}</label>
