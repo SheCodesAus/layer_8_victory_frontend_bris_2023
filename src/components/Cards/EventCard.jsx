@@ -3,7 +3,7 @@ import Button from "../Buttton/Button";
 import { useNavigate } from "react-router-dom";
 
 const EventCard = (props) => {
-
+    
 const navigate = useNavigate();
 const handleSendApply = ()=>{
     navigate("/apply")

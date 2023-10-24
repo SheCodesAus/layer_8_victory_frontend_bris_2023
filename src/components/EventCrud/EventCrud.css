@@ -1,0 +1,24 @@
+.event-crud{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+
+}
+
+.event-crud-details {
+    width:100%;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+    border:solid #a5778e; 
+    border-radius: 8px;
+    
+}
+
+.crud-elements {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}

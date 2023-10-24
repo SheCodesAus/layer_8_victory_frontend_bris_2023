@@ -1,0 +1,8 @@
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    margin-top: 300px;
+    justify-content: space-between;
+    border: solid #134f5c;
+    border-radius: 20px;
+}
