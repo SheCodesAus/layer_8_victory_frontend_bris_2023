@@ -17,7 +17,6 @@ function Profile() {
     skills.push(self.skills[skill]["name"]);
   }
 
-  console.log(self.is_staff)
   return (
     <article id="profile">
       <h2>
@@ -36,6 +35,8 @@ function Profile() {
         <p>Linked In Account: {self.linkedin_account == null ? "N/A" : self.linkedin_account}</p>
         <p>GitHub Profile: {self.github_profile == null ? "N/A" : self.github_profile}</p>
         <p>Social Account: {self.social_account == null ? "N/A" : self.social_account}</p>
+        <p>Location: {self.location}</p>
+        <p></p>
         <p>
           Have you mentored with us before?{" "}
           {self.has_mentored == false ? "No" : "Yes"}
@@ -44,6 +45,7 @@ function Profile() {
           Onboarding Status:{" "}
           {self.onboarding_status == "Ready" ? "Onboarded" : "Being reviewed"}{" "}
         </p>
+        <p>Rank: {self.rank}</p>
         <p>
           Skills:{" "}
           {skills.map((item, index) => (
@@ -53,7 +55,6 @@ function Profile() {
             </div>
           ))}
         </p>
-        
         <br></br>
       </section>
     </article>
