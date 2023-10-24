@@ -14,13 +14,7 @@ function MentorList({ activeEvent,
     const [searchTermLocation, setSearchTermLocation] = useState("All")
     const [searchTermRank, setSearchTermRank] = useState("All")
 
-    // const [filters, setFilters] = useState({
-    //     location:"",
-    //     rank: "",
-    //     skills: ""
-    // })
-
-    const [filteredUsers, updateFilteredUsers] = useState()
+    const [filteredMentors, updatFilteredMentors] = useState()
 
 
     // Some of these should be grabbed from API (skills)
@@ -29,25 +23,30 @@ function MentorList({ activeEvent,
     const locations = ["Brisbane", "Sydney", "Melbourne", "Adelaide", "Perth", "Canberra", "Darwin"]
 
 
+    // TODO Initial mentor list needs to exclude mentor.is_superuser true (ie admins) & possibly mentor.is_staff and only show mentors with 
+    // mentor.onboarding_status == 'Ready' (ie we should only see a list of mentors that are of status 'Ready')
+
     useEffect(() => {
-        updateFilteredUsers(mentors)
+        updatFilteredMentors(mentors)
     }, [mentors])
 
 
     useEffect(() => {
-        const newUsers = mentors.filter(mentor => (
+        // Filtering the mentor list based on chosen selection in any of three filters - location/rank/skill
+        // -----------------------------------------------------------------------------------------------
+        // This useEffect filters our `mentors` array to show `mentors` that match three requirements, 
+        // their location is == to the `searchTermLocation`. Their skill includes the `searchTermSkill` 
+        // and their rank is equal to the `searchTermRank`. If the `searchTermRank` is all we do not check their values, 
+        // and instead set the pass condition as `true` so we can move onto the next filter step.
+
+        const newMentors = mentors.filter(mentor => (
             (searchTermLocation == 'All' ? true : mentor.location == searchTermLocation) &&
             (searchTermSkill == 'All' ? true : mentor.skills.filter(skill => skill.name == searchTermSkill).length > 0) &&
             (searchTermRank == 'All' ? true : mentor.rank == searchTermRank)
         ))
-        updateFilteredUsers(newUsers)
+        updatFilteredMentors(newMentors)
 
     }, [searchTermSkill, searchTermLocation, searchTermRank])
-
-
-    // TODO Initial mentor list needs to exclude mentor.is_superuser true (ie admins) and only have mentors with 
-    // mentor.onboarding_status == 'Ready' (ie can't hide/prevent non-ready mentors)
-
 
     // Need to create new state to handle assignment status of mentors, so we only have one button
     const handleAssignEventMentor = (event) => {
@@ -121,7 +120,7 @@ function MentorList({ activeEvent,
                     ))}
                 </select>
 
-                {filteredUsers === undefined ? <>
+                {filteredMentors === undefined ? <>
                     <ul>{mentors.sort((a, b) => {
                         return a.first_name - b.first_name
                     }).map((mentorDataDetails) => {
@@ -136,13 +135,12 @@ function MentorList({ activeEvent,
                     })}</ul>
 
                 </> :
-                    <ul>{filteredUsers.sort((a, b) => {
+                    <ul>{filteredMentors.sort((a, b) => {
                         return a.first_name - b.first_name
                     }).map((mentorDataDetails) => {
                         return (
                             <div className='mentor-card' key={mentorDataDetails.id}>
                                 <div className='mentor-info'>
-                                <p>{mentorDataDetails.id} Mentor</p>
                                     <p>{mentorDataDetails.rank} Mentor</p>
                                     <p>{mentorDataDetails.first_name} {mentorDataDetails.last_name} </p>
                                     <p>Available: {mentorDataDetails.is_active ? "Yes" : "No"} </p>
