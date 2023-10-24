@@ -1,11 +1,10 @@
 import { useState, setState, useEffect, useRef, useLayoutEffect } from 'react'
 import useMentors from '../../hooks/use-mentors'
 import useMentorEvents from '../../hooks/use-mentor-events'
+import MentorCard from '../MentorCard/MentorCard'
 import './MentorList.css'
 
-function MentorList({ activeEvent,
-    mentorsToAdd,
-    onMentorsAdd }) {
+function MentorList({ activeEvent,mentorsToAdd, onMentorsAdd }) {
 
     const { mentors, isMentorsLoading, isMentorsError, refreshComp } = useMentors()
     const { mentorevents, isMentorEventsLoading, isMentorEventsError } = useMentorEvents()
@@ -49,42 +48,7 @@ function MentorList({ activeEvent,
     }, [searchTermSkill, searchTermLocation, searchTermRank])
 
     // Need to create new state to handle assignment status of mentors, so we only have one button
-    const handleAssignEventMentor = (event) => {
-
-        if (activeEvent === "") {
-            return (window.alert('Select an event'))
-        } else {
-            if (mentorevents.find(elm => {
-                return (elm.mentor_id == event.target.value &&
-                    elm.event_id == activeEvent &&
-                    elm.is_deleted == false)
-            })) {
-                return (window.alert('Already assigned'))
-            } else {
-                let index = mentorsToAdd.indexOf(event.target.value)
-                if (index == -1) {
-                    onMentorsAdd([...mentorsToAdd, event.target.value])
-                }
-            }
-        }
-    }
-
-    const handleUnAssignEventMentor = (event) => {
-
-        if (activeEvent === "") {
-            return (window.alert('Select an event'))
-        } else {
-            let index = mentorsToAdd.indexOf(event.target.value)
-            let unsassigned = [...mentorsToAdd]
-
-            if (index !== -1) {
-                unsassigned.splice(index, 1)
-            } else {
-                unsassigned
-            }
-            onMentorsAdd(unsassigned)
-        }
-    }
+    
 
 
     if (isMentorsLoading) {
@@ -137,23 +101,14 @@ function MentorList({ activeEvent,
                 </> :
                     <ul>{filteredMentors.sort((a, b) => {
                         return a.first_name - b.first_name
-                    }).map((mentorDataDetails) => {
-                        return (
-                            <div className='mentor-card' key={mentorDataDetails.id}>
-                                <div className='mentor-info'>
-                                    <p>{mentorDataDetails.rank} Mentor</p>
-                                    <p>{mentorDataDetails.first_name} {mentorDataDetails.last_name} </p>
-                                    <p>Available: {mentorDataDetails.is_active ? "Yes" : "No"} </p>
-                                    <>{mentorDataDetails.skills.map((skill, key) => {
-                                        return (<li key={key}>{skill.name} </li>)
-                                    })}</>
-                                    <p>{mentorDataDetails.location}</p>
-                                </div>
-                                <div className='assign-buttons'>
-                                    <button className='assigning' onClick={handleAssignEventMentor} value={mentorDataDetails.id}>Assign</button>
-                                    <button className='assigning' onClick={handleUnAssignEventMentor} value={mentorDataDetails.id}>Undo</button>
-                                </div>
-                            </div>
+                    }).map((mentorDataDetails,key) => {
+
+                        return (<div key={key}>
+                            <MentorCard mentorDataDetails={mentorDataDetails} 
+                                        mentorsToAdd={mentorsToAdd} 
+                                        onMentorsAdd={onMentorsAdd}
+                                        activeEvent={activeEvent}
+                            /></div>
                         )
                     })}</ul>
                 }

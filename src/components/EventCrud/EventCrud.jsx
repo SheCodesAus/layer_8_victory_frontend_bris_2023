@@ -9,22 +9,16 @@ function EventCrud({activeEvent, onCreateEventClick, createEventOpen}) {
 
     const { events,  isEventsLoading, isEventsError } = useEvents();
 
+    // Final list of mentors to add
     const [mentorsToAdd, setMentorsToAdd] = useState([])
-
     const onMentorsAdd = (mentorAddList) => {
         setMentorsToAdd(mentorAddList)
     }
 
+    // Mentors currently linked to event, to then remove
     const [mentorsToRemove, setMentorsToRemove] = useState([])
-
     const onRemoveMentors = (mentorRemoveList) => {
         setMentorsToRemove(mentorRemoveList)
-    }
-
-    const [currentMentors, setCurrentMentors] = useState([])
-
-    const onCurrentMentorsChange = (currentMentorsList) => {
-        setCurrentMentors(currentMentorsList)
     }
 
     return (
@@ -50,8 +44,7 @@ function EventCrud({activeEvent, onCreateEventClick, createEventOpen}) {
                                     mentorsToAdd={mentorsToAdd} 
                                     mentorsToRemove={mentorsToRemove} 
                                     onRemoveMentors={onRemoveMentors}
-                                    currentMentors={currentMentors}
-                                    onCurrentMentorsChange={onCurrentMentorsChange}/>
+                />
 
                 <MentorList         activeEvent={activeEvent}
                                     mentorsToAdd={mentorsToAdd} 

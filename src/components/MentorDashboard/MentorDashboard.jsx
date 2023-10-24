@@ -12,7 +12,7 @@ function MentorDashboard() {
 
     // Editing mentors
     const onEditMentorClick = (event) => {
-        console.log('active', event)
+        console.log('active event', event)
         setEditMentorOpen(event)
     }
 

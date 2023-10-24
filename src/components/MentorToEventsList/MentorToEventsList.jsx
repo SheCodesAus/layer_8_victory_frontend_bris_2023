@@ -14,69 +14,60 @@ function MentorEventsList({activeEvent,
     currentMentors,
     onCurrentMentorsChange}) {
 
-    const { mentorevents, isMentorEventsLoading, isMentorEventsError, refreshComp} = useMentorEvents()
-
-    //const [stateBoi, updateStateBoi] = useState(null)
+    const { mentorevents, isMentorEventsLoading, isMentorEventsError} = useMentorEvents()
 
     // ideally these should be state from parent? Repeating API calls from MentorList and EventList
     const { mentors, isMentorsLoading, isMentorsError } = useMentors()
-    const {events, isEventsLoading, isEventsError } = useEvents()
+    //const {events, isEventsLoading, isEventsError } = useEvents()
 
-    // useEffect(() => {
-    //     updateStateBoi(mentorevents)
-    //     console.log("state boi", stateBoi)
-    // }, [mentorevents]
-    // )
-
-
-    
     // Set the event id from parent state
     const eventID = activeEvent
 
     // Get ids from interaction with mentor list
     const mentorIDs = mentorsToAdd
     
-
     async function handleConfirm (event)  {
         console.log("ids to add ", mentorsToAdd)
         console.log("ids to remove ", mentorsToRemove)
         
         const mentorsPUTRequest = []
         const mentorsPOSTRequest = []
-        let m = ""
+        let mentor = ""
 
-        for (m in mentorsToAdd) {
+        for (mentor in mentorsToAdd) {
 
-            let mentorCheck = mentorevents.find(elm => elm.mentor_id == mentorsToAdd[m] && elm.event_id == eventID && !elm.confirmed)
+            let mentorCheck = mentorevents.find(elm => 
+                elm.mentor_id == mentorsToAdd[mentor] &&
+                elm.event_id == eventID &&
+                !elm.confirmed)
 
             if (mentorCheck) {
                 mentorsPUTRequest.push(mentorCheck.id)
             } else {
-                mentorsPOSTRequest.push(mentorsToAdd[m])
+                mentorsPOSTRequest.push(mentorsToAdd[mentor])
             }
         }
 
         //mentor previously assigned, update confirmed to true
         await Promise.all(mentorsPUTRequest.map((mentorID) => {
-                        console.log("put", mentorID)
-                        putMentorEvents(mentorID, "true")  
+            console.log("put ", mentorID)
+            putMentorEvents(mentorID, "true")
         }))
 
         //mentor not previously assigned, create new
-                await Promise.all(mentorsPOSTRequest.map((mentorID) => {
-                    console.log("post",eventID, mentorID )
-                    postMentorEvents(eventID, mentorID, "true")  
-         }))
+        await Promise.all(mentorsPOSTRequest.map((mentorID) => {
+            console.log("post",eventID, mentorID )
+            postMentorEvents(eventID, mentorID, "true")  
+        }))
 
+        // mentor to be removed, put request
         await Promise.all(mentorsToRemove.map((id) => {
             console.log('put -set to remove/ false')
-            putMentorEvents(id, "false") // update assignment to unassigned by confirmed is false
+            putMentorEvents(id, "false") 
         }))
 
         // fix this to just refresh assignment window
         window.location.reload(true)
-        //refreshComp
-
     }
 
     const handleRemoveUndo = (event) => {
@@ -108,8 +99,6 @@ function MentorEventsList({activeEvent,
             <div className="assigned-mentors">
 
                 {!isMentorEventsLoading && !isMentorsLoading && eventID ?
-
-                
                 <>
                 {mentorevents.filter(key => key.event_id == eventID && key.confirmed == true).length > 0 ?
             
@@ -119,11 +108,10 @@ function MentorEventsList({activeEvent,
                             return ( 
                                     <div key={key}>
                                         {mentorDetails ? 
-                                         <div className="mentors-confirmed">
+                                        <div className="mentors-confirmed">
                                             {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})
-                                         <button className='assigning' onClick={handleRemoveList} value={mentorData.id}>Remove</button></div>
-                                         : <div>Loading</div>}
-                                       
+                                        <button className='assigning' onClick={handleRemoveList} value={mentorData.id}>Remove</button></div>
+                                        : <div>Loading</div>}
                                     </div>
                                     )
                             })
