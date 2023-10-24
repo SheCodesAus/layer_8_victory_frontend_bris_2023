@@ -25,9 +25,6 @@ function ProfilePage() {
   if (eventsError) {
     return <p>{eventsError.message}</p>;
   }
-  if (myEventsError) {
-    return <p>{myEventsError.message}</p>;
-  }
 
   const handleUpdate = (event) => {
     event.preventDefault();

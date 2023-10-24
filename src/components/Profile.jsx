@@ -11,7 +11,7 @@ function Profile() {
   // const { myEvents, myEventsLoading, myEventsError } = useEvents();
   const [editing, setEditing] = useState(false);
 
-  if (isLoading || eventsLoading || myEventsLoading) {
+  if (isLoading || eventsLoading) {
     return <p>Loading...</p>;
   }
 
