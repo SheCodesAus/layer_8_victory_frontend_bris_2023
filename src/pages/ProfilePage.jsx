@@ -1,6 +1,6 @@
 import useSelf from "../hooks/use-self";
 import useEvents from "../hooks/use-events";
-import useMyEvents from "../hooks/use-myevents";
+// import useMyEvents from "../hooks/use-myevents";
 import Button from "../components/Buttton/Button";
 import Profile from "../components/Profile.Jsx";
 import UserUpdateForm from "../components/UpdateProfileForm";
@@ -11,10 +11,10 @@ function ProfilePage() {
   
   const { self, isLoading, error } = useSelf();
   const { events, eventsLoading, eventsError} = useEvents();
-  const { myEvents, myEventsLoading, myEventsError} = useEvents();
+  // const { myEvents, myEventsLoading, myEventsError} = useEvents();
   const [ editing, setEditing ] = useState(false);
 
-  if (isLoading || eventsLoading || myEventsLoading) {
+  if (isLoading || eventsLoading ) {
     return <p>Loading...</p>;
   }
 
