@@ -1,0 +1,52 @@
+.mentor-list{
+    margin-top: 20px;
+    border:  solid #a5778e 4px;
+    width:100%;
+    border-radius: 8px;
+}
+
+/* .mentor-list ul li {
+    font-size: 2rem;
+    margin: 30px;
+} */
+
+
+.mentor-card {
+    font-size: 14px;
+    border: solid #553043;
+    border-radius: 4px;
+    background-color: #a5778e;
+    margin: 8px;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mentor-info p {
+    font-size: 16px;
+}
+
+.mentor-info li {
+    font-size:  16px;
+    margin-left: 30px;
+
+}
+
+.assign-buttons {
+    width: 30%;
+}
+.assigning {
+    height: 30px;
+    width: 80%;
+    border-radius: 4px;
+    background-color: #e7cdda;
+    border: solid #ffffff;
+    color: #553043;
+}
+
+.filter {
+    background-color:#e7cdda;
+
+    color: #9c6882;
+}

@@ -13,6 +13,9 @@ import ProfilePage from './pages/ProfilePage.jsx';
 import NotFound404Page from './components/NotFound404Page/NotFound404Page.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
 import Footer from './components/Footer/Footer.jsx';
+import EventDetails from './components/EventDetails/EventDetails.jsx';
+import EventDashboard from './components/EventDashboard/EventDashboard.jsx';
+import MentorDashboard from './components/MentorDashboard/MentorDashboard.jsx';
 
 
 
@@ -34,6 +37,9 @@ const router = createBrowserRouter([
       {path:"/events",element:<EventsPage />},
       {path:"/profile", element:<ProfilePage />},
       {path:"*",element:<NotFound404Page />},
+      {path:"/events/:eventid", element: <EventDetails />},
+      {path: "/event-dashboard", element: <EventDashboard />},
+      {path: "/mentor-dashboard", element: <MentorDashboard />}
     ],
   },
 ]);

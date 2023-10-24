@@ -1,0 +1,105 @@
+.mentor-event-list{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    margin-right:10px;
+    border: solid #a5778e 4px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.assigned-mentors {
+    padding: 10px;
+    text-align: center;
+    font-size: 20px;
+    background-color:#a5778e;
+    color: #47112c;
+
+}
+
+
+.current {
+    background-color: white;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    margin-top:20px;
+}
+
+
+.mentor-changes-title {
+    text-align: center;
+    height: 50px;
+    font-size: 20px;
+    margin-top:30px;
+    color: white
+
+}
+
+
+.mentor-changes {
+    background: #e7cdda;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding-bottom:20px;
+
+}
+
+.remove-mentors, .add-mentors {
+    text-align: center;
+    font-size: 16px;
+}
+
+.remove-mentors .mentors{
+    color:#a5778e
+}
+
+.mentors {
+    border: #724a5e solid;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.mentors-remove {
+    margin: 8px;
+    color:#724a5e;
+    font-weight: bold;
+    border: solid #724a5e;
+    border-radius: 4px;
+}
+
+.confirm-div {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.confirm {
+    margin-top: 100px;
+    align-content: right;
+    background-color: #a5778e;
+    color: white;
+}
+
+.remove {
+    height: 30px;
+    width: 120px;
+    padding: 4px;
+}
+
+.previous-mentored{
+    border: solid white;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+.event-details {
+    font-size: 20px;
+    margin: 25px;
+}
+
+.mentors-confirmed {
+    border: solid #47112c;
+    border-radius: 4px;
+    margin: 4px;
+
+}

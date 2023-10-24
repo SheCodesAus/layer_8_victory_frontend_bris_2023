@@ -1,0 +1,103 @@
+.create-event-container{
+    width: 60%;
+    margin: 20px;
+    background-color:#45818e ;
+    border: solid #134f5c;
+    border-radius: 8px;
+}
+
+.create-event-header {
+    margin:20px
+}
+
+h2 {
+    font-size: 20px;
+    color: white;
+    padding: 10px;
+}
+
+h3 {
+    font-size: 15px;
+    color: white;
+    padding: 10px;
+}
+
+
+.form-create-event {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+    font-size: 15px;
+
+}
+
+.form-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-field-radios {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+
+}
+.radios {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+
+}
+
+.radio-button {
+    display: flex;
+    align-items: center;
+    color: white;
+
+
+}
+.event-location {
+    width: 60%;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 0;
+}
+
+.location-label {
+    color: white;
+}
+input {
+    padding: 10px;
+    margin: 5px;
+    justify-content: flex-end;
+    width: 64%;
+
+}
+
+label {
+    color: white;
+    width: 40%;
+    
+
+}
+#create-submit {
+    border: solid #134f5c;
+    color:#134f5c;
+    font-weight: bolder;
+    margin: 0px;
+}
+
+.create-submit-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: 20px;
+}
+

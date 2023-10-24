@@ -140,6 +140,7 @@ function NavBar() {
                                 Apply
                             </Link>
                             </>
+                            
                         )}
                     </nav>
                 </header>
