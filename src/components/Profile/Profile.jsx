@@ -1,17 +1,9 @@
-import useSelf from "../hooks/use-self";
-import useEvents from "../hooks/use-events";
-// import useMyEvents from "../hooks/use-myevents";
-import Button from "../components/Buttton/Button";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import useSelf from "../../hooks/use-self";
 
 function Profile() {
   const { self, isLoading, error } = useSelf();
-  const { events, eventsLoading, eventsError } = useEvents();
-  // const { myEvents, myEventsLoading, myEventsError } = useEvents();
-  const [editing, setEditing] = useState(false);
 
-  if (isLoading || eventsLoading) {
+  if (isLoading ) {
     return <p>Loading...</p>;
   }
 

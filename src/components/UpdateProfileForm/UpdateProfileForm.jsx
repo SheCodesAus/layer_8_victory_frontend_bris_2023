@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import useSelf from "../hooks/use-self";
-import Button from "../components/Buttton/Button";
-import useAuth from "../hooks/use-auth";
-import Dropdown from "./Dropdown/Dropdown";
-import useSkills from "../hooks/use-skills";
-import { isSchemeValid, isUrlValid } from "../utlities/urlValidation";
+import useSelf from "../../hooks/use-self";
+import Button from "../Buttton/Button";
+import useAuth from "../../hooks/use-auth";
+import Dropdown from "../Dropdown/Dropdown";
+import useSkills from "../../hooks/use-skills";
+import { isSchemeValid, isUrlValid } from "../../utlities/urlValidation";
 
 function UserUpdateForm() {
 

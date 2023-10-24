@@ -1,20 +1,15 @@
 import useSelf from "../hooks/use-self";
-import useEvents from "../hooks/use-events";
-// import useMyEvents from "../hooks/use-myevents";
 import Button from "../components/Buttton/Button";
-import Profile from "../components/Profile.Jsx";
-import UserUpdateForm from "../components/UpdateProfileForm";
-import { Link } from "react-router-dom";
+import Profile from "../components/Profile/Profile.jsx";
+import UserUpdateForm from "../components/UpdateProfileForm/UpdateProfileForm";
 import { useState } from "react";
 
 function ProfilePage() {
   
   const { self, isLoading, error } = useSelf();
-  const { events, eventsLoading, eventsError} = useEvents();
-  // const { myEvents, myEventsLoading, myEventsError} = useEvents();
   const [ editing, setEditing ] = useState(false);
 
-  if (isLoading || eventsLoading ) {
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
@@ -22,9 +17,6 @@ function ProfilePage() {
     return <p>{error.message}</p>;
   }
 
-  if (eventsError) {
-    return <p>{eventsError.message}</p>;
-  }
 
   const handleUpdate = (event) => {
     event.preventDefault();
