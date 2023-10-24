@@ -10,13 +10,13 @@
     margin:20px
 }
 
-h2 {
+.user-banner h2 {
     font-size: 20px;
     color: white;
     padding: 10px;
 }
 
-h3 {
+.user-banner h3 {
     font-size: 15px;
     color: white;
     padding: 10px;
@@ -73,7 +73,8 @@ h3 {
 .location-label {
     color: white;
 }
-input {
+
+.form-create-event .form-field input {
     padding: 10px;
     margin: 5px;
     justify-content: flex-end;
@@ -81,7 +82,7 @@ input {
 
 }
 
-label {
+.form-create-event .form-field label {
     color: white;
     width: 40%;
     
