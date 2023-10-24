@@ -40,7 +40,7 @@
     margin-bottom: 20px;
 }
 
-select {
+.drop-downs select {
     text-align: left;
     background-color: white;
     border: none;
@@ -57,7 +57,7 @@ select {
     flex-direction: column;
 }
 
-label {
+.input-area label {
     font-size: 20px;
     margin-left: 20px;
 }
@@ -69,18 +69,18 @@ label {
 
 }
 
-option {
+.drop-downs option {
     text-align: left;
 }
 
-form {
+.edit-mentor-form {
     
     border: #134f5c solid;
     border-radius: 4px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
-li:hover {
+.edit-mentor-form li:hover {
     cursor: pointer;
 }
 
@@ -89,4 +89,15 @@ li:hover {
     border:#134f5c solid;
     color:#134f5c;
     font-weight: bold;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+.manage-mentor {
+    margin-left: 20px;
+    border:#134f5c solid;
+    color:#134f5c;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 6px;
 }

@@ -159,7 +159,7 @@ function EditMentorForm({editMentorOpen, onEditMentorClick, activeMentor, onChan
                                 }
                                 
                             </div>
-                            <form>
+                            <form className="edit-mentor-form">
                                 <div className="drop-downs">
                                     <div>
                                         <p className="rank">Mentor Rank:  {!mentorDetails.rank? <>Not yet assigned</>: mentorDetails.rank} </p>
