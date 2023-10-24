@@ -13,9 +13,17 @@ function MentorList({activeEvent,
     const [searchTermSkill, setSearchTermSkill] = useState("")
     const [searchTermLocation, setSearchTermLocation] = useState("")
     const [searchTermRank, setSearchTermRank] = useState("")
-    
+
+    const [filters, setFilters] = useState({
+        location:"",
+        rank: "",
+        skills: ""
+    })
+
     const [filteredUsers, updateFilteredUsers] = useState()
 
+
+    // Some of these should be grabbed from API (skills)
     const skills = ["Python","Django","DRF","React", "Javascript", "Front-end","Back-end","HTML-CSS"]
     const ranks = ["Junior","Mid-level","Lead"]
     const locations = [ "Brisbane", "Sydney", "Melbourne", "Adelaide", "Perth", "Canberra",  "Darwin"]
@@ -26,15 +34,20 @@ function MentorList({activeEvent,
     }, [mentors])
     
 
-   const handleChange = (searchTerm, type) => {
-        
+    // TODO Initial mentor list needs to exclude mentor.is_superuser true (ie admins) and only have mentors with 
+    // mentor.onboarding_status == 'Ready' (ie can't hide/prevent non-ready mentors)
 
-        if (type == 'location' ){
+    const handleChange = (searchTerm, type) => {
+
+        // let result = filterTool(filteredUsers, filters)
+        // updateFilteredUsers(result)
+        // console.log('here', result)
+
+        if (type == 'location'){
             if (searchTerm === 'all') {
                 let updatedLocation = mentors
                 updateFilteredUsers(updatedLocation)                    
             } else {
-                console.log("in else", searchTerm)
                 updateFilteredUsers(mentors.filter(x => (x && x.location && x.location.includes(searchTerm))))
             }
 
@@ -43,46 +56,64 @@ function MentorList({activeEvent,
                 let updatedSkills= mentors
                 updateFilteredUsers(updatedSkills)                    
             } else {
-                console.log("in else", searchTerm)
-                
-                mentors.map((element)  => {
+                let skilledMentors = []
+                mentors.forEach( mentor => {
+                    if (mentor.skills != []) {
 
-                    return{...element,  subElements: element.subElements.filter((subElement) => subElement.name === searchTerm)}
+                        if (mentor.skills.filter((skill => (skill.name.includes(searchTerm)))).length > 0) {
+                            skilledMentors.push(mentor)
+                        }
+                    }
                 })
-               
+                updateFilteredUsers(skilledMentors)
             }
 
         } else if (type == 'rank'){
             if (searchTerm === 'all') {
-                console.log("all")
                 let updatedRank = mentors
                 updateFilteredUsers(updatedRank)                    
             } else {
-                console.log("in else", searchTerm)
-
                 updateFilteredUsers(mentors.filter(x => (x && x.rank && x.rank.includes(searchTerm))))
             }
         }
     }
 
-   
+    // const filterTool = (target, filters) => {
+    //     var filterKeys = Object.keys(filters);
+        
+    //     return target.filter(function (eachObj) {
+    //         console.log("eact obj",eachObj)
+    //       return filterKeys.every(function (eachKey) {
+    //         console.log("each key",eachKey)
+    //         if (!filters[eachKey].length) {
+    //             console.log("found")
+    //           return true; 
+    //         }
+    //         return filters[eachKey].includes(eachObj[eachKey]);
+    //      });
+    //  });
+    // }
+
 
     const handleFilterChange = (type) => (e) => {
         const searchTerm = e.target.value
-        console.log(searchTerm)
         switch(type){
             case 'location':
                 setSearchTermLocation(searchTerm)
+                //setFilters({...filters, location: searchTerm} )
                 handleChange(searchTerm, type)
             case 'skill':
+                //setFilters({...filters, skill: searchTerm} )
                 setSearchTermSkill(searchTerm)
                 handleChange(searchTerm, type)
             case 'rank':
+                //setFilters({...filters, rank: searchTerm} )
                 setSearchTermRank(searchTerm)
                 handleChange(searchTerm, type)
         }
-    }
 
+        console.log(filters)
+    }
 
 
     // Need to create new state to handle assignment status of mentors, so we only have one button
@@ -126,9 +157,6 @@ function MentorList({activeEvent,
     const handleChangeLocation = e => setSearchTermLocation(e.target.value)
     const handleChangeRank = e => setSearchTermRank(e.target.value)
 
-
-
-   
     if (isMentorsLoading) {
         return<div>Mentors loading...</div>
     } else {
@@ -161,27 +189,6 @@ function MentorList({activeEvent,
                             </option>
                             ))}
                 </select>
-
-                {/* <input className='search-box'
-                    type='text' 
-                    value={searchTermSkill} 
-                    onChange={handleChangeSkill} 
-                    placeholder='Skill'>
-                </input>
-                <input className='search-box'
-                    type='text' 
-                    value={searchTermLocation} 
-                    onChange={handleChangeLocation} 
-                    placeholder='Location'>
-                </input>
-                <input className='search-box'
-                    type='text' 
-                    value={searchTermRank} 
-                    onChange={handleChangeRank} 
-                    placeholder='Rank'>
-                </input> */}
-
-                {/* .filter(mentor => !mentor.is_superuser && mentor.onboarding_status == "Ready") */}
 
                 {filteredUsers === undefined ? <>
                     <ul>{mentors.sort((a,b) => {
@@ -221,21 +228,6 @@ function MentorList({activeEvent,
                         })}</ul>
                 }
                 
-{/*                 
-                <ul>
-                    {mentors.sort((a,b) => {
-                    return a.first_name - b.first_name 
-                }).map((mentorDataDetails) => {
-                        return(
-                            <div className='mentors' key={mentorDataDetails.id}>{mentorDataDetails.first_name} {mentorDataDetails.last_name} ({mentorDataDetails.rank}) {mentorDataDetails.mobile} available: {mentorDataDetails.is_active.toString()} 
-                                <div className='assign-buttons'>
-                                <button className='assigning' onClick={handleAssignEventMentor} value={mentorDataDetails.id}>Assign</button>
-                                <button className='assigning' onClick={handleUnAssignEventMentor} value={mentorDataDetails.id}>Undo</button>
-                                </div>
-                            </div>
-                        )
-                    })}
-                </ul> */}
             </div>
         )
     }
