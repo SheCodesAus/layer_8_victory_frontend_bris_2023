@@ -53,25 +53,32 @@ function EditMentorForm({editMentorOpen, onEditMentorClick, activeMentor, onChan
 
     const handleSubmit = (event) => {
         event.preventDefault()
+
+        const mentorInf = mentors.find(mentor => (mentor.id == activeMentor))
+        
+        
+        let skill = ''
+        let mentorskills = []
+        for (skill in mentorInf.skills) {
+            mentorskills.push(mentorInf.skills[skill].name)
+        }
+
+        // Private notes can't be blank?
+        let handleNotes = ""
+        if (mentordetails.private_notes === ''){
+            handleNotes = "No notes"
+        } else {
+            handleNotes = mentordetails.private_notes
+        }
+
         console.log(mentordetails)
         // if (auth.token){
-            if(mentordetails.id && mentordetails.onboarding_status && mentordetails.rank && mentordetails.private_notes ) {
-
-                const mentor = mentors.find(key => (key.id == activeMentor))
-
-                let skill = ''
-                let mentorskills = []
-                for (skill in mentor.skills) {
-                    console.log( mentor.skills[skill].name)
-                    mentorskills.push(mentor.skills[skill].name)
-                }
-
-                console.log(mentor)
-                putEditMentorAsStaff(
-                    mentordetails.id,
+            if(mentordetails.id && mentordetails.onboarding_status && mentordetails.rank) {
+                console.log('vali')
+                putEditMentorAsStaff(mentordetails.id,
                     mentordetails.onboarding_status,
                     mentordetails.rank,
-                    mentordetails.private_notes,
+                    handleNotes,
                     mentorskills
                 ).then(
                     (response) => {
@@ -181,15 +188,20 @@ function EditMentorForm({editMentorOpen, onEditMentorClick, activeMentor, onChan
                                 </div>
                                 <div className="input-area">
                                     <label htmlFor="private_notes">Private Notes</label>
-                                    <textarea rows='5' cols='6' id="private_notes" placeholder="Any notes or comments about mentor?" onChange={handleChange}/>
+                                    {mentorDetails.private_notes == null ?
+                                     <textarea rows='5' cols='6' id="private_notes" placeholder="Any comments or notes about mentor?" onChange={handleChange}></textarea>
+                                     :
+                                     <textarea rows='5' cols='6' id="private_notes" placeholder={mentorDetails.private_notes} onChange={handleChange}></textarea>
+                                    }
+                                    
                                 </div>
                                 <div>
                                     <button id="edit-mentor-submit" type="submit" onClick={handleSubmit} value="false">Confirm Edits</button>
                                 </div>
                                 <div>
                                     <p>{errorMessage}</p>
-                                    <sub className={errorMessage ? "" : "hidden"}><p>{formInvalid}</p></sub>
-                                        
+                                    <sub className={errorMessage ? "" : "hidden"}></sub>
+                                    <p>{formInvalid}</p>
                                 </div>
                         </form>
 

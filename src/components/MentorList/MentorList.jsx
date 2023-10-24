@@ -135,7 +135,7 @@ function MentorList({activeEvent,
         return(
             <div className='mentor-list'>
                 <p>Full Mentor List</p>
-                <select onChange={handleFilterChange('location')} value={searchTermLocation}>
+                <select className='filter' onChange={handleFilterChange('location')} value={searchTermLocation}>
                         <option value="all">All</option>
                         {locations.map((currentValue, index) => (
                             <option key={index} value={currentValue}>
@@ -144,7 +144,7 @@ function MentorList({activeEvent,
                             ))}
                 </select>
 
-                <select onChange={handleFilterChange('skill')} value={searchTermSkill}>
+                <select className='filter' onChange={handleFilterChange('skill')} value={searchTermSkill}>
                         <option value="all">All</option>
                         {skills.map((currentValue, index) => (
                             <option key={index} value={currentValue}>
@@ -153,7 +153,7 @@ function MentorList({activeEvent,
                             ))}
                 </select>
 
-                <select onChange={handleFilterChange('rank')} value={searchTermRank}>
+                <select className='filter' onChange={handleFilterChange('rank')} value={searchTermRank}>
                 <option value="all">All</option>
                         {ranks.map((currentValue, index) => (
                             <option key={index} value={currentValue}>
@@ -202,10 +202,19 @@ function MentorList({activeEvent,
                         return a.first_name - b.first_name 
                     }).map((mentorDataDetails) => {
                             return(
-                                <div className='mentors' key={mentorDataDetails.id}>{mentorDataDetails.first_name} {mentorDataDetails.last_name} ({mentorDataDetails.rank}) {mentorDataDetails.mobile} available: {mentorDataDetails.is_active.toString()} 
+                                <div className='mentor-card' key={mentorDataDetails.id}>
+                                    <div className='mentor-info'>
+                                        <p>{mentorDataDetails.rank} Mentor</p>
+                                        <p>{mentorDataDetails.first_name} {mentorDataDetails.last_name} </p>
+                                        <p>Available: {mentorDataDetails.is_active ? "Yes" : "No"} </p>
+                                        <>{mentorDataDetails.skills.map((skill) => {
+                                            return(<li>{skill.name} </li>)
+                                        })}</>
+                                        <p>{mentorDataDetails.location}</p>
+                                     </div>
                                     <div className='assign-buttons'>
-                                    <button className='assigning' onClick={handleAssignEventMentor} value={mentorDataDetails.id}>Assign</button>
-                                    <button className='assigning' onClick={handleUnAssignEventMentor} value={mentorDataDetails.id}>Undo</button>
+                                        <button className='assigning' onClick={handleAssignEventMentor} value={mentorDataDetails.id}>Assign</button>
+                                        <button className='assigning' onClick={handleUnAssignEventMentor} value={mentorDataDetails.id}>Undo</button>
                                     </div>
                                 </div>
                             )

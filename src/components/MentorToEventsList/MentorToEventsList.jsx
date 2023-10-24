@@ -119,9 +119,9 @@ function MentorEventsList({activeEvent,
                             return ( 
                                     <div key={key}>
                                         {mentorDetails ? 
-                                         <div>
+                                         <div className="mentors-confirmed">
                                             {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})
-                                         <button className='remove' onClick={handleRemoveList} value={mentorData.id}>Remove</button></div>
+                                         <button className='assigning' onClick={handleRemoveList} value={mentorData.id}>Remove</button></div>
                                          : <div>Loading</div>}
                                        
                                     </div>
@@ -158,7 +158,7 @@ function MentorEventsList({activeEvent,
                                     return mentor.id === mentorevents.filter(key=>key.id == removeMentorID)[0].mentor_id
                                     })
                                     return(<div className="mentors-remove">{mentorDetails.first_name} {mentorDetails.last_name}
-                                    <button value={removeMentorID} onClick={handleRemoveUndo}>Undo</button></div>)
+                                    <button className="assigning" value={removeMentorID} onClick={handleRemoveUndo}>Undo</button></div>)
                                 })} 
                         </div>
                     </div> 

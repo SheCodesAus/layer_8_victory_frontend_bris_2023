@@ -2,19 +2,20 @@ import { useEffect, useState } from "react"
 import useEvents from "../../hooks/use-events"
 import useMentorEvents from "../../hooks/use-mentor-events"
 import useMentors from "../../hooks/use-mentors"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import './EventDetails.css'
 
 function EventDetails () {
-
+    let { eventid } = useParams()
     const { events, isEventsLoading, isEventsError } = useEvents()
     const { mentorevents, isMentorEventsLoading, isMentorEventsError, refreshComp} = useMentorEvents()
     const { mentors, isMentorsLoading, isMentorsError } = useMentors()
-    const { eventid } = useParams()
-
-
-    console.log(eventid)
     
+
+    //TODO should be utils
+    const parseDate=(str_date)=> {
+        return new Date(Date.parse(str_date))
+    }
 
     return (
         <div className="event-full-details">
@@ -22,13 +23,15 @@ function EventDetails () {
         <div className="event-summary">
 
             {events.filter(key => (key.id == eventid )).map((eventData, key) => {
-                const formattedStartDate = new Date(eventData.start_date)
-                const formattedEndDate = new Date(eventData.end_date)
+
+                const formattedStartDate = parseDate(eventData.start_date)
+                const formattedEndDate = parseDate(eventData.end_date)
+
                 return(
                     <div>
                         <h2>{eventData.title}</h2>
-                        <h5>Start: {formattedStartDate.getDay()} / {formattedStartDate.getMonth()} / {formattedStartDate.getFullYear()}</h5>
-                        <h5>End: {formattedEndDate.getDay()} / {formattedEndDate.getMonth()} / {formattedEndDate.getFullYear()}</h5>
+                        <h5>Start: {formattedStartDate.toLocaleDateString()}</h5>
+                        <h5>End: {formattedEndDate.toLocaleDateString()}</h5>
                         <h5>Location: {eventData.location}</h5>
                 </div>)
 

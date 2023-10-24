@@ -1,13 +1,8 @@
-async function putEditMentorAsStaff(
-    id,
-    onboarding_status,
-    rank,
-    private_notes, 
-    skills
-    ){
+async function putEditMentorAsStaff(id, onboarding_status,rank,private_notes, skills ){
+
     const url = `${import.meta.env.VITE_API_URL}/users/${id}/`;
 
-
+    console.log("here", id, onboarding_status,rank,private_notes, skills )
     //const {auth, setAuth} = useAuth()
     const token = window.localStorage.getItem("token")
 
@@ -32,7 +27,8 @@ async function putEditMentorAsStaff(
             throw new Error(fallbackError);
         })
 
-        const errorMessage = data ?? fallbackError
+        const errorMessage = data.private_notes ?? fallbackError
+        console.log(errorMessage)
         throw new Error(errorMessage)
     }
 
