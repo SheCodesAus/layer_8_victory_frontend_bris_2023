@@ -76,6 +76,7 @@ function MentorList({
         return (
             <div className='mentor-list'>
                 <p>Find a Mentor</p>
+                <p id="mentor-status-info">Find mentors that are onboarded and ready to mentor!</p>
                 <div className='filter-group'>
                 <p>Location</p>
                 <select className='filter' onChange={(e) => setSearchTermLocation(e.target.value)} value={searchTermLocation}>

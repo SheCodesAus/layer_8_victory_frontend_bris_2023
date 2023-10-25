@@ -5,6 +5,10 @@
     border-radius: 8px;
 }
 
+#mentor-status-info {
+    font-size: 10px;
+    font-style: italic;
+}
 .filter-group {
     display:flex;
     flex-direction: column;

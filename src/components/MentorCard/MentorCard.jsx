@@ -43,7 +43,7 @@ const MentorCard = ({
     const handleRemoveStatus = (event) => {
         const mentorId = event.target.value
         if (removedStatus == 'Remove') {
-            console.log("card removing mentor" , mentorId)
+            console.log("card removing mentor", mentorId)
             handleRemoveList(mentorId)
             setRemovedStatus("Undo")
         } else if (removedStatus == 'Undo') {
@@ -97,15 +97,18 @@ const MentorCard = ({
                     <p>{mentorDataDetails.location}</p>
                 </div>
                 <div className='assign-buttons'>
-                    {allMentorEvents.filter(key => (key.mentor_id == mentorDataDetails.id)).map((mentor_status) => {
-                        if (mentor_status.confirmed) {
-                            return (<button className="removing" onClick={handleRemoveStatus} value={mentorDataDetails.id}>{removedStatus}</button>)
-                        } else {
-                            return (<button className="assigning" onClick={handleAssignStatus} value={mentorDataDetails.id}>{assignedStatus}</button>)
+                    {allMentorEvents.filter(key => (key.mentor_id == mentorDataDetails.id)).length > 0 ?
+                        <>
+                            {allMentorEvents.filter(key => (key.mentor_id == mentorDataDetails.id)).map((mentor_status) => {
+                                if (mentor_status.confirmed) {
+                                    return (<button className="removing" onClick={handleRemoveStatus} value={mentorDataDetails.id}>{removedStatus}</button>)
+                                } else {
+                                    return (<button className="assigning" onClick={handleAssignStatus} value={mentorDataDetails.id}>{assignedStatus}</button>)
+                                }
+                            })}</>
+                        :
+                        <button className="assigning" onClick={handleAssignStatus} value={mentorDataDetails.id}>{assignedStatus}</button>
                         }
-
-                    }
-                    )}
                 </div>
             </div>
         </>
