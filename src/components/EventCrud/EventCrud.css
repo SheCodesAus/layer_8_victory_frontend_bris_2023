@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     margin: 20px;
+    width: 60%;
 
 }
 
@@ -11,9 +12,10 @@
     align-content: center;
     display: flex;
     justify-content: center;
-    border:solid #a5778e; 
+    border:solid #134f5c 4px; 
+    background-color: #45818e;
     border-radius: 8px;
-    
+    color: white;
 }
 
 .crud-elements {

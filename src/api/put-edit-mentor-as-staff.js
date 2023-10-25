@@ -1,4 +1,4 @@
-async function putEditMentorAsStaff(id, onboarding_status,rank,private_notes, skills, is_active ){
+async function putEditMentorAsStaff(id, onboarding_status,rank,private_notes, skills){
 
     const url = `${import.meta.env.VITE_API_URL}/users/${id}/`;
 
@@ -10,7 +10,7 @@ async function putEditMentorAsStaff(id, onboarding_status,rank,private_notes, sk
         "rank": rank,
         "private_notes": private_notes,
         "skills": skills,
-        "is_active": is_active
+        
     }
 
     for (let bod in body) {

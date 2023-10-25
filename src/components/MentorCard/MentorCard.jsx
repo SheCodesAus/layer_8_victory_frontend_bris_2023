@@ -1,43 +1,36 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate, useSubmit } from "react-router-dom";
-import useMentorEvents from "../../hooks/use-mentor-events";
+import './MentorCard.css'
 
-const MentorCard = ({mentorDataDetails, mentorsToAdd, onMentorsAdd, activeEvent}) => {
+const MentorCard = ({
+    mentorDataDetails,
+    allMentorEvents,
+    mentorsToAdd,
+    onMentorsAdd,
+    mentorsToRemove,
+    onRemoveMentors,
+    activeEvent }) => {
 
-    const { mentorevents, isMentorEventsLoading, isMentorEventsError} = useMentorEvents()
     const [assignedStatus, setAssignedStatus] = useState("Assign")
+    const [removedStatus, setRemovedStatus] = useState("Remove")
 
     const handleAssignEventMentor = (mentorId) => {
         if (activeEvent === "") {
             return (window.alert('Select an event'))
         } else {
-            if (mentorevents.find(elm => {
-                console.log(" found",elm)
-                return (elm.mentor_id == mentorId &&
-                    elm.event_id == activeEvent &&
-                    elm.confirmed == true)
-            })) {
-                return (window.alert('Already assigned'))
-            } else {
-                console.log("not yet")
-                
-                let index = mentorsToAdd.indexOf(mentorId)
-                if (index == -1) {
-                    onMentorsAdd([...mentorsToAdd, mentorId])
-                }
+            let index = mentorsToAdd.indexOf(mentorId)
+            if (index == -1) {
+                onMentorsAdd([...mentorsToAdd, mentorId])
             }
         }
     }
 
     const handleUnAssignEventMentor = (mentorId) => {
-
         if (activeEvent === "") {
             return (window.alert('Select an event'))
         } else {
             let index = mentorsToAdd.indexOf(mentorId)
             let unsassigned = [...mentorsToAdd]
-
             if (index !== -1) {
                 unsassigned.splice(index, 1)
             } else {
@@ -47,14 +40,47 @@ const MentorCard = ({mentorDataDetails, mentorsToAdd, onMentorsAdd, activeEvent}
         }
     }
 
+    const handleRemoveStatus = (event) => {
+        const mentorId = event.target.value
+        if (removedStatus == 'Remove') {
+            console.log("card removing mentor" , mentorId)
+            handleRemoveList(mentorId)
+            setRemovedStatus("Undo")
+        } else if (removedStatus == 'Undo') {
+            handleRemoveUndo(mentorId)
+            setRemovedStatus("Remove")
+        }
+    }
+
     const handleAssignStatus = (event) => {
         const mentorId = event.target.value
-        if (assignedStatus == 'Assign' ){
+        if (assignedStatus == 'Assign') {
+            console.log('card assigning mentor ', mentorId)
             handleAssignEventMentor(mentorId)
             setAssignedStatus("Undo")
-        } else {
+        } else if (assignedStatus == 'Undo') {
+            console.log('undo assign ', mentorId)
             handleUnAssignEventMentor(mentorId)
             setAssignedStatus("Assign")
+        }
+    }
+
+    const handleRemoveUndo = (mentorId) => {
+        let index = mentorsToRemove.indexOf(mentorId)
+        let unRemove = [...mentorsToRemove]
+        if (index !== -1) {
+            unRemove.splice(index, 1)
+        } else {
+            unRemove
+        }
+        onRemoveMentors(unRemove)
+    }
+
+    const handleRemoveList = (mentorId) => {
+        let index = mentorsToRemove.indexOf(mentorId)
+        if (index == -1) {
+            console.log("mentor card mentorid to remove list", mentorId)
+            onRemoveMentors([...mentorsToRemove, mentorId])
         }
     }
 
@@ -71,7 +97,15 @@ const MentorCard = ({mentorDataDetails, mentorsToAdd, onMentorsAdd, activeEvent}
                     <p>{mentorDataDetails.location}</p>
                 </div>
                 <div className='assign-buttons'>
-                    <button className="assigning" onClick={handleAssignStatus} value={mentorDataDetails.id}>{assignedStatus}</button>
+                    {allMentorEvents.filter(key => (key.mentor_id == mentorDataDetails.id)).map((mentor_status) => {
+                        if (mentor_status.confirmed) {
+                            return (<button className="removing" onClick={handleRemoveStatus} value={mentorDataDetails.id}>{removedStatus}</button>)
+                        } else {
+                            return (<button className="assigning" onClick={handleAssignStatus} value={mentorDataDetails.id}>{assignedStatus}</button>)
+                        }
+
+                    }
+                    )}
                 </div>
             </div>
         </>

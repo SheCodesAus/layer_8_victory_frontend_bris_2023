@@ -5,6 +5,8 @@
     justify-content: space-between;
     border: solid #134f5c;
     border-radius: 20px;
+    margin-left:20px;
+    margin-right: 20px;
 }
 
 .no-content-yet{

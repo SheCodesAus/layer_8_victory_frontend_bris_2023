@@ -25,8 +25,6 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 30%;
-   
     height: 50px;
     border-radius: 12px;
     margin: 10px;
@@ -36,14 +34,6 @@
 .event-info {
     width:70%;
 }
-
-/* button {
-    width: 100px;
-    height: 50px;
-    border-radius: 12px;
-    margin: 10px;
-    cursor: pointer;
-} */
 
 .search-box {
     border: solid #45818e;

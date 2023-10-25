@@ -6,17 +6,17 @@
     width: 50%;
     margin: 20px;
     padding: 10px;
-
 }
 
-.edit-mentor-header{
-    color: white;
+.edit-mentor-container p, li, label {
+    color:white;
 }
 
-.edit-mentor-header h2 {
+.edit-mentor-container h2 {
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 10px;
+    color: white;
 }
 
 .mentor-information {
@@ -24,6 +24,7 @@
     flex-wrap: wrap;
     border: solid white;
     border-radius:4px;
+    color:white;
 }
 
 .mentor-information a {
@@ -91,6 +92,7 @@
     font-weight: bold;
     padding: 10px;
     border-radius: 6px;
+    cursor: pointer;
 }
 
 .manage-mentor {

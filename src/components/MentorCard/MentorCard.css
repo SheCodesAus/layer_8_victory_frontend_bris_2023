@@ -1,0 +1,45 @@
+
+.mentor-card {
+    font-size: 14px;
+    border: solid #553043;
+    border-radius: 4px;
+    background-color: #a5778e;
+    margin: 8px;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mentor-info p {
+    font-size: 16px;
+}
+
+.mentor-info li {
+    font-size:  16px;
+    margin-left: 30px;
+}
+
+.assign-buttons {
+    width: 30%;
+}
+
+.assigning {
+    height: 30px;
+    width: 80%;
+    border-radius: 4px;
+    background-color: #553043;
+    border: solid #ffffff;
+    color: white;
+    cursor: pointer;
+}
+
+.removing {
+    height: 30px;
+    width: 80%;
+    border-radius: 4px;
+    background-color: #e7cdda;
+    border: solid #ffffff;
+    color: #553043;
+    cursor: pointer;
+}

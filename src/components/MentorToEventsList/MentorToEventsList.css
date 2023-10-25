@@ -3,7 +3,7 @@
     flex-direction: column;
     margin-top: 20px;
     margin-right:10px;
-    border: solid #a5778e 4px;
+    border: solid #74435b 4px;
     border-radius: 8px;
     width: 100%;
 }
@@ -17,25 +17,35 @@
 
 }
 
+.assigned {
+    background-color: #45818e;
+}
 
 .current {
-    background-color: white;
-    height: 50px;
+
     font-size: 20px;
     text-align: center;
-    margin-top:20px;
+}
+
+.current h3 {
+    color: #45818e;
+    padding: 20px;
+
 }
 
 
 .mentor-changes-title {
     text-align: center;
-    height: 50px;
     font-size: 20px;
-    margin-top:30px;
-    color: white
-
+    margin-bottom:20px;
+    margin-top: 20px;
+    color: white;
+    
 }
 
+.mentor-changes-title h3 {
+    padding: 10px;
+}
 
 .mentor-changes {
     background: #e7cdda;
@@ -43,7 +53,8 @@
     flex-direction: row;
     justify-content: space-evenly;
     padding-bottom:20px;
-
+    border-radius: 4px;
+    border: solid;
 }
 
 .remove-mentors, .add-mentors {
@@ -51,23 +62,14 @@
     font-size: 16px;
 }
 
-.remove-mentors .mentors{
-    color:#a5778e
-}
 
 .mentors {
-    border: #724a5e solid;
+    border: #724a5e83 solid;
     border-radius: 4px;
     margin-left: 8px;
+    padding: 6px;
 }
 
-.mentors-remove {
-    margin: 8px;
-    color:#724a5e;
-    font-weight: bold;
-    border: solid #724a5e;
-    border-radius: 4px;
-}
 
 .confirm-div {
     display: flex;
@@ -75,31 +77,30 @@
 }
 
 .confirm {
-    margin-top: 100px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-right:20px;
     align-content: right;
     background-color: #a5778e;
     color: white;
-}
-
-.remove {
-    height: 30px;
-    width: 120px;
-    padding: 4px;
-}
-
-.previous-mentored{
-    border: solid white;
     border-radius: 4px;
-    margin-top: 20px;
+    border:#74435b solid;
+    cursor: pointer;
 }
+
+
+
 .event-details {
     font-size: 20px;
     margin: 25px;
 }
 
 .mentors-confirmed {
-    border: solid #47112c;
+    border: solid rgba(255, 255, 255, 0.384);
+    padding: 4px;
     border-radius: 4px;
     margin: 4px;
+    color: white;
+    background-color:#45818e;
 
 }
