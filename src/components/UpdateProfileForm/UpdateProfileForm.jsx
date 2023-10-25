@@ -45,12 +45,6 @@ function UserUpdateForm({editing, setEditing}) {
     if (skillsError) {
       return <p>{skillsError.message}</p>;
     }
-    // if (formData.skills == []){
-    //   for (let skill in self.skills){
-    //     formData.skills.push(self.skills[skill]['name'])
-    //   }
-    // }
-
 
     const handleChange = (event) => {
       const { id, value } = event.target;
@@ -59,7 +53,9 @@ function UserUpdateForm({editing, setEditing}) {
         [id]: value,
       }));
     };
-  
+
+    formData.skills = Array.from(document.querySelectorAll('.skills input[type="checkbox"]:checked')).map(x => x.value)
+
     const handleCheckboxChange = (event) => {
       let updatedList = [...checkedState];
       if (event.target.checked) {
@@ -296,7 +292,7 @@ function UserUpdateForm({editing, setEditing}) {
               </div>
             </div>
   
-            <div className="skills-container">
+            <div className="skills-container skills">
               <label htmlFor="skills" className="label-checkbox">
                 Select skills{" "}
               </label>
