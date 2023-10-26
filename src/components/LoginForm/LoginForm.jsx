@@ -8,13 +8,16 @@ import "./LoginForm.css";
 
 const LoginForm  = () =>{
     const navigate = useNavigate();
-    const {auth, setAuth} = useAuth();
-
+    const {auth, setAuth} = useAuth()
+    const [errorMessage, setErrorMessage] = useState("");
+    const [formIsInvalid, setFormIsInvalid] = useState("");
     const [credentials, setCredentials] = useState
     ({
         username: "",
         password: "",
     });
+
+
 
     const handleChange = (event) => {
         const { id, value } = event.target;
@@ -37,11 +40,20 @@ const LoginForm  = () =>{
                         token: response.token,
                     });
                     navigate("/events");
-                });
+                })
+                .catch((error) => {
+                    setErrorMessage(`${[error.message]} \n`);
+                  });
+            
+        }
+        else{
+            setFormIsInvalid("Invalid Username or Password.");
+       
         }
     };
 
 return(
+    <>
     <form className="login-form">
     <div>
         <h1 className="login_title">Login</h1>
@@ -66,9 +78,14 @@ return(
     </div>
     <br/>
     <Button text={"Login"} btnClass = "btn-info " onClick={handleSubmit}/>
-  
    
+    <p className="error-message">{errorMessage}</p>
+      <sub className={errorMessage ? "" : "hidden"}>Please check your username and password.</sub>
+      <sub className={errorMessage ? "" : "hidden"}>* Username and password are case sensitive.</sub>
+      <p>{formIsInvalid}</p>
 </form> 
+
+ </>
 )
 }
 
