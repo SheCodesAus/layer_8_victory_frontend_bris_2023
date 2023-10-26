@@ -1,5 +1,6 @@
 import { useState, setState, useEffect } from 'react'
 import useMentors from '../../hooks/use-mentors'
+import useSkills from "../../hooks/use-skills";
 import './MentorListDetails.css'
 
 // // --- Needs authentication handling to check token belongs to staff ---///
@@ -7,11 +8,10 @@ import './MentorListDetails.css'
 function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMentor, activeMentor }) {
 
     const { mentors, isMentorsLoading, isMentorsError } = useMentors()
-
+    const { skills, skillsLoading, skillsError } = useSkills([]);
 
     // TODO Some of these should be grabbed from API (skills)
     const status = ["Applied", "Validated", "Interviewed", "Ranked", "Accepted", "Onboarded", "Ready"]
-    const skills = ["Python", "Django", "DRF", "React", "Javascript", "Front-end", "Back-end", "HTML-CSS"]
     const ranks = ["Junior", "Mid-level", "Lead"]
     const locations = ["Brisbane", "Sydney", "Melbourne", "Adelaide", "Perth", "Canberra", "Darwin"]
 
@@ -55,7 +55,13 @@ function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMe
 
     }, [searchTermStatus, searchTermSkill, searchTermLocation, searchTermRank])
 
-
+    if (skillsLoading) {
+        return <p>Loading skills...</p>;
+      }
+    
+      if (skillsError) {
+        return <p>{skillsError.message}</p>;
+      }
     if (isMentorsLoading) {
         return <div>Mentors loading...</div>
     } else {
