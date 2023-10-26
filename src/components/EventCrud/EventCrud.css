@@ -7,15 +7,21 @@
 
 }
 
+.event-crud h3 {
+    font-family: 'Dancing Script';
+    font-size: 30px;
+    margin:20px;
+}
+
 .event-crud-details {
     width:100%;
     align-content: center;
     display: flex;
     justify-content: center;
-    border:solid #134f5c 4px; 
-    background-color: #45818e;
+    border:solid var(--dark-blue) 4px; 
+    background-color: var(--dark-blue);
     border-radius: 8px;
-    color: white;
+    color: var(--cream);
 }
 
 .crud-elements {

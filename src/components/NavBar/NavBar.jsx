@@ -1,12 +1,14 @@
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import useSelf from '../../hooks/use-self';
 import useAuth from "../../hooks/use-auth";
 
 import "./NavBar.css";
 
 function NavBar() {
     const {auth, setAuth} = useAuth();
+    const { self, isLoading, error } = useSelf();
 
     const [activeLink, setActiveLink] = useState("");
 
@@ -103,6 +105,36 @@ function NavBar() {
                             <Link to="/" onClick={handleLogout}>
                                 Log Out
                             </Link>
+                            
+                            {self?.is_staff ?
+                             <><Link 
+                             to="/event-dashboard" 
+                             id="event-dashboard"
+                             className={activeLink === "event-dashboard" ? "active" : ""}
+                             onClick={() => {
+                                 setActive("event-dashboard");
+                                 handleLinkClick();
+                             }}
+                             >
+                                 Event Dashboard
+                             </Link>
+                             <Link 
+                             to="/mentor-dashboard" 
+                             id="mentor-dashboard"
+                             className={activeLink === "mentor-dashboard" ? "active" : ""}
+                             onClick={() => {
+                                 setActive("mentor-dashboard");
+                                 handleLinkClick();
+                             }}
+                             >
+                                 Mentor Dashboard
+                             </Link></>
+                            :
+                            <></>
+                            }
+
+
+
                             <Link 
                             to="/profile" 
                             id="profile"

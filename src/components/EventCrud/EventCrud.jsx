@@ -40,8 +40,8 @@ function EventCrud({activeEvent, onCreateEventClick, createEventOpen}) {
                 {events.filter(event => (event.id == activeEvent)).map((eventData,key) => {
                     let formattedDateObj = parseDate(eventData.start_date)
                     return(<div key={key}>
-                        <p>Title: {eventData.title}</p>
-                        <p>Date: {formattedDateObj.toLocaleDateString()}</p>
+                        <h3>{eventData.title}</h3>
+                        <p>{formattedDateObj.toLocaleDateString()}</p>
                         </div>)
                 })}
                 </div>

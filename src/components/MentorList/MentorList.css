@@ -1,8 +1,14 @@
 .mentor-list{
     margin-top: 20px;
-    border:  solid #a5778e 4px;
+    border:  solid var(--pink) 4px;
+    background-color: var(--cream);
     width:100%;
     border-radius: 8px;
+}
+
+.mentor-list p {
+    color: var(--dark-blue);
+    font-weight: bold;
 }
 
 #mentor-status-info {
@@ -23,9 +29,9 @@
 }
 
 .filter {
-    background-color:#e7cdda;
+    background-color:var(--bg-color);
     border: solid ;
-    color: #9c6882;
+    color: var(--dark-blue);
     width: 90%;
     font-size: 15px;
     text-align: left;

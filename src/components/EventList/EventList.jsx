@@ -57,7 +57,7 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
 
     return (
         <div className='event-list'>
-            <p>Events List</p>
+            <h3>Events List</h3>
             <div className='event-top'>
             <input className='search-box'
                 type='text' 

@@ -1,8 +1,8 @@
-.event-list{
+.event-list {
     margin: 20px;
-    border: solid #134f5c 4px;
+    border: solid var(--dark-blue) 4px;
     border-radius: 8px;
-    background-color: white;
+    background-color: var(--cream);
     text-align: center;
     width: 30%;
 
@@ -13,11 +13,18 @@
     margin: 20px;
 }
 
+.event-list h3 {
+    font-family: 'Dancing Script';
+    font-size: 40px;
+    padding: 30px;
+    color: var(--dark-blue);
+}
+
 .event-detail {
     display: flex;
     margin: 10px;
-    border: solid #134f5c;
-    border-radius: 4px;
+    border: solid var(--dark-blue);
+    border-radius: 15px;
     justify-content: space-between;
 }
 
@@ -36,8 +43,8 @@
 }
 
 .search-box {
-    border: solid #45818e;
-    border-radius: 4px;
+    border: solid var(--light-blue);
+    border-radius: 15px;
     margin: 10px;
     margin-left: 20px;
     width:50%;
@@ -46,31 +53,39 @@
 }
 
 .search-box::placeholder{
-    color: #45818e;
+    color: var(--light-blue);
     opacity: 0.7;
 }
   
   .search-box:hover {
-
-    border: 2px solid #45818e;
-    background: linear-gradient(to left top, #00000023, #1967694d) fixed;
+    border: 2px solid var(--dark-blue);
+    background: linear-gradient(to left top,  var(--light-blue), var(--cream)) fixed;
   }
   .search-box:focus {
-    color: #45818e;
-    border: 2px solid #45818e;
+    color: var(--light-blue);
+    border: 2px solid var(--dark-blue);
     
   }
 
 .create-event {
-    color: white;
-    font-weight: bold;
-    border: solid #134f5c;
-    border-radius: 12px;
-    height: 50px;
-    margin: 10px;
-    width:50%;
-    background: #45818e;
+    background-color: var(--dark-blue);
+    border: 2px solid var(--dark-blue);
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: var(--cream);
     cursor: pointer;
+    display: inline-block;
+    font-size: 2rem;
+    line-height: normal;
+    min-height: 60px;
+    outline: none;
+    padding: 4px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    touch-action: manipulation;
+    width: 200px;
+    margin-right: 20px;
 }
 
 
@@ -81,40 +96,68 @@
     align-content:start;
 }
 
-.assign{
-    color: #9c6882;
-    font-weight: bold;
-    border: solid #a5778e;
-    background: #e7cdda;
-    font-weight: bold;
-    border-radius: 6px;
-    padding: 10px;
-    margin: 10px;
-    width: 100px;
+.assign {
+    background-color: var(--pink);
+    border: 2px solid var(--dark-blue);
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: var(--dark-blue);
     cursor: pointer;
+    display: inline-block;
+    font-size: 2rem;
+    line-height: normal;
+    min-height: 40px;
+    outline: none;
+    padding: 4px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    touch-action: manipulation;
+    width: 200px;
+    margin: 4px;
 }
 
 
 .edit-event {
-    color: white;
-    font-weight: bold;
-    border: solid #134f5c;
-    border-radius: 6px;
-    padding: 10px;
-    margin: 10px;
-    width: 100px;
-    background: #45818e;
+    background-color: var(--dark-blue);
+    border: 2px solid var(--dark-blue);
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: var(--cream);
     cursor: pointer;
+    display: inline-block;
+    font-size: 2rem;
+    line-height: normal;
+    min-height: 40px;
+    outline: none;
+    padding:  4px 22px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    touch-action: manipulation;
+    width: 200px;
+    margin: 4px;
     
 }
 
 .event-button {
     margin: 0px;
     padding: 0px;
-    background-color: #45818e;
-    border-radius: 0px;
+    background-color: var(--dark-blue);
+    border-radius: 10px;
     width: 100%;
     height: 100%;
-    color: white;
+    color: var(--cream);
     text-align: left;
+}
+
+
+.assign:hover, .edit-event:hover, .create-event:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-1px);
+}
+
+.assign:active,  .edit-event:active, .create-event:active {
+    box-shadow: none;
+    transform: translateY(0);
 }
