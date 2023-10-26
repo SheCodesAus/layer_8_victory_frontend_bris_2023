@@ -34,7 +34,7 @@ const EventCard = (props) => {
             <h2>{props.EventData.title}</h2>
             <p>Date: {props.EventData.start_date.split("T")[0]}</p>
             <p>Location: {props.EventData.location}</p>
-            <Button text={"Apply"} btnClass="btn-info " onClick={handleSendApply} />
+            <Button text={"Apply"} btnClass={self.onboarding_status == "Ready"? "btn-info" : "hidden"} onClick={handleSendApply} />
             <div>{errorMessage}</div>
         </div>
         </>
