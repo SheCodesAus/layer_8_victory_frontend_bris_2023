@@ -51,7 +51,7 @@ function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMe
             (searchTermRank == 'All' ? true : mentor.rank == searchTermRank)
         ))
 
-        updatFilteredMentors(newMentors)
+        updatFilteredMentors(newMentors.filter(mentor =>(!mentor.is_superuser)))
 
     }, [searchTermStatus, searchTermSkill, searchTermLocation, searchTermRank])
 

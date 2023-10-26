@@ -8,7 +8,7 @@
 
 }
 
-.event-list ul li {
+.event-list ul .event-list li {
     font-size: 2rem;
     margin: 20px;
 }

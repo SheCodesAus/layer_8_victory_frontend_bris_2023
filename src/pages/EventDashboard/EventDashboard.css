@@ -1,0 +1,98 @@
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    margin-top: 300px;
+    justify-content: space-between;
+    border: solid #134f5c;
+    border-radius: 20px;
+    margin-left:20px;
+    margin-right: 20px;
+    
+}
+
+
+.forbidden {
+    display: grid;
+    height: 600px;
+    margin-top: 100px;
+    
+}
+.forbidden-lands {
+    grid-column: 1;
+    grid-row: 1;
+    background-image: url(/forbidden.jpg);;
+    opacity: 0.2;
+    filter: blur(1px);
+    background-size: cover;
+   
+}
+
+.forbidden h3 {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 1;
+    grid-row: 1;
+    font-family: 'Dancing Script';
+    font-size: 50px;
+    font-weight: bold;
+    text-shadow: rgb(141, 140, 140) 1px 1px ;
+    color:#134f5c;
+    text-align: center;
+    text-justify:distribute;
+    
+}
+
+.compass {
+
+    grid-column: 1;
+    grid-row: 1;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:300px;  
+    animation: rotate 2s linear infinite;
+}
+
+
+@keyframes rotate {
+    0%{
+        transform: rotate(0deg);
+       }
+    100%{
+        transform: rotate(360deg);
+       }
+}
+
+
+@media (max-width: 580px) {
+
+    .forbidden {
+    margin-top: 0px;
+    margin-bottom: 100px;
+    
+    }
+    .compass {
+        grid-column: 1;
+        grid-row: 1;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        margin-bottom: 20px;
+         
+    }
+
+
+    .forbidden h3 {
+        font-size:  40px;
+        padding: 10px;
+        grid-row: 2
+    }
+
+    .forbidden-lands {
+        grid-row: 2
+    }
+    
+}
+
+/* forbidden lands image: https://www.deviantart.com/greeneyeddemonking/art/The-Forbidden-Lands-world-map-852279529 */

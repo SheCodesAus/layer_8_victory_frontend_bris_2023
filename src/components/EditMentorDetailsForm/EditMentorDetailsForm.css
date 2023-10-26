@@ -8,7 +8,7 @@
     padding: 10px;
 }
 
-.edit-mentor-container p, li, label {
+.edit-mentor-container p, .edit-mentor-container li, .edit-mentor-container label {
     color:white;
 }
 
