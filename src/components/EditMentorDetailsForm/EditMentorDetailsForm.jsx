@@ -142,28 +142,52 @@ function EditMentorForm({ editMentorOpen, onEditMentorClick, activeMentor, onCha
                 :
                 <>Mentor Details Loading</>
             }
-            <div className="previous-mentored">
-                <p>Previously mentored at: </p>
-                {mentorevents.filter(key => (key.mentor_id == activeMentor && key.confirmed == true)).length > 0 ?
-                    <>{mentorevents.filter(key => (key.mentor_id == activeMentor && key.confirmed == true)).map((mentorEvents, key) => {
+            <section className="dashboard-mentor-details-events">
+                <div className="previous-mentored">
+                    <p>Previously mentored at: </p>
+                    {mentorevents.filter(key => (key.mentor_id == activeMentor && key.confirmed == true)).length > 0 ?
+                        <>{mentorevents.filter(key => (key.mentor_id == activeMentor && key.confirmed == true)).map((mentorEvents, key) => {
 
-                        const mentorEventDetails = events.find(eventDetails => (eventDetails.id === mentorEvents.event_id))
-                        return (
-                            <div key={key}>
-                                {mentorEventDetails ?
-                                    <div>
-                                        <li onClick={handleNavigate} value={mentorEventDetails.id} className="event-details">{mentorEventDetails.title}</li>
-                                    </div>
-                                    : <div>No events</div>}
+                            const mentorEventDetails = events.find(eventDetails => (eventDetails.id === mentorEvents.event_id))
+                            return (
+                                <div key={key}>
+                                    {mentorEventDetails ?
+                                        <div>
+                                            <li onClick={handleNavigate} value={mentorEventDetails.id} className="event-details">{mentorEventDetails.title}</li>
+                                        </div>
+                                        : <div>No events</div>}
 
-                            </div>
-                        )
-                    })
-                    }</> :
-                    <p>No events</p>
-                }
+                                </div>
+                            )
+                        })
+                        }</> :
+                        <p>No events</p>
+                    }
 
-            </div>
+                </div>
+                <div className="registered-mentored">
+                    <p>Registered to mentor at: </p>
+                    {mentorevents.filter(key => (key.mentor_id == activeMentor)).length > 0 ?
+                        <>{mentorevents.filter(key => (key.mentor_id == activeMentor)).map((mentorEvents, key) => {
+
+                            const mentorEventDetails = events.find(eventDetails => (eventDetails.id === mentorEvents.event_id))
+                            return (
+                                <div key={key}>
+                                    {mentorEventDetails ?
+                                        <div>
+                                            <li onClick={handleNavigate} value={mentorEventDetails.id} className="event-details">{mentorEventDetails.title}</li>
+                                        </div>
+                                        : <div>No events</div>}
+
+                                </div>
+                            )
+                        })
+                        }</> :
+                        <p>No events</p>
+                    }
+
+                </div>
+            </section>
             <form className="edit-mentor-form">
                 <div className="drop-downs">
                     <div>

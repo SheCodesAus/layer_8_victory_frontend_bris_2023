@@ -103,3 +103,11 @@
     padding: 10px;
     border-radius: 6px;
 }
+
+.dashboard-mentor-details-events {
+    display: grid;
+    grid-template-columns: 50%;
+}
+.dashboard-mentor-details-events .previous-mentored, .registered-mentored {
+    grid-row: 1;
+}
