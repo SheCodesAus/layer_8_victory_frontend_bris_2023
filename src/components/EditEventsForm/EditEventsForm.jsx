@@ -3,8 +3,6 @@ import putEditEvent from "../../api/put-edit-event";
 import useEvents from '../../hooks/use-events'
 import './EditEventsForm.css'
 
-// TODO Needs authentication handling to check token belongs to staff 
-
 function EditEventForm({ editEventOpen, onEditEventClick, activeEvent, onChangeActiveEvent }) {
 
     const { events, isEventsLoading, isEventsError } = useEvents()
@@ -30,15 +28,11 @@ function EditEventForm({ editEventOpen, onEditEventClick, activeEvent, onChangeA
     }, [events, activeEvent])
 
     const handleChange = (event) => {
-        // if (auth.token){
         const { id, value } = event.target;
         setEventDetails((prevDetails) => ({
             ...prevDetails,
             [id]: value,
         }))
-        // }   else {
-        //     setFormInvalid("Must be staff to create an event")
-        // }
     }
 
     const handleSubmit = (event) => {
@@ -83,7 +77,9 @@ function EditEventForm({ editEventOpen, onEditEventClick, activeEvent, onChangeA
     }
 
 
-    //TODO should be utils
+    // TODO should be utils -- reason for locale string sv-SE is that the 
+    // date-picker input in the form wants the format of yyyy-MM-dd (dash delimiter), 
+    // and this was a 'quick' way to do it.
     const parseDate=(str_date)=> {
         const formattedDate = new Date(str_date)      
         return formattedDate.toLocaleDateString("sv-SE")

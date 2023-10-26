@@ -5,6 +5,7 @@ import EditEventForm from '../../components/EditEventsForm/EditEventsForm'
 import EventCrud from '../../components/EventCrud/EventCrud'
 import useAuth from '../../hooks/use-auth'
 import useSelf from '../../hooks/use-self';
+import NotFound404Page from '../../components/NotFound404Page/NotFound404Page'
 import './EventDashboard.css'
 
 
@@ -60,11 +61,8 @@ function EventDashboard() {
                     }
                 </div>
                 :
-                <div className='forbidden'>
-                    <h3>Sorry fair user, ye must be of staff origins to access this page</h3>
-                    <div className='forbidden-lands'></div>
-                    <div className='compass'><img src='/compass.png'></img></div>
-                    {/* <a target="_blank" href="https://icons8.com/icon/kJqq7olgcblR/compass">Compass</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> */}
+                <div className='404'>
+                    <NotFound404Page />
                 </div>
             }
         </>

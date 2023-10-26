@@ -6,7 +6,6 @@ import useMentorEvents from "../../hooks/use-mentor-events";
 import './EditMentorDetailsForm.css'
 import { useNavigate } from "react-router-dom";
 
-// // --- Needs authentication handling to check token belongs to staff ---///
 
 function EditMentorForm({ editMentorOpen, onEditMentorClick, activeMentor, onChangeActiveMentor }) {
 
@@ -45,15 +44,11 @@ function EditMentorForm({ editMentorOpen, onEditMentorClick, activeMentor, onCha
     }
 
     const handleChange = (event) => {
-        // if (auth.token){
         const { id, value } = event.target;
         setMentorDetails((prevDetails) => ({
             ...prevDetails,
             [id]: value,
         }))
-        // }   else {
-        //     setFormInvalid("Must be staff to create an event")
-        // }
     }
 
     const handleSubmit = (event) => {
@@ -67,7 +62,7 @@ function EditMentorForm({ editMentorOpen, onEditMentorClick, activeMentor, onCha
             mentorskills.push(mentorInf.skills[skill].name)
         }
 
-        // Private notes can't be blank?
+        // Private notes can't be blank
         let handleNotes = ""
         if (mentordetails.private_notes === '') {
             handleNotes = "No notes"
@@ -75,7 +70,7 @@ function EditMentorForm({ editMentorOpen, onEditMentorClick, activeMentor, onCha
             handleNotes = mentordetails.private_notes
         }
 
-        // if (auth.token){
+
         if (mentordetails.id && mentordetails.onboarding_status && mentordetails.rank) {
             putEditMentorAsStaff(
                 mentordetails.id,
@@ -90,14 +85,9 @@ function EditMentorForm({ editMentorOpen, onEditMentorClick, activeMentor, onCha
                     onEditMentorClick(event.target.value)
                 }
             ).catch((error) => { setErrorMessage(`${[error.message]}`) })
-
         } else {
             setFormInvalid("Please complete the form")
         }
-        // } else {
-        //     setFormInvalid("Must be staff to create an event")
-        // }
-
     }
 
 
@@ -133,7 +123,7 @@ function EditMentorForm({ editMentorOpen, onEditMentorClick, activeMentor, onCha
                         <p>Skills: {mentordetails.skills ? <>
                             {mentordetails.skills?.map((skill, key) => {
                                 return (<li>{skill?.name}</li>)
-                            })} </> : <>KAIUBDGA</>}
+                            })} </> : <>No skills selected</>}
                         </p>
                         <p>Has mentored before?  {mentordetails?.has_mentored ? 'Yes' : 'No'}</p>
                         <p>Available to mentor? {mentordetails?.is_active ? 'Yes' : 'No'}</p>
@@ -156,7 +146,6 @@ function EditMentorForm({ editMentorOpen, onEditMentorClick, activeMentor, onCha
                                             <li onClick={handleNavigate} value={mentorEventDetails.id} className="event-details">{mentorEventDetails.title}</li>
                                         </div>
                                         : <div>No events</div>}
-
                                 </div>
                             )
                         })
@@ -178,14 +167,12 @@ function EditMentorForm({ editMentorOpen, onEditMentorClick, activeMentor, onCha
                                             <li onClick={handleNavigate} value={mentorEventDetails.id} className="event-details">{mentorEventDetails.title}</li>
                                         </div>
                                         : <div>No events</div>}
-
                                 </div>
                             )
                         })
                         }</> :
                         <p>No events</p>
                     }
-
                 </div>
             </section>
             <form className="edit-mentor-form">

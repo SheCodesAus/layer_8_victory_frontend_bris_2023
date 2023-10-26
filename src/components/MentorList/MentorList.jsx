@@ -3,8 +3,6 @@ import MentorCard from '../MentorCard/MentorCard'
 import useSkills from "../../hooks/use-skills";
 import './MentorList.css'
 
-// // --- Needs authentication handling to check token belongs to staff ---///
-
 function MentorList({
     activeEvent, 
     allMentors,
@@ -22,7 +20,6 @@ function MentorList({
     const [currentEventConfirmedMentors, setCurrentEventConfirmedMentors ] = useState()
 
     
-    // TODO Some of these should be grabbed from API (skills)
     const { skills, skillsLoading, skillsError } = useSkills([]);
     const ranks = ["Junior", "Mid-level", "Lead"]
     const locations = ["Brisbane", "Sydney", "Melbourne", "Adelaide", "Perth", "Canberra", "Darwin"]

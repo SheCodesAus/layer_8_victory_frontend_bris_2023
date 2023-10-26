@@ -3,7 +3,6 @@ import postCreateEvent from "../../api/post-create-event";
 import useEvents from '../../hooks/use-events'
 import './CreateEventForm.css'
 
-// --- Needs authentication handling to check token belongs to staff ---///
 
 function CreateEventForm({ createEventOpen, onCreateEventClick, activeEvent, onChangeActiveEvent }) {
 
@@ -23,22 +22,18 @@ function CreateEventForm({ createEventOpen, onCreateEventClick, activeEvent, onC
     })
 
     const handleChange = (event) => {
-        // if (auth.token){
         const { id, value } = event.target;
         setEventDetails((prevDetails) => ({
             ...prevDetails,
             [id]: value,
         }))
-        // }   else {
-        //     setFormInvalid("Must be staff to create an event")
-        // }
+
     }
 
     const handleSubmit = (event) => {
 
         event.preventDefault()
 
-        // if (auth.token){
         if (eventdetails.title && eventdetails.start_date && eventdetails.end_date && eventdetails.location && eventdetails.is_published) {
             postCreateEvent(
                 eventdetails.title,
@@ -48,24 +43,14 @@ function CreateEventForm({ createEventOpen, onCreateEventClick, activeEvent, onC
                 eventdetails.is_published
             ).then(
                 (response) => {
-
                     const eventid = response.id
-
                     onChangeActiveEvent(eventid)
                     onCreateEventClick(event.target.value)
-
                 }
-
             ).catch((error) => { setErrorMessage(`${[error.message]}`) })
-
         } else {
             setFormInvalid("Please complete the form")
         }
-        // } else {
-        //     setFormInvalid("Must be staff to create an event")
-        // }
-
-
     }
 
     const handleSelectChange = (event) => {

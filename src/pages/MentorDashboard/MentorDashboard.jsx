@@ -3,6 +3,7 @@ import MentorListDetails from '../../components/MentorListDetails/MentorListDeta
 import EditMentorDetailsForm from '../../components/EditMentorDetailsForm/EditMentorDetailsForm'
 import useAuth from "../../hooks/use-auth";
 import useSelf from '../../hooks/use-self';
+import NotFound404Page from '../../components/NotFound404Page/NotFound404Page';
 import './MentorDashboard.css'
 
 
@@ -41,12 +42,8 @@ function MentorDashboard() {
                 }
             </div>
             :
-            <div className='forbidden'>
-                <h3>Sorry fair user, ye must be of staff origins to access this page</h3>
-                <img  className='compass'src='/compass.png'></img>
-                <div className='forbidden-lands'></div>
-                
-                {/* <a target="_blank" href="https://icons8.com/icon/kJqq7olgcblR/compass">Compass</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a> */}
+            <div className='404'>
+               <NotFound404Page />
             </div>
         }
 

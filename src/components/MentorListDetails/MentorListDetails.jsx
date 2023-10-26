@@ -3,14 +3,11 @@ import useMentors from '../../hooks/use-mentors'
 import useSkills from "../../hooks/use-skills";
 import './MentorListDetails.css'
 
-// // --- Needs authentication handling to check token belongs to staff ---///
-
 function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMentor, activeMentor }) {
 
     const { mentors, isMentorsLoading, isMentorsError } = useMentors()
     const { skills, skillsLoading, skillsError } = useSkills([]);
 
-    // TODO Some of these should be grabbed from API (skills)
     const status = ["Applied", "Validated", "Interviewed", "Ranked", "Accepted", "Onboarded", "Ready"]
     const ranks = ["Junior", "Mid-level", "Lead"]
     const locations = ["Brisbane", "Sydney", "Melbourne", "Adelaide", "Perth", "Canberra", "Darwin"]
@@ -43,7 +40,7 @@ function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMe
         // their location is == to the `searchTermLocation`. Their skill includes the `searchTermSkill` 
         // and their rank is equal to the `searchTermRank`. If the `searchTermRank` is all we do not check their values, 
         // and instead set the pass condition as `true` so we can move onto the next filter step.
-        console.log(mentors)
+        
         const newMentors = mentors.filter(mentor => (
             (searchTermStatus == 'All' ? true : mentor.onboarding_status == searchTermStatus) &&
             (searchTermLocation == 'All' ? true : mentor.location == searchTermLocation) &&
