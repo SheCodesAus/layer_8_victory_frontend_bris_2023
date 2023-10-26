@@ -13,8 +13,7 @@ async function putUser(
     skills
     ){
     const url = `${import.meta.env.VITE_API_URL}/users/${id}/`;
-    console.log(has_mentored)
-    //const {auth, setAuth} = useAuth()
+   
     const token = window.localStorage.getItem("token")
     const body = {
         "username":username, 
@@ -29,13 +28,13 @@ async function putUser(
         "has_mentored": has_mentored, 
         "skills":skills,
     }
-    console.log({...body})
+  
     for (let bod in body) {
         if (body[bod] === ""){
             delete body[bod]
           }
         }
-    console.log({...body})
+
     const response = await fetch(url, {
         method: "PUT",
         headers: {
