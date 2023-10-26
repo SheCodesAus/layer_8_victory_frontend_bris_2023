@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import MentorCard from '../MentorCard/MentorCard'
+import useSkills from "../../hooks/use-skills";
 import './MentorList.css'
 
 // // --- Needs authentication handling to check token belongs to staff ---///
@@ -22,7 +23,7 @@ function MentorList({
 
     
     // TODO Some of these should be grabbed from API (skills)
-    const skills = ["Python", "Django", "DRF", "React", "Javascript", "Front-end", "Back-end", "HTML-CSS"]
+    const { skills, skillsLoading, skillsError } = useSkills([]);
     const ranks = ["Junior", "Mid-level", "Lead"]
     const locations = ["Brisbane", "Sydney", "Melbourne", "Adelaide", "Perth", "Canberra", "Darwin"]
 
