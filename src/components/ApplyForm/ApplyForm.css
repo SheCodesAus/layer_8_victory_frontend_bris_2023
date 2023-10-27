@@ -52,8 +52,8 @@
 }
 
 input.checkbox-apply {
-    height: 25px;
-    width: 25px;
+    height: 20px;
+    width: 20px;
 }
 
 .mini-checkbox-container {
@@ -63,8 +63,8 @@ input.checkbox-apply {
     padding: 5px 0px;
 }
 
-.yesandno {
-    font-size: 20px;
+.checkbox-text {
+    font-size: 17px;
     padding: 0 5px;
 }
 
