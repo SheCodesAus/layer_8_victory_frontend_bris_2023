@@ -3,6 +3,7 @@ import useMyEvents from "../../hooks/use-myevents";
 import useEvents from "../../hooks/use-events";
 import { convertLocalDateTime } from "../../utlities/convertLocalDateTime";
 import { useNavigate } from "react-router-dom";
+import "./MyEvents.css";
 
 function MyEventsComponent() {
   
@@ -61,7 +62,7 @@ function MyEventsComponent() {
 
 
   return (
-        <div id="my-details">
+        <div id="my-details-events">
         <h3>Events I`&apos;`ve registered for</h3>
           {myRegisteredEvents.map((event, key) => {
             return (
@@ -74,7 +75,7 @@ function MyEventsComponent() {
                   <p>Confirmed: {confirmedEventIds.includes(event.id) == true ? "Yes" : "No"}</p>
                 </div>
                 <button
-                  className="button"
+                  className="button-profile-event"
                   onClick={handleEventClick}
                   value={event.id}>
                   Find out more
