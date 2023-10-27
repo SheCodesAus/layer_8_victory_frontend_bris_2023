@@ -43,8 +43,15 @@ function MyEventsComponent() {
     if (myEvents[myEvent]["available"]){
       availableEventIds.push(myEvents[myEvent]["event_id"]);
     }
-    
   }
+
+  const confirmedEventIds = []
+  for (let myEvent in myEvents) {
+    if (myEvents[myEvent]["confirmed"]){
+      confirmedEventIds.push(myEvents[myEvent]["event_id"]);
+    }
+  }
+
   const registeredEvents = [];
   myEventIds.forEach(function (eventid) {
     registeredEvents.push(events.filter((event) => event["id"] == eventid));
@@ -64,6 +71,7 @@ function MyEventsComponent() {
                   <p>Title: {event.title}</p>
                   <p>Location: {event.location}</p>
                   <p>Availabile: {availableEventIds.includes(event.id) == true ? "Yes" : "No"}</p>
+                  <p>Confirmed: {confirmedEventIds.includes(event.id) == true ? "Yes" : "No"}</p>
                 </div>
                 <button
                   className="button"
@@ -71,13 +79,13 @@ function MyEventsComponent() {
                   value={event.id}>
                   Find out more
                 </button>
-                <button
+                {/* <button
                   className="button"
                   onClick={handleEventClick}
                   value={event.id}>
                     {availableEventIds.includes(event.id) == true ? "No longer available?" : "No longer unavailable?"}
                     {console.log()}
-                </button>
+                </button> */}
                 <br></br>
               </div>
             );
