@@ -57,7 +57,7 @@ function ProfilePage() {
       <main id="profile-page" >
       {
         editing == false ? <><Profile /> 
-        <Button text={"Update my details"} btnClass = "btn-info" onClick={handleUpdate}/>
+        <Button text={"Update Details"} btnClass = "btn-info" onClick={handleUpdate}/>
         <div>
           {myRegisteredEvents.map((event, key) => {
             return (
