@@ -46,7 +46,8 @@ function Profile() {
   myEventIds.forEach(function (eventid) {
     registeredEvents.push(events.filter((event) => event["id"] == eventid));
   });
-  console.log(registeredEvents);
+  const myRegisteredEvents = registeredEvents.flatMap((event) => event);
+
   return (
     <article id="profile">
       <h2>
@@ -96,7 +97,7 @@ function Profile() {
         </div>
         <br></br>
         <div>
-          {registeredEvents.map((key, event) => {
+          {myRegisteredEvents.map((event, key) => {
             return (
               <div className="event-single-card" key={key}>
                 <div>
