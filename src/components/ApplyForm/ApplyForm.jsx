@@ -266,8 +266,7 @@ const ApplyForm = () => {
                       handleBooleanChange(true);
                     }}
                   />
-                  <label className="yesandno yes-label">Yes</label>
-                  <span className="checkmark"></span>
+                  <label className="checkbox-text yes-label">Yes</label>
                   <input
                     className="checkbox-apply"
                     type="checkbox"
@@ -277,8 +276,7 @@ const ApplyForm = () => {
                       handleBooleanChange(false);
                     }}
                   />
-                  <span className="checkmark"></span>
-                  <label className="yesandno">No</label>
+                  <label className="checkbox-text">No</label>
                 </div>
               </div>
               <div className="input-container input-checkbox">
@@ -305,14 +303,15 @@ const ApplyForm = () => {
                   Select skills<span className={formInvalid ? "" : "hidden"}>*</span>{" "}
                 </label>
                 {skills.map((item, index) => (
-                  <div key={index}>
+                  <div key={index} className="mini-checkbox-container">
                     <input
+                      className="checkbox-apply"
                       type="checkbox"
                       value={item}
                       onChange={handleCheckboxChange}
                     />
 
-                    <label htmlFor={`skills-checkbox-${item}`}>{item}</label>
+                    <label htmlFor={`skills-checkbox-${item}`} className="checkbox-text">{item}</label>
                   </div>
                 ))}
               </div>
