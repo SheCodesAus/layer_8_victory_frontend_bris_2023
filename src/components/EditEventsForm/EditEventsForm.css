@@ -1,24 +1,28 @@
 .edit-event-container{
     width: 60%;
     margin: 20px;
-    background-color:#45818e ;
-    border: solid #134f5c;
-    border-radius: 8px;
+    background-color:var(--light-blue) ;
+    border: solid var(--dark-blue) 4px;
+    border-radius: 15px;
+    box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+    -webkit-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+    -moz-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
 }
 
 .edit-event-header {
     margin:20px
 }
 
-.edit-event-header.user-banner h2 {
-    font-size: 20px;
-    color: white;
+.edit-event-header, .user-banner h2 {
+    font-size: 40px;
+    color: var(--cream);
     padding: 10px;
+    font-family: 'Dancing Script';
 }
 
 .edit-event-header .user-banner h3 {
     font-size: 15px;
-    color: white;
+    color: var(--cream);
     padding: 10px;
     font-style: italic;
     font-weight: normal;
@@ -26,7 +30,7 @@
 
 
 .form-edit-event {
-    width: 40%;
+    width: 80%;
     display: flex;
     flex-direction: column;
     margin: 40px;
@@ -42,7 +46,9 @@
     width: 100%;
 }
 
-
+.form-field input {
+    border-radius: 6px;
+}
 
 .form-field-radios {
     display: flex;
@@ -50,7 +56,7 @@
     justify-content: flex-start;
     align-items: center;
     margin-top: 20px;
-    color: white;
+    color: var(--cream);
 
 }
 .radios {
@@ -64,7 +70,7 @@
 .radio-button {
     display: flex;
     align-items: center;
-    color: white;
+    color: var(--cream);
 }
 
 .radio-button p {
@@ -80,13 +86,13 @@
     padding: 10px;
     margin: 5px;
     border: none;
-    border-radius: 0;
+    border-radius: 6px;
     background-color: #134f5c;
-    color: white;
+    color: var(--cream);
 }
 
 .location-label {
-    color: white;
+    color: var(--cream);
 }
 .form-edit-event .form-field input {
     padding: 10px;
@@ -97,19 +103,31 @@
 }
 
 .form-edit-event .form-field label {
-    color: white;
+    color: var(--cream);
     width: 15%;
     
 
 }
 #confirm-submit {
-    border: solid #134f5c;
-    border-radius: 4px;
-    color:#134f5c;
-    font-weight: bolder;
-    margin: 0px;
-    padding: 10px;
+    background-color: var(--dark-blue);
+    border: 2px solid var(--cream);
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: var(--cream);
     cursor: pointer;
+    display: inline-block;
+    font-size: 1.6rem;
+    line-height: normal;
+    max-height: 60px;
+    outline: none;
+    padding: 4px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    touch-action: manipulation;
+    width: 100px;
+    margin-left: 20px;
+    margin-top: 10px;
 }
 
 .confirm-submit-cont {
@@ -119,3 +137,12 @@
     margin-top: 20px;
 }
 
+#confirm-submit:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-1px);
+}
+
+#confirm-submit:active {
+    box-shadow: none;
+    transform: translateY(0);
+}

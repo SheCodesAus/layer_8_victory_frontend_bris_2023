@@ -89,15 +89,15 @@ function CreateEventForm({ createEventOpen, onCreateEventClick, activeEvent, onC
                 </div>
                 <div className="form-field">
                     <label htmlFor="start_date">Start Date:</label>
-                    <input type="date" id="start_date" placeholder="02-10-2023" onChange={handleChange} />
+                    <input type="date" id="start_date"  onChange={handleChange} />
                 </div>
                 <div className="form-field">
                     <label htmlFor="end_date">End Date:</label>
-                    <input type="date" id="end_date" placeholder="02-10-2023" onChange={handleChange} />
+                    <input type="date" id="end_date" onChange={handleChange} />
                 </div>
-                <div className="form-field">
-                    <div className="location-label">Location?</div>
-                    <select className="event-location-create" value={selectedLocation} onChange={handleSelectChange}>
+                <div className="form-field-loc">
+                    <div className="location-label-create">Location?</div>
+                    <select className="event-location-create-sel" value={selectedLocation} onChange={handleSelectChange}>
                         {locations.map((item) => {
                             return (<option key={item} value={item}>{item}</option>)
                         })}

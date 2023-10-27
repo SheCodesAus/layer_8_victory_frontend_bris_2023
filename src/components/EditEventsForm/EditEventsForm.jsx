@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import putEditEvent from "../../api/put-edit-event";
 import useEvents from '../../hooks/use-events'
+import { convertLocalDateTime } from "../../utlities/convertLocalDateTime";
 import './EditEventsForm.css'
 
 function EditEventForm({ editEventOpen, onEditEventClick, activeEvent, onChangeActiveEvent }) {
@@ -37,7 +38,7 @@ function EditEventForm({ editEventOpen, onEditEventClick, activeEvent, onChangeA
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        // if (auth.token){
+   
         if (eventdetails.id && eventdetails.title && eventdetails.start_date && eventdetails.end_date && eventdetails.location && eventdetails.is_published) {
             putEditEvent(
                 eventdetails.id,
@@ -56,9 +57,6 @@ function EditEventForm({ editEventOpen, onEditEventClick, activeEvent, onChangeA
         } else {
             setFormInvalid("Please complete the form")
         }
-        // } else {
-        //     setFormInvalid("Must be staff to create an event")
-        // }
     }
 
     const handleSelectChange = (event) => {
@@ -77,13 +75,16 @@ function EditEventForm({ editEventOpen, onEditEventClick, activeEvent, onChangeA
     }
 
 
-    // TODO should be utils -- reason for locale string sv-SE is that the 
-    // date-picker input in the form wants the format of yyyy-MM-dd (dash delimiter), 
-    // and this was a 'quick' way to do it.
-    const parseDate=(str_date)=> {
-        const formattedDate = new Date(str_date)      
-        return formattedDate.toLocaleDateString("sv-SE")
-    }
+    // Swapping this to new utils and adding extra spice
+
+    const dateFormatter = (str_date) => {
+        const ausDate = convertLocalDateTime(str_date)
+        const ausDateSliced = ausDate.slice(0, -8).replaceAll("/","-")
+        const formattedDate = ausDateSliced.slice(6,10).concat("-", ausDateSliced.slice(3,5).concat("-"), ausDateSliced.slice(0,2) )
+        return(formattedDate)
+
+    } 
+
 
     return (
         <div className="edit-event-container">
@@ -110,11 +111,11 @@ function EditEventForm({ editEventOpen, onEditEventClick, activeEvent, onChangeA
                 </div>
                 <div className="form-field">
                     <label htmlFor="start_date">Start Date:</label>
-                    <input type="date" id="start_date" onChange={handleChange} value={parseDate(eventdetails?.start_date)} />
+                    <input type="date" id="start_date" onChange={handleChange} value={dateFormatter(eventdetails?.start_date)} />
                 </div>
                 <div className="form-field">
                     <label htmlFor="end_date">End Date:</label>
-                    <input type="date" id="end_date" value={parseDate(eventdetails?.end_date)} onChange={handleChange} />
+                    <input type="date" id="end_date" value={dateFormatter(eventdetails?.end_date)} onChange={handleChange} />
                 </div>
                 <div className="form-field">
                     <div className="location-label">Location?</div>
