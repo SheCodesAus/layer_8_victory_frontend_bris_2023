@@ -1,10 +1,21 @@
 .btn-info {
-  color:white;
-  background-color:rgb(21, 129, 129);
-  padding:10px;
-  padding:10px 40px;
-  border-radius:10px ;
-  margin:5px;
+  background-color: var(--dark-blue);
+  border: 2px solid var(--dark-blue);
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: var(--cream);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 2rem;
+  line-height: normal;
+  min-height: 60px;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  touch-action: manipulation;
+  width: 200px;
 }
 
 .btn-info:hover {

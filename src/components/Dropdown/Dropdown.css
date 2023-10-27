@@ -1,13 +1,19 @@
-select{
-    padding: 10px 100px;
+select {
+    padding: 9px 108.75px;
     border-radius: 5px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     background-color: #eadbd1;
-    margin: 10px 20px;
-
+    /* margin: 10px 20px; */
 }
 
-.selected-value{
-    margin: 0px 20px;
-    font-size: 10px;
+.selected-value {
+    display: none;
+    /* margin: 0px 20px;
+    font-size: 10px; */
+}
+
+@media (max-width: 380px) {
+    select {
+        padding: 9px 83.75px;
+    }
 }
