@@ -139,178 +139,191 @@ function UserUpdateForm({editing, setEditing}) {
     };
   
     return (
+      <form className="apply-form background update-form" id="form">
+      <img src="/background1.png" alt="" />
       <div className="container-apply">
-        <h1 className="apply-title">Update Details</h1>
-        <br />
-  
-        <form className="user-form" id="user-form">
-  <div className="normal-input">
-          <div className="input-container">
-            <label htmlFor="first_name">First Name </label>
-            <br />
-            <input
-              className="text-input"
-              type="text"
-              id="first_name"
-              onChange={handleChange}
-              defaultValue={self.first_name}
-            />
-          </div>
-  
-          <div className="input-container">
-            <label htmlFor="last_name">Last Name </label>
-            <br />
-            <input
-              className="text-input"
-              type="text"
-              id="last_name"
-              onChange={handleChange}
-              defaultValue={self.last_name}
-            />
-          </div>
-          <div className="input-container">
-            <label htmlFor="email">Email </label>
-            <br />
-            <input
-              className="text-input"
-              type="email"
-              id="email"
-              onChange={handleChange}
-              defaultValue={self.email}
-            />
-          </div>
-  
-          <div className="input-container">
-            <label htmlFor="mobile">Mobile </label>
-            <br />
-            <input
-              className="text-input"
-              type="text"
-              id="mobile"
-              onChange={handleChange}
-              defaultValue={self.mobile}
-            />
-          </div>
-  
-          <div className="input-container">
-            <label htmlFor="social_account">Social Account </label>
-            <br />
-            <input
-              className="text-input"
-              type="text"
-              id="social_account"
-              placeholder="url of your Social Account"
-              onChange={handleChange}
-              defaultValue={self.social_account}
-            />
-          </div>
-  
-          <div className="input-container">
-            <label htmlFor="linkedin_account">LinkedIn Account </label>
-            <br />
-            <input
-              className="text-input"
-              type="url"
-              id="linkedin_account"
-              placeholder="url of your LinkedIn profile"
-              onChange={handleChange}
-              defaultValue={self.linkedin_account}
-            />
-          </div>
-  
-          <div className="input-container">
-            <label htmlFor="github_profile">GitHub </label>
-            <br />
-            <input
-              className="text-input"
-              type="text"
-              id="github_profile"
-              placeholder="url of your GitHub"
-              onChange={handleChange}
-              defaultValue={self.github_profile}
-            />
-          </div>
-          <div className="input-container">
-            <label htmlFor="username">Username </label>
-            <br />
-            <input
-              className="text-input"
-              type="text"
-              id="username"
-              onChange={handleChange}
-              defaultValue={self.username}
-            />
-          </div>
-          </div>
-  
-          <div className="multiple-selection">
-            <div className="skills-container">
-              <label htmlFor="mentor" className="label-checkbox">
-                Have you mentored with us before?{" "}
-              </label>
-              <br />
-              <input
-                className="checkbox-apply"
-                type="checkbox"
-                checked={self.has_mentored === false}
-                onChange={() => {
-                  self.has_mentored = false;
-                  handleBooleanChange(false);
-                }}
-              />
-              No
-              <input
-                className="checkbox-apply"
-                id="false_checkbox"
-                type="checkbox"
-                checked={self.has_mentored === true}
-                onChange={() => {
-                  self.has_mentored = true;
-                  handleBooleanChange(true);
-                }}
-              />
-              Yes
-            </div>
+        <div className="form-container form-container-apply">
+          <h1>Update Details</h1>
+          <div className="normal-input">
             <div className="input-container">
-              <label htmlFor="Location ">Location </label>
+              <label htmlFor="first_name">First Name </label>
               <br />
-              <div>
-                <Dropdown
-                  arrayValues={[
-                    "Brisbane",
-                    "Sydney",
-                    "Melbourne",
-                    "Adelaide",
-                    "Perth",
-                    "Canberra",
-                    "Darwin",
-                  ]}
-                  defaultValue={self.location}
-                  onChange={handleSelectionChange}
+              <input
+                className="text-input"
+                type="text"
+                id="first_name"
+                onChange={handleChange}
+                defaultValue={self.first_name}
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="last_name">Last Name </label>
+              <br />
+              <input
+                className="text-input"
+                type="text"
+                id="last_name"
+                onChange={handleChange}
+                defaultValue={self.last_name}
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="email">Email </label>
+              <br />
+              <input
+                className="text-input"
+                type="email"
+                id="email"
+                onChange={handleChange}
+                defaultValue={self.email}
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="mobile">Mobile </label>
+              <br />
+              <input
+                className="text-input"
+                type="text"
+                id="mobile"
+                onChange={handleChange}
+                defaultValue={self.mobile}
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="social_account">Social Account </label>
+              <br />
+              <input
+                className="text-input"
+                type="text"
+                id="social_account"
+                placeholder="url of your Social Account"
+                onChange={handleChange}
+                defaultValue={self.social_account}
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="linkedin_account">LinkedIn Account </label>
+              <br />
+              <input
+                className="text-input"
+                type="url"
+                id="linkedin_account"
+                placeholder="url of your LinkedIn profile"
+                onChange={handleChange}
+                defaultValue={self.linkedin_account}
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="github_profile">GitHub </label>
+              <br />
+              <input
+                className="text-input"
+                type="text"
+                id="github_profile"
+                placeholder="url of your GitHub"
+                onChange={handleChange}
+                defaultValue={self.github_profile}
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="username">Username </label>
+              <br />
+              <input
+                className="text-input"
+                type="text"
+                id="username"
+                onChange={handleChange}
+                defaultValue={self.username}
+              />
+            </div>
+
+              <div className="input-container input-checkbox bottom">
+                <label htmlFor="mentor" className="label-checkbox">
+                  Have you mentored with us before?{" "}
+                </label>
+                <div className="mini-checkbox-container">
+                  <input
+                    className="checkbox-apply"
+                    id="false_checkbox"
+                    type="checkbox"
+                    checked={self.has_mentored === true}
+                    onChange={() => {
+                      self.has_mentored = true;
+                      handleBooleanChange(true);
+                    }}
+                  />
+                  <label className="checkbox-text yes-label">Yes</label>
+                    <input
+                      className="checkbox-apply"
+                      type="checkbox"
+                      checked={self.has_mentored === false}
+                      onChange={() => {
+                        self.has_mentored = false;
+                        handleBooleanChange(false);
+                      }}
+                    />
+                  <label className="checkbox-text">No</label>
+                </div>
+              </div>
+              <div className="input-container input-checkbox">
+                <label htmlFor="Location ">Location </label>
+                <br />
+                <div>
+                  <Dropdown
+                    arrayValues={[
+                      "Brisbane",
+                      "Sydney",
+                      "Melbourne",
+                      "Adelaide",
+                      "Perth",
+                      "Canberra",
+                      "Darwin",
+                    ]}
+                    defaultValue={self.location}
+                    onChange={handleSelectionChange}
+                  />
+                </div>
+              </div>
+
+              <div className="input-container input-checkbox">
+                <label htmlFor="skills" className="label-checkbox">
+                  Select skills{" "}
+                </label>
+                <div className="skills-checkbox-container">
+                  {skills.map((item, index) => (
+                    <div key={index} className="mini-checkbox-container">
+                      <input
+                        className="checkbox-apply"
+                        type="checkbox"
+                        onChange={handleCheckboxChange}
+                        value={item}
+                        defaultChecked={self.skills.filter(skill => skill.name === item).length > 0}
+                      />
+      
+                      <label htmlFor={`skills-checkbox-${item}`} className="checkbox-text">{item}</label>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="input-container input-container-hidden">
+                <label htmlFor="password" className="input-container-hidden-text">Password</label>
+                <br />
+                <input
+                  className="text-input"
                 />
               </div>
             </div>
-  
-            <div className="skills-container skills">
-              <label htmlFor="skills" className="label-checkbox">
-                Select skills{" "}
-              </label>
-              {skills.map((item, index) => (
-                <div key={index}>
-                  <input
-                    type="checkbox"
-                    onChange={handleCheckboxChange}
-                    value={item}
-                    defaultChecked={self.skills.filter(skill => skill.name === item).length > 0}
-                  />
-  
-                  <label htmlFor={`skills-checkbox-${item}`}>{item}</label>
-                </div>
-              ))}
-            </div>
           </div>
-  
-          <div>
+
+          <div className="apply-button">
               <Button text={"Submit"} btnClass="btn-info" onClick={handleSubmit} />
           </div>
           <div>
@@ -320,8 +333,8 @@ function UserUpdateForm({editing, setEditing}) {
             </sub>
             {urlError && <p>{urlError}</p>}
           </div>
-        </form>
-      </div>
+        </div>
+    </form>
     );
   };
 

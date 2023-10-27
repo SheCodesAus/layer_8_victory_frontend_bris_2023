@@ -35,7 +35,6 @@ const LoginForm  = () =>{
                 credentials.password,
                 ).then((response) => {
                     window.localStorage.setItem("token", response.token);
-                  
                     setAuth({
                         token: response.token,
                         is_staff:""
@@ -54,40 +53,36 @@ const LoginForm  = () =>{
     };
 
 return(
-    <>
-    <form className="login-form">
-    <div>
-        <h1 className="login_title">Login</h1>
-
-            <label htmlFor="username" className="label-login">Username </label><br/>
-            <input 
-            className="login-input"
-            type="text" 
-            id="username" 
-            onChange={handleChange}
-       />
-    </div>
-    <br/>
-    <div>
-        <label htmlFor="password" className="label-login">Password </label><br/>
-        <input 
-            className="login-input"
-            type="password" 
-            id="password" 
-            onChange={handleChange}
-        />      
-    </div>
-    <br/>
-    <Button text={"Login"} btnClass = "btn-info " onClick={handleSubmit}/>
-   
-    <p className="error-message">{errorMessage}</p>
-      <sub className={errorMessage ? "" : "hidden"}>Please check your username and password.</sub>
-      <sub className={errorMessage ? "" : "hidden"}>* Username and password are case sensitive.</sub>
-      <p>{formIsInvalid}</p>
-</form> 
-
- </>
-)
+    <form className="login-form background">
+        <img src="/background1.png" alt="" />
+        <div className="container">
+            <div className="form-container">
+                <div>
+                    <h1 className="login_title">Login</h1>
+                    <label htmlFor="username" className="label-login">Username </label><br/>
+                    <input 
+                        className="login-input"
+                        type="text" 
+                        id="username" 
+                        onChange={handleChange}
+                    />
+                </div>
+                <br/>
+                <div>
+                    <label htmlFor="password" className="label-login">Password </label><br/>
+                    <input 
+                        className="login-input"
+                        type="password" 
+                        id="password" 
+                        onChange={handleChange}
+                    />      
+                </div>
+                <br/>
+                <Button text={"Login"} btnClass = "btn-info " onClick={handleSubmit}/>
+            </div>
+        </div>
+    </form> 
+  )
 }
 
 export default LoginForm
