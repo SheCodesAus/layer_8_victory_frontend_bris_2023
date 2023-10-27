@@ -32,12 +32,18 @@ function ProfilePage() {
     }
 
   return (
-<div>
-    <main id="profile-page" >
-    {editing == false ? <><Profile /> 
-      <Button text={"Update my details"} btnClass = "btn-info " onClick={handleUpdate}/></>
-      : <><UserUpdateForm editing={editing} setEditing={setEditing}/><Button text={"Return to profile view"} btnClass = "btn-info " onClick={handleUpdate}/></>}
-    </main>      
+    <div>
+      <main id="profile-page" >
+      {
+        editing == false ? <><Profile /> 
+        <Button text={"Update my details"} btnClass = "btn-info" onClick={handleUpdate}/>
+        </>
+        : <>
+        <UserUpdateForm editing={editing} setEditing={setEditing}/>
+          <Button text={"Return to profile view"} btnClass = "btn-info update-button" onClick={handleUpdate}/>
+        </>
+      }
+      </main>
     </div>
 
   );

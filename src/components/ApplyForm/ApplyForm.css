@@ -91,6 +91,18 @@ input.checkbox-apply {
     display: none;
 }
 
+.input-container-hidden .text-input {
+    background-color: #ffffff;
+}
+
+.input-container-hidden-text {
+    color: #fff;
+}
+
+.update-button {
+    margin: 20px 0px 20px 50px;
+}
+
 .normal-input {
     margin-top: 20px;
     display: flex;
@@ -132,6 +144,10 @@ input.checkbox-apply {
     .apply-form {
         margin: 120px 0px -41px 0px;
     }
+
+    .update-button {
+        margin: 90px 0px -55px 50px;
+    }
 }
 
 @media (max-width: 1040px) {
@@ -148,6 +164,10 @@ input.checkbox-apply {
     .apply-form {
         margin: 120px 0px -119px 0px;
     }
+
+    .update-button {
+        margin: 160px 0px -50px 50px;
+    }
 }
 
 @media (max-width: 940px) {
@@ -162,6 +182,10 @@ input.checkbox-apply {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+    }
+
+    .update-button {
+        margin: 100px 0px -50px 50px;
     }
     
     .container-apply{
@@ -195,11 +219,19 @@ input.checkbox-apply {
     .apply-form {
         margin: -70px 0px -310px 0px;
     }
+
+    .update-button {
+        margin: 155px 0px -50px 50px;
+    }
 }
 
 @media (max-width: 768px) {
     .apply-form {
         margin: -20px 0px -110px 0px;
+    }
+
+    .update-button {
+        margin: -30px 0px 20px 50px;
     }
 }
 
