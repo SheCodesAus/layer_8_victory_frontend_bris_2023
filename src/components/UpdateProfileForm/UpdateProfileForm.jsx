@@ -13,7 +13,6 @@ function UserUpdateForm({editing, setEditing}) {
   const { self, isLoading, error } = useSelf();
   const [formInvalid, setFormInvalid] = useState("");
   const [checkedState, setCheckedState] = useState([]);
-  const [mentored, setMentored] = useState(true);
   const [urlError, setUrlError] = useState("");
   const { skills, skillsLoading, skillsError } = useSkills([]);
   const [formData, setFormData ] = useState({
@@ -45,12 +44,6 @@ function UserUpdateForm({editing, setEditing}) {
     if (skillsError) {
       return <p>{skillsError.message}</p>;
     }
-    // if (formData.skills == []){
-    //   for (let skill in self.skills){
-    //     formData.skills.push(self.skills[skill]['name'])
-    //   }
-    // }
-
 
     const handleChange = (event) => {
       const { id, value } = event.target;
@@ -59,7 +52,9 @@ function UserUpdateForm({editing, setEditing}) {
         [id]: value,
       }));
     };
-  
+
+    formData.skills = Array.from(document.querySelectorAll('.skills input[type="checkbox"]:checked')).map(x => x.value)
+
     const handleCheckboxChange = (event) => {
       let updatedList = [...checkedState];
       if (event.target.checked) {
@@ -87,7 +82,8 @@ function UserUpdateForm({editing, setEditing}) {
       setFormInvalid("");
       setErrorMessage("");
       setUrlError("");
-      console.log(formData)
+
+
       const urls = [
         formData.social_account,
         formData.linkedin_account,
@@ -114,8 +110,7 @@ function UserUpdateForm({editing, setEditing}) {
         formData.location ||
         formData.github_profile ||
         formData.social_account ||
-        formData.linkedin_account ||
-        formData.has_mentored) ||
+        formData.linkedin_account) ||
         formData.skills 
       ) {
         putUser(
@@ -257,9 +252,9 @@ function UserUpdateForm({editing, setEditing}) {
               <input
                 className="checkbox-apply"
                 type="checkbox"
-                checked={mentored === (!self.has_mentored)}
+                checked={self.has_mentored === false}
                 onChange={() => {
-                  setMentored(false);
+                  self.has_mentored = false;
                   handleBooleanChange(false);
                 }}
               />
@@ -268,9 +263,9 @@ function UserUpdateForm({editing, setEditing}) {
                 className="checkbox-apply"
                 id="false_checkbox"
                 type="checkbox"
-                checked={mentored === self.has_mentored}
+                checked={self.has_mentored === true}
                 onChange={() => {
-                  setMentored(true);
+                  self.has_mentored = true;
                   handleBooleanChange(true);
                 }}
               />
@@ -296,7 +291,7 @@ function UserUpdateForm({editing, setEditing}) {
               </div>
             </div>
   
-            <div className="skills-container">
+            <div className="skills-container skills">
               <label htmlFor="skills" className="label-checkbox">
                 Select skills{" "}
               </label>
