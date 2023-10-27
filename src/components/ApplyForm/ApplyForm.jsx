@@ -68,7 +68,6 @@ const ApplyForm = () => {
   };
 
   const handleBooleanChange = (mentored) => {
- 
 
     setSignupDetails({ ...signupdetails, has_mentored: mentored });
   
@@ -141,196 +140,198 @@ const ApplyForm = () => {
   };
 
   return (
-    <div className="container-apply">
-      <h1 className="apply-title">Apply Now</h1>
-      <br />
-
-      <form className="apply-form" id="form">
-<div className="normal-input">
-        <div className="input-container">
-          <label htmlFor="first_name">First Name<span className={formInvalid ? "" : "hidden"}>*</span> </label>
-          <br />
-          <input
-            className="text-input"
-            type="text"
-            id="first_name"
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="input-container">
-          <label htmlFor="last_name">Last Name<span className={formInvalid ? "" : "hidden"}>*</span> </label>
-          <br />
-          <input
-            className="text-input"
-            type="text"
-            id="last_name"
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="input-container">
-          <label htmlFor="email">Email<span className={formInvalid ? "" : "hidden"}>*</span> </label>
-          <br />
-          <input
-            className="text-input"
-            type="email"
-            id="email"
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="input-container">
-          <label htmlFor="mobile">Mobile<span className={formInvalid ? "" : "hidden"}>*</span> </label>
-          <br />
-          <input
-            className="text-input"
-            type="text"
-            id="mobile"
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="input-container">
-          <label htmlFor="social_account">Social Account </label>
-          <br />
-          <input
-            className="text-input"
-            type="text"
-            id="social_account"
-            placeholder="url of your Social Account"
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="input-container">
-          <label htmlFor="linkedin_account">LinkedIn Account </label>
-          <br />
-          <input
-            className="text-input"
-            type="url"
-            id="linkedin_account"
-            placeholder="url of your LinkedIn profile"
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="input-container">
-          <label htmlFor="github_profile">GitHub </label>
-          <br />
-          <input
-            className="text-input"
-            type="text"
-            id="github_profile"
-            placeholder="url of your GitHub"
-            onChange={handleChange}
-          />
-        </div>
-        <div className="input-container">
-          <label htmlFor="username">Username<span className={formInvalid ? "" : "hidden"}>*</span> </label>
-          <br />
-          <input
-            className="text-input"
-            type="text"
-            id="username"
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="input-container">
-          <label htmlFor="password">Password<span className={formInvalid ? "" : "hidden"}>*</span> </label>
-          <br />
-          <input
-            className="text-input"
-            type="password"
-            id="password"
-            onChange={handleChange}
-            required
-          />
-        </div>
-        </div>
-
-        <div className="multiple-selection">
-          <div className="skills-container">
-            <label htmlFor="mentor" className="label-checkbox">
-              Have you mentored with us before?{" "}
-            </label>
-            <br />
-            <input
-              className="checkbox-apply"
-              type="checkbox"
-              checked={mentored === false}
-              onChange={() => {
-                setMentored(false);
-                handleBooleanChange(false);
-              }}
-            />
-            No
-            <input
-              className="checkbox-apply"
-              id="false_checkbox"
-              type="checkbox"
-              checked={mentored === true}
-              onChange={() => {
-                setMentored(true);
-                handleBooleanChange(true);
-              }}
-            />
-            Yes
-          </div>
-          <div className="input-container">
-            <label htmlFor="Location ">Location<span className={formInvalid ? "" : "hidden"}>*</span> </label>
-            <br />
-            <div>
-              <Dropdown
-                arrayValues={[
-                  "Brisbane",
-                  "Sydney",
-                  "Melbourne",
-                  "Adelaide",
-                  "Perth",
-                  "Canberra",
-                  "Darwin",
-                ]}
-                onChange={handleSelectionChange}
+    <form className="apply-form background" id="form">
+      <img src="/background1.png" alt="" />
+      <div className="container-apply">
+        <div className="form-container form-container-apply">
+          <h1>Apply Now</h1>
+          <div className="normal-input">
+            <div className="input-container">
+              <label htmlFor="first_name">First Name<span className={formInvalid ? "" : "hidden"}>*</span> </label>
+              <br />
+              <input
+                className="text-input"
+                type="text"
+                id="first_name"
+                onChange={handleChange}
+                required
               />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="last_name">Last Name<span className={formInvalid ? "" : "hidden"}>*</span> </label>
+              <br />
+              <input
+                className="text-input"
+                type="text"
+                id="last_name"
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="input-container">
+              <label htmlFor="email">Email<span className={formInvalid ? "" : "hidden"}>*</span> </label>
+              <br />
+              <input
+                className="text-input"
+                type="email"
+                id="email"
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="mobile">Mobile<span className={formInvalid ? "" : "hidden"}>*</span> </label>
+              <br />
+              <input
+                className="text-input"
+                type="text"
+                id="mobile"
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="social_account">Social Account </label>
+              <br />
+              <input
+                className="text-input"
+                type="text"
+                id="social_account"
+                placeholder="url of your Social Account"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="linkedin_account">LinkedIn Account </label>
+              <br />
+              <input
+                className="text-input"
+                type="url"
+                id="linkedin_account"
+                placeholder="url of your LinkedIn profile"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="github_profile">GitHub </label>
+              <br />
+              <input
+                className="text-input"
+                type="text"
+                id="github_profile"
+                placeholder="url of your GitHub"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="input-container">
+              <label htmlFor="username">Username<span className={formInvalid ? "" : "hidden"}>*</span> </label>
+              <br />
+              <input
+                className="text-input"
+                type="text"
+                id="username"
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="input-container">
+              <label htmlFor="password">Password<span className={formInvalid ? "" : "hidden"}>*</span> </label>
+              <br />
+              <input
+                className="text-input"
+                type="password"
+                id="password"
+                onChange={handleChange}
+                required
+              />
+            </div>
+              <div className="input-container input-checkbox">
+                <label htmlFor="mentor" className="label-checkbox">
+                  Have you mentored with us before?{" "}
+                </label>
+                <div className="mini-checkbox-container">
+                  <input
+                    className="checkbox-apply"
+                    id="false_checkbox"
+                    type="checkbox"
+                    checked={mentored === true}
+                    onChange={() => {
+                      setMentored(true);
+                      handleBooleanChange(true);
+                    }}
+                  />
+                  <label className="yesandno yes-label">Yes</label>
+                  <span className="checkmark"></span>
+                  <input
+                    className="checkbox-apply"
+                    type="checkbox"
+                    checked={mentored === false}
+                    onChange={() => {
+                      setMentored(false);
+                      handleBooleanChange(false);
+                    }}
+                  />
+                  <span className="checkmark"></span>
+                  <label className="yesandno">No</label>
+                </div>
+              </div>
+              <div className="input-container input-checkbox">
+                <label htmlFor="Location ">Location<span className={formInvalid ? "" : "hidden"}>*</span> </label>
+                <br />
+                <div>
+                  <Dropdown
+                    arrayValues={[
+                      "Brisbane",
+                      "Sydney",
+                      "Melbourne",
+                      "Adelaide",
+                      "Perth",
+                      "Canberra",
+                      "Darwin",
+                    ]}
+                    onChange={handleSelectionChange}
+                  />
+                </div>
+              </div>
+
+              <div className="input-container input-checkbox">
+                <label htmlFor="skills" className="label-checkbox">
+                  Select skills<span className={formInvalid ? "" : "hidden"}>*</span>{" "}
+                </label>
+                {skills.map((item, index) => (
+                  <div key={index}>
+                    <input
+                      type="checkbox"
+                      value={item}
+                      onChange={handleCheckboxChange}
+                    />
+
+                    <label htmlFor={`skills-checkbox-${item}`}>{item}</label>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="skills-container">
-            <label htmlFor="skills" className="label-checkbox">
-              Select skills<span className={formInvalid ? "" : "hidden"}>*</span>{" "}
-            </label>
-            {skills.map((item, index) => (
-              <div key={index}>
-                <input
-                  type="checkbox"
-                  value={item}
-                  onChange={handleCheckboxChange}
-                />
 
-                <label htmlFor={`skills-checkbox-${item}`}>{item}</label>
-              </div>
-            ))}
+          <div className="apply-button">
+              <Button text={"Submit"} btnClass="btn-info" onClick={handleSubmit} />
+          </div>
+          <div>
+            <p>{errorMessage}</p>
+            <sub className={errorMessage ? "hidden" : ""}>
+              <p>{formInvalid}</p>
+            </sub>
+            {urlError && <p>{urlError}</p>}
           </div>
         </div>
-
-        <div>
-            <Button text={"Submit"} btnClass="btn-info" onClick={handleSubmit} />
-        </div>
-        <div>
-          <p>{errorMessage}</p>
-          <sub className={errorMessage ? "hidden" : ""}>
-            <p>{formInvalid}</p>
-          </sub>
-          {urlError && <p>{urlError}</p>}
-        </div>
-      </form>
-    </div>
+    </form>
   );
 };
 
