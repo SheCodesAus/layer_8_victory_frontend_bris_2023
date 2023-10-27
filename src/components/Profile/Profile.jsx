@@ -1,17 +1,10 @@
 import useSelf from "../../hooks/use-self";
 import useAuth from "../../hooks/use-auth";
 import { useEffect } from "react";
-import useMyEvents from "../../hooks/use-myevents";
-import useEvents from "../../hooks/use-events";
-import { convertLocalDateTime } from "../../utlities/convertLocalDateTime";
-import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const { self, isLoading, error } = useSelf();
   const { auth, setAuth } = useAuth();
-  const [myEvents, myEventsLoading, myEventsError] = useMyEvents();
-  const { events, isEventsLoading, isEventsError } = useEvents();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (self?.is_staff) {
@@ -28,25 +21,10 @@ function Profile() {
     return <p>{error.message}</p>;
   }
 
-  const handleEventClick = (event) => {
-    let eventid = event.target.value;
-    navigate(`/events/${eventid}`);
-  };
-
-  const myEventIds = [];
-  for (let myEvent in myEvents) {
-    myEventIds.push(myEvents[myEvent]["event_id"]);
-  }
-
   const skills = [];
   for (let skill in self.skills) {
     skills.push(self.skills[skill]["name"]);
   }
-  const registeredEvents = [];
-  myEventIds.forEach(function (eventid) {
-    registeredEvents.push(events.filter((event) => event["id"] == eventid));
-  });
-  const myRegisteredEvents = registeredEvents.flatMap((event) => event);
 
   return (
     <article id="profile">
@@ -96,25 +74,6 @@ function Profile() {
           ))}
         </div>
         <br></br>
-        <div>
-          {myRegisteredEvents.map((event, key) => {
-            return (
-              <div className="event-single-card" key={key}>
-                <div>
-                  <p>Date: {convertLocalDateTime(event.start_date)}</p>
-                  <p>Title: {event.title}</p>
-                  <p>Location: {event.location}</p>
-                </div>
-                <button
-                  className="button"
-                  onClick={handleEventClick}
-                  value={event.id}>
-                  Find out more
-                </button>
-              </div>
-            );
-          })}
-        </div>
       </section>
     </article>
   );
