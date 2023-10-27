@@ -3,6 +3,7 @@ import useAuth from "../hooks/use-auth";
 import NotFound404Page from "../components/NotFound404Page/NotFound404Page";
 import Button from "../components/Buttton/Button";
 import Profile from "../components/Profile/Profile.jsx";
+import MyEventsComponent from "../components/MyEvents/MyEvents";
 import UserUpdateForm from "../components/UpdateProfileForm/UpdateProfileForm";
 import { useState } from "react";
 
@@ -24,8 +25,6 @@ function ProfilePage() {
     return <p>{error.message}</p>;
   }
 
-
-
   const handleUpdate = (event) => {
     event.preventDefault();
     setEditing(!editing);
@@ -37,7 +36,8 @@ function ProfilePage() {
       {
         editing == false ? <><Profile /> 
         <Button text={"Update Details"} btnClass = "btn-info" onClick={handleUpdate}/>
-        </>
+        <br></br>
+        <MyEventsComponent /></>
         : <>
         <UserUpdateForm editing={editing} setEditing={setEditing}/>
           <Button text={"Return to profile view"} btnClass = "btn-info update-button" onClick={handleUpdate}/>

@@ -5,26 +5,22 @@ import "./Profile.css";
 
 function Profile() {
   const { self, isLoading, error } = useSelf();
-  const {auth, setAuth} = useAuth();
+  const { auth, setAuth } = useAuth();
 
-  useEffect(() =>{
-    if (self?.is_staff){
-      window.localStorage.setItem("is_staff", "true")
-      setAuth({...auth,
-      is_staff:"true"
-    }) 
-  }
+  useEffect(() => {
+    if (self?.is_staff) {
+      window.localStorage.setItem("is_staff", "true");
+      setAuth({ ...auth, is_staff: "true" });
+    }
+  }, [self]);
 
-  }, [self])
-
-  if (isLoading ) {
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
   if (error) {
     return <p>{error.message}</p>;
   }
-
 
   const skills = [];
   for (let skill in self.skills) {
