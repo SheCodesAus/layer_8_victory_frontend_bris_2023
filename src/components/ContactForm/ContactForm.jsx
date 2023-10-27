@@ -15,7 +15,7 @@ const ContactForm = () =>{
     width="400" 
     height="300" 
     style={{border:'0'}}
-    llowfullscreen="" 
+    allowfullscreen="" 
     loading="lazy" 
     referrerPolicy="no-referrer-when-downgrade"
     >

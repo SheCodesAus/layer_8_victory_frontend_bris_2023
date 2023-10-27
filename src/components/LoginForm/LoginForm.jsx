@@ -37,6 +37,7 @@ const LoginForm  = () =>{
                     window.localStorage.setItem("token", response.token);
                     setAuth({
                         token: response.token,
+                        is_staff:""
                     });
                     navigate("/profile");
                 })
