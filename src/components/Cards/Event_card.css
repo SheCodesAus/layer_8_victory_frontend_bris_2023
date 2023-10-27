@@ -7,3 +7,16 @@
     margin: 10px;
     box-sizing: border-box;
     }
+
+.card p{
+        margin:10px;
+    }
+
+.card h2{
+    margin: 10px;
+    font-size: 20px;
+}
+
+.card .button {
+    margin: 5px;
+}

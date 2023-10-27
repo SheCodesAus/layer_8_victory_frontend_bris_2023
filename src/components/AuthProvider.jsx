@@ -8,9 +8,9 @@ export const AuthContext = createContext();
 export const AuthProvider = (props) => {
 //     // Using a object for the state here, this way we can add more properties to the state later on like user id.
     const [auth, setAuth] = useState({
-//         // Here we initialize the context with the token from local storage, this way if the user refreshes the page we can still have the token in memory.
-        id: window.localStorage.getItem("id"),
+//      // Here we initialize the context with the token from local storage, this way if the user refreshes the page we can still have the token in memory.
         token: window.localStorage.getItem("token"),
+        is_staff: window.localStorage.getItem("is_staff"),
     });
     
     return (

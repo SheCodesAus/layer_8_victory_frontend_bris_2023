@@ -1,6 +1,14 @@
 .event-container{
-    margin-top: 100px;
+    margin-top: 200px;
     text-align: center;
+}
+
+.event_title{
+    margin-bottom: 10px;
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 8rem;
+    color: var(--dark-blue);
 }
 
 #card-container {

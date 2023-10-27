@@ -1,0 +1,86 @@
+.mentor-detail-list  {
+    margin:20px;
+    width: 30%;
+    background-color: var(--cream);
+    border:solid var(--pink) 4px;
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
+    width: 30%;
+    box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+-webkit-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+-moz-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+}
+
+#mentor-detail-title{
+    font-weight: bold;
+    color: var(--dark-blue);
+    font-size: 40px;
+    font-family: 'Dancing Script';
+    text-shadow: 0px 0px 5px rgba(75, 136, 128, 0.705);
+}
+
+.filter-mentor-details-dash {
+    background-color:var(--light-blue);
+    color: var(--cream);
+    padding: 10px;
+    margin-left:5px;
+    margin-bottom: 5px;
+    font-size: 16px;
+    width: 90%;
+    border: solid var(--dark-blue)
+}
+
+.filter-group-mentor-details-dash p {
+    color:var(--dark-blue);
+    margin: 5px;
+    font-size: 18px;
+    font-family: 'Urbanist';
+    
+}
+
+.mentor-filter {
+    display: flex;
+    align-items: center;
+}
+
+.mentor-filter p {
+    width: 40%;
+    text-align: left;
+    padding-left: 20px;
+    margin:5px;
+}
+
+
+.mentors-detail{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color:var(--pink) ;
+    border: solid var(--cream);
+    width:100%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mentors-detail p {
+    font-size: 16px;
+    font-family: 'Urbanist';
+    text-align: left;
+    color:var(--text-color);
+    text-shadow: 0px 0px 4px rgba(63, 61, 63, 0.034);
+    font-weight: bold;
+
+}
+
+.mentor-info {
+    color: var(--bg-color);
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mentor-info p {
+    margin: 4px;
+}
