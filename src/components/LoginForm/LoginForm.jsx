@@ -8,13 +8,16 @@ import "./LoginForm.css";
 
 const LoginForm  = () =>{
     const navigate = useNavigate();
-    const {auth, setAuth} = useAuth();
-
+    const {auth, setAuth} = useAuth()
+    const [errorMessage, setErrorMessage] = useState("");
+    const [formIsInvalid, setFormIsInvalid] = useState("");
     const [credentials, setCredentials] = useState
     ({
         username: "",
         password: "",
     });
+
+
 
     const handleChange = (event) => {
         const { id, value } = event.target;
@@ -35,8 +38,16 @@ const LoginForm  = () =>{
                     setAuth({
                         token: response.token,
                     });
-                    navigate("/events");
-                });
+                    navigate("/profile");
+                })
+                .catch((error) => {
+                    setErrorMessage(`${[error.message]} \n`);
+                  });
+            
+        }
+        else{
+            setFormIsInvalid("Invalid Username or Password.");
+       
         }
     };
 
@@ -70,7 +81,7 @@ return(
             </div>
         </div>
     </form> 
-    )
+  )
 }
 
 export default LoginForm

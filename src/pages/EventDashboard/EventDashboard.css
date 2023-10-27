@@ -1,0 +1,12 @@
+.dashboard {
+    display: flex;
+    flex-direction: row;
+    margin-top: 300px;
+    justify-content: space-between;
+    border: solid 5px var(--dark-blue);
+
+    border-radius: 20px;
+    margin-left:20px;
+    margin-right: 20px;
+    
+}

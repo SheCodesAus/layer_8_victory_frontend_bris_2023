@@ -1,21 +1,18 @@
-.event-card{
-    background-color: #eadbd1;
+.card{
+    background-color: rgb(223, 216, 216);
     padding:1.5rem;
     border: 2px solid transparent;
     border-radius: 2rem;
+    transition:all 500ms ease ;
     margin: 10px;
     box-sizing: border-box;
-
     }
 
-.event-title{
-    font-size: 25px;
-    text-align: center;
-    border-bottom: 2px solid black;
-}
+.card p{
+        margin:10px;
+    }
 
-.event-text{
+.card h2{
+    margin: 10px;
     font-size: 20px;
-    text-align: left;
-    
 }

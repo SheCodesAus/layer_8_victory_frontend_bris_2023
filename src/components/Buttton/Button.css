@@ -1,13 +1,10 @@
 .btn-info {
-    display:block;
-    background-color:#134F5C;
-    color:#eadbd1;
-    padding:10px 60px;
-    border-radius:10px ;
-    margin:10px;
-   font-size: 20px;
-   transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-   touch-action: manipulation;
+  color:white;
+  background-color:rgb(21, 129, 129);
+  padding:10px;
+  padding:10px 40px;
+  border-radius:10px ;
+  margin:5px;
 }
 
 .btn-info:hover {
