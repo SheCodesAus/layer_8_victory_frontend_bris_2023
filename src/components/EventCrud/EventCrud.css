@@ -1,15 +1,23 @@
 .event-crud{
+    --dark-pink:#8f647a;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 20px;
     width: 60%;
+    padding: 10px;
+    border-radius: 15px;
+    border:solid var(--dark-blue) 4px;
+    box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+-webkit-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+-moz-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+
 
 }
 
 .event-crud h3 {
     font-family: 'Dancing Script';
-    font-size: 30px;
+    font-size: 4cqb;
     margin:20px;
 }
 
@@ -22,6 +30,9 @@
     background-color: var(--dark-blue);
     border-radius: 8px;
     color: var(--cream);
+    box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+    -webkit-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+    -moz-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
 }
 
 .crud-elements {

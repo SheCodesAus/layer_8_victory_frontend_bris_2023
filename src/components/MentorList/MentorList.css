@@ -1,6 +1,8 @@
 .mentor-list{
+    --dark-pink:#8f647a;
     margin-top: 20px;
-    border:  solid var(--pink) 4px;
+    
+    border:  solid var(--dark-pink) 4px;
     background-color: var(--cream);
     width:100%;
     border-radius: 8px;
@@ -12,7 +14,7 @@
 }
 
 #mentor-status-info {
-    font-size: 10px;
+    font-size: 16px;
     font-style: italic;
 }
 .filter-group {

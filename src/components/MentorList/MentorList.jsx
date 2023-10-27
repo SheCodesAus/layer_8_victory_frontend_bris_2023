@@ -62,7 +62,7 @@ function MentorList({
         ))
         updatFilteredMentors(newMentors.filter(
             mentor => (mentor.onboarding_status == 'Ready' && 
-            !mentor.is_superuser 
+            !mentor.is_superuser
             )))
     
     }, [searchTermSkill, searchTermLocation, searchTermRank])

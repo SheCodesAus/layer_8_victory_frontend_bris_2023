@@ -1,16 +1,25 @@
 .event-list {
     margin: 20px;
     border: solid var(--dark-blue) 4px;
-    border-radius: 8px;
+    border-radius: 15px;
     background-color: var(--cream);
     text-align: center;
     width: 30%;
+    box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+-webkit-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+-moz-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+
 
 }
+
 
 .event-list ul .event-list li {
     font-size: 2rem;
     margin: 20px;
+}
+
+.event-list ul {
+    margin-top:30px;
 }
 
 .event-list h3 {
@@ -26,6 +35,10 @@
     border: solid var(--dark-blue);
     border-radius: 15px;
     justify-content: space-between;
+    box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+-webkit-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+-moz-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+
 }
 
 .action-buttons {
@@ -45,10 +58,10 @@
 .search-box {
     border: solid var(--light-blue);
     border-radius: 15px;
-    margin: 10px;
+    margin-right: 10px;
     margin-left: 20px;
     width:50%;
-    height: 50px;
+    min-height: 60px;
     padding-left: 10px;
 }
 
@@ -93,7 +106,7 @@
 .event-top{
     display: flex;
     flex-direction: row;
-    align-content:start;
+    justify-content:space-between;
 }
 
 .assign {
@@ -106,14 +119,14 @@
     display: inline-block;
     font-size: 2rem;
     line-height: normal;
-    min-height: 40px;
+    min-height: 60px;
     outline: none;
     padding: 4px 24px;
     text-align: center;
     text-decoration: none;
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
     touch-action: manipulation;
-    width: 200px;
+    width: 180px;
     margin: 4px;
 }
 
@@ -128,14 +141,14 @@
     display: inline-block;
     font-size: 2rem;
     line-height: normal;
-    min-height: 40px;
+    min-height: 60px;
     outline: none;
     padding:  4px 22px;
     text-align: center;
     text-decoration: none;
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
     touch-action: manipulation;
-    width: 200px;
+    width: 180px;
     margin: 4px;
     
 }
@@ -149,10 +162,22 @@
     height: 100%;
     color: var(--cream);
     text-align: left;
+    cursor: pointer;
+}
+
+.event-button:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateX(-1px);
+}
+
+.event-button:active {
+    box-shadow: none;
+    transform: translateX(0);
 }
 
 
-.assign:hover, .edit-event:hover, .create-event:hover {
+
+.assign:hover, .edit-event:hover, .create-event:hover  {
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-1px);
 }

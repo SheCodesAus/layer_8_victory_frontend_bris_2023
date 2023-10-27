@@ -61,19 +61,19 @@ function MentorEventsList({ activeEvent,
         //mentor previously assigned, update confirmed to true
         await Promise.all(mentorsPUTRequest.map((mentorID) => {
             console.log("put ", mentorID)
-            putMentorEvents(mentorID, "true")
+            putMentorEvents(mentorID, "true", "true")
         }))
 
         //mentor not previously assigned, create new
         await Promise.all(mentorsPOSTRequest.map((mentorID) => {
             console.log("post", eventID, mentorID)
-            postMentorEvents(eventID, mentorID, "true")
+            postMentorEvents(eventID, mentorID, "true", "true")
         }))
 
         // mentor to be removed, put request
         await Promise.all(mentorsPUTRemoveRequest.map((id) => {
             console.log('put -set to remove/ false', id)
-            putMentorEvents(id, "false")
+            putMentorEvents(id, "false", "false")
         }))
 
         //TODO fix this to just refresh assignment window
@@ -84,14 +84,14 @@ function MentorEventsList({ activeEvent,
     return (
         <div className="mentor-event-list">
 
-            <div className="current"><h3>Currently Confirmed Mentors for Event</h3></div>
-            <div className="assigned-mentors">
-
+            <h3 id="current-event">Event Mentors</h3>
+            <div className="event-mentors">
+                
                 {!isMentorEventsLoading && !isMentorsLoading && eventID ?
                     <>
                         {allMentorEvents.filter(key => key.event_id == eventID && key.confirmed == true).length > 0 ?
 
-                            <div>
+                            <div className="event-mentors-confirmed-container">
 
                                 {allMentorEvents.filter(key => (key.event_id == eventID && key.confirmed == true)).map((mentorData, key) => {
                                     const mentorDetails = allMentors.find(mentor => (mentor.id === mentorData.mentor_id))
@@ -111,7 +111,9 @@ function MentorEventsList({ activeEvent,
                             :
                             <div>No mentors currently assigned</div>
                         }
-                        <div className="mentor-changes-title"><h3>Mentor Changes</h3></div>
+                        
+                        <div className="mentor-changes-container">
+                        <h3 id ="mentor-changes-title">Mentor Changes</h3>
 
                         <div className="mentor-changes">
                             <div className="add-mentors">
@@ -120,7 +122,7 @@ function MentorEventsList({ activeEvent,
                                     <div>
                                         {mentorIDs.map((mentorIDData, key) => {
                                             const mentorDetails = allMentors.find(mentor => { return mentor.id == mentorIDData })
-                                            return (<div className="mentors" key={key}> {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})</div>)
+                                            return (<div className="mentors-added" key={key}> {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})</div>)
                                         })}
                                     </div>
                                     :
@@ -134,13 +136,14 @@ function MentorEventsList({ activeEvent,
                                     <div>
                                         {mentorsToRemove.map((mentorRemoveID, key) => {
                                             const mentorDetails = allMentors.find(mentor => { return mentor.id == mentorRemoveID })
-                                            return (<div className="mentors" key={key}> {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})</div>)
+                                            return (<div className="mentors-removed" key={key}> {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})</div>)
                                         })}
                                     </div>
                                     :
                                     <></>
                                 }
                             </div>
+                        </div>
                         </div>
                     </>
                     :

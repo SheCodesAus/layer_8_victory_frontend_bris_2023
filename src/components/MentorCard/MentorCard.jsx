@@ -87,28 +87,36 @@ const MentorCard = ({
     return (
         <>
             <div className='mentor-card' key={mentorDataDetails.id}>
+            <div className="mentor-name-container">
+            <p id="mentor-name">{mentorDataDetails.first_name} {mentorDataDetails.last_name} </p>
+            {mentorDataDetails.rank == 'Lead' ?
+                    <p id="lead">{mentorDataDetails.rank}</p>
+                    :  
+                     mentorDataDetails.rank == 'Mid-level'? 
+                    <p id="mid-level">{mentorDataDetails.rank}</p>
+                    :
+                    <p id="junior">{mentorDataDetails.rank}</p>
+                    }   
+                    </div>
                 <div className='mentor-info'>
-                    <p>{mentorDataDetails.rank} Mentor</p>
-                    <p>{mentorDataDetails.first_name} {mentorDataDetails.last_name} </p>
-                    <p>Available: {mentorDataDetails.is_active ? "Yes" : "No"} </p>
+                    <p>{mentorDataDetails.is_active ? "Available" : "Not available"} </p>
                     <>{mentorDataDetails.skills.map((skill, key) => {
                         return (<li key={key}>{skill.name} </li>)
                     })}</>
                     <p>{mentorDataDetails.location}</p>
                 </div>
                 <div className='assign-buttons'>
-                    {allMentorEvents.filter(key => (key.mentor_id == mentorDataDetails.id)).length > 0 ?
-                        <>
-                            {allMentorEvents.filter(key => (key.mentor_id == mentorDataDetails.id)).map((mentor_status) => {
-                                if (mentor_status.confirmed) {
-                                    return (<button className="removing" onClick={handleRemoveStatus} value={mentorDataDetails.id}>{removedStatus}</button>)
-                                } else {
-                                    return (<button className="assigning" onClick={handleAssignStatus} value={mentorDataDetails.id}>{assignedStatus}</button>)
-                                }
-                            })}</>
+                    {allMentorEvents.find(mentorevent => (mentorevent.mentor_id == mentorDataDetails.id)) != undefined ?  
+                    <>
+                         {allMentorEvents.find(mentorevent => (mentorevent.mentor_id == mentorDataDetails.id && mentorevent.confirmed))?
+                            <button className="removing" onClick={handleRemoveStatus} value={mentorDataDetails.id}>{removedStatus}</button>
                         :
-                        <button className="assigning" onClick={handleAssignStatus} value={mentorDataDetails.id}>{assignedStatus}</button>
-                        }
+                            <button className="assigning" onClick={handleAssignStatus} value={mentorDataDetails.id}>{assignedStatus}</button>
+                         }
+                    </>
+                        :
+                    <button className="assigning" onClick={handleAssignStatus} value={mentorDataDetails.id}>{assignedStatus}</button>
+                    }
                 </div>
             </div>
         </>
