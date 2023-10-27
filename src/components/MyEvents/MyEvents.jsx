@@ -33,10 +33,23 @@ function MyEventsComponent() {
   for (let myEvent in myEvents) {
     myEventIds.push(myEvents[myEvent]["event_id"]);
   }
+  
+  for (let myEvent in myEvents) {
+    console.log({id: myEvents[myEvent]["id"], event_id: myEvents[myEvent]["event_id"]})
+  }
+
+  const availableEventIds = []
+  for (let myEvent in myEvents) {
+    if (myEvents[myEvent]["available"]){
+      availableEventIds.push(myEvents[myEvent]["event_id"]);
+    }
+    
+  }
   const registeredEvents = [];
   myEventIds.forEach(function (eventid) {
     registeredEvents.push(events.filter((event) => event["id"] == eventid));
   });
+
   const myRegisteredEvents = registeredEvents.flatMap((event) => event);
 
 
@@ -50,12 +63,20 @@ function MyEventsComponent() {
                   <p>Date: {convertLocalDateTime(event.start_date)}</p>
                   <p>Title: {event.title}</p>
                   <p>Location: {event.location}</p>
+                  <p>Availabile: {availableEventIds.includes(event.id) == true ? "Yes" : "No"}</p>
                 </div>
                 <button
                   className="button"
                   onClick={handleEventClick}
                   value={event.id}>
                   Find out more
+                </button>
+                <button
+                  className="button"
+                  onClick={handleEventClick}
+                  value={event.id}>
+                    {availableEventIds.includes(event.id) == true ? "No longer available?" : "No longer unavailable?"}
+                    {console.log()}
                 </button>
                 <br></br>
               </div>
