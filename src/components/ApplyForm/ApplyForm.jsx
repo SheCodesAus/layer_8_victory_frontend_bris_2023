@@ -302,18 +302,20 @@ const ApplyForm = () => {
                 <label htmlFor="skills" className="label-checkbox">
                   Select skills<span className={formInvalid ? "" : "hidden"}>*</span>{" "}
                 </label>
-                {skills.map((item, index) => (
-                  <div key={index} className="mini-checkbox-container">
-                    <input
-                      className="checkbox-apply"
-                      type="checkbox"
-                      value={item}
-                      onChange={handleCheckboxChange}
-                    />
+                <div className="skills-checkbox-container">
+                  {skills.map((item, index) => (
+                    <div key={index} className="mini-checkbox-container">
+                      <input
+                        className="checkbox-apply"
+                        type="checkbox"
+                        value={item}
+                        onChange={handleCheckboxChange}
+                      />
 
-                    <label htmlFor={`skills-checkbox-${item}`} className="checkbox-text">{item}</label>
-                  </div>
-                ))}
+                      <label htmlFor={`skills-checkbox-${item}`} className="checkbox-text">{item}</label>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

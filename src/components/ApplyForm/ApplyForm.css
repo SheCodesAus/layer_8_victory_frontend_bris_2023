@@ -80,6 +80,13 @@ input.checkbox-apply {
     margin: 20px 30px;
 }
 
+.skills-checkbox-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .hidden {
     display: none;
 }
