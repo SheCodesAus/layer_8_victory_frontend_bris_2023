@@ -1,22 +1,26 @@
 import useSelf from "../../hooks/use-self";
 import useAuth from "../../hooks/use-auth";
 import { useEffect } from "react";
+import useMyEvents from "../../hooks/use-myevents";
+import useEvents from "../../hooks/use-events";
+import { convertLocalDateTime } from "../../utlities/convertLocalDateTime";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const { self, isLoading, error } = useSelf();
-  const {auth, setAuth} = useAuth();
+  const { auth, setAuth } = useAuth();
+  const [myEvents, myEventsLoading, myEventsError] = useMyEvents();
+  const { events, isEventsLoading, isEventsError } = useEvents();
+  const navigate = useNavigate();
 
-  useEffect(() =>{
-    if (self?.is_staff){
-      window.localStorage.setItem("is_staff", "true")
-      setAuth({...auth,
-      is_staff:"true"
-    }) 
-  }
+  useEffect(() => {
+    if (self?.is_staff) {
+      window.localStorage.setItem("is_staff", "true");
+      setAuth({ ...auth, is_staff: "true" });
+    }
+  }, [self]);
 
-  }, [self])
-
-  if (isLoading ) {
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
@@ -24,12 +28,25 @@ function Profile() {
     return <p>{error.message}</p>;
   }
 
+  const handleEventClick = (event) => {
+    let eventid = event.target.value;
+    navigate(`/events/${eventid}`);
+  };
+
+  const myEventIds = [];
+  for (let myEvent in myEvents) {
+    myEventIds.push(myEvents[myEvent]["event_id"]);
+  }
 
   const skills = [];
   for (let skill in self.skills) {
     skills.push(self.skills[skill]["name"]);
   }
-
+  const registeredEvents = [];
+  myEventIds.forEach(function (eventid) {
+    registeredEvents.push(events.filter((event) => event["id"] == eventid));
+  });
+  console.log(registeredEvents);
   return (
     <article id="profile">
       <h2>
@@ -45,9 +62,18 @@ function Profile() {
         <p>First name: {self.first_name}</p>
         <p>Surname: {self.last_name}</p>
         <p>Email: {self.email}</p>
-        <p>Linked In Account: {self.linkedin_account == null ? "N/A" : self.linkedin_account}</p>
-        <p>GitHub Profile: {self.github_profile == null ? "N/A" : self.github_profile}</p>
-        <p>Social Account: {self.social_account == null ? "N/A" : self.social_account}</p>
+        <p>
+          Linked In Account:{" "}
+          {self.linkedin_account == null ? "N/A" : self.linkedin_account}
+        </p>
+        <p>
+          GitHub Profile:{" "}
+          {self.github_profile == null ? "N/A" : self.github_profile}
+        </p>
+        <p>
+          Social Account:{" "}
+          {self.social_account == null ? "N/A" : self.social_account}
+        </p>
         <p>Location: {self.location}</p>
         <p></p>
         <p>
@@ -69,6 +95,25 @@ function Profile() {
           ))}
         </div>
         <br></br>
+        <div>
+          {registeredEvents.map((key, event) => {
+            return (
+              <div className="event-single-card" key={key}>
+                <div>
+                  <p>Date: {convertLocalDateTime(event.start_date)}</p>
+                  <p>Title: {event.title}</p>
+                  <p>Location: {event.location}</p>
+                </div>
+                <button
+                  className="button"
+                  onClick={handleEventClick}
+                  value={event.id}>
+                  Find out more
+                </button>
+              </div>
+            );
+          })}
+        </div>
       </section>
     </article>
   );
