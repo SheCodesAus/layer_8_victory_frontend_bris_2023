@@ -77,8 +77,13 @@ return(
                         onChange={handleChange}
                     />      
                 </div>
-                <br/>
-                <Button text={"Login"} btnClass = "btn-info " onClick={handleSubmit}/>
+              
+                <Button text={"Log In"} btnClass = "btn-info " onClick={handleSubmit}/>
+                  <p className="error-message">{errorMessage}</p>
+      <sub className={errorMessage ? "" : "hidden"}>Please check your username and password.</sub>
+      <sub className={errorMessage ? "" : "hidden"}>* Username and password are case sensitive.</sub>
+      <p>{formIsInvalid}</p>
+
             </div>
         </div>
     </form> 
