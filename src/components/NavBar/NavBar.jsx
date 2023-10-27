@@ -1,14 +1,11 @@
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-
-//import useSelf from '../../hooks/use-self';
 import useAuth from "../../hooks/use-auth";
 
 import "./NavBar.css";
 
 function NavBar() {
     const {auth, setAuth} = useAuth();
-    // const { self, isLoading, error } = useSelf();
 
     const [activeLink, setActiveLink] = useState("");
 
@@ -119,7 +116,7 @@ function NavBar() {
                                 Profile
                             </Link>
 
-                            {auth.is_staff == 'true' ?
+                            {auth.is_staff? 
                              <><Link 
                              to="/event-dashboard" 
                              id="event-dashboard"
