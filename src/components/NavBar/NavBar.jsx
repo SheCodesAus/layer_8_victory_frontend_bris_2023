@@ -13,6 +13,7 @@ function NavBar() {
 
     const handleLogout = () => {
         window.localStorage.removeItem("token");
+        window.localStorage.removeItem("is_staff");
         setAuth({
             token: null,
             is_staff: null

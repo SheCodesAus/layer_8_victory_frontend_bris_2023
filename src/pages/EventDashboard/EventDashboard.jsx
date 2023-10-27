@@ -4,7 +4,6 @@ import CreateEventForm from '../../components/CreateEventForm/CreateEventForm'
 import EditEventForm from '../../components/EditEventsForm/EditEventsForm'
 import EventCrud from '../../components/EventCrud/EventCrud'
 import useAuth from '../../hooks/use-auth'
-import useSelf from '../../hooks/use-self';
 import NotFound404Page from '../../components/NotFound404Page/NotFound404Page'
 import './EventDashboard.css'
 
@@ -13,7 +12,6 @@ import './EventDashboard.css'
 function EventDashboard() {
 
     const { auth, setAuth } = useAuth();
-    const { self, isLoading, error } = useSelf();
     const [activeEvent, setActiveEvent] = useState("")
     const [createEventOpen, setCreateEventOpen] = useState("false")
     const [editEventOpen, setEditEventOpen] = useState("false")
@@ -35,7 +33,7 @@ function EventDashboard() {
 
     return (
         <>
-            {auth.token && self?.is_staff ?
+            {auth.token && auth.is_staff ?
                 <div className='dashboard'>
 
                     <EventsList onEditEventClick={onEditEventClick} activeEvent={activeEvent} onChangeActiveEvent={onChangeActiveEvent} onCreateEventClick={onCreateEventClick} createEventOpen={createEventOpen} />
