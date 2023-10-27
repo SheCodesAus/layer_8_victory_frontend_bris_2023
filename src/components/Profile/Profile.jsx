@@ -1,6 +1,7 @@
 import useSelf from "../../hooks/use-self";
 import useAuth from "../../hooks/use-auth";
 import { useEffect } from "react";
+import "./Profile.css";
 
 function Profile() {
   const { self, isLoading, error } = useSelf();
@@ -31,8 +32,9 @@ function Profile() {
   }
 
   return (
-    <article id="profile">
-      <h2>
+    <div id="profile_container_mentor">
+       <img src="/background1.png" alt="" className="background-img"/>
+      <h2 className="profile_title">
         Hi{" "}
         {`${self.first_name}${self.last_name}`
           ? `${self.first_name} ${self.last_name}`
@@ -41,25 +43,24 @@ function Profile() {
       </h2>
       <section id="my-details">
         <h3>My Details</h3>
-        <p>Username: {self.username}</p>
-        <p>First name: {self.first_name}</p>
-        <p>Surname: {self.last_name}</p>
-        <p>Email: {self.email}</p>
-        <p>Linked In Account: {self.linkedin_account == null ? "N/A" : self.linkedin_account}</p>
-        <p>GitHub Profile: {self.github_profile == null ? "N/A" : self.github_profile}</p>
-        <p>Social Account: {self.social_account == null ? "N/A" : self.social_account}</p>
-        <p>Location: {self.location}</p>
-        <p></p>
-        <p>
+        <p className="my-details-paragraph">Username: {self.username}</p>
+        <p className="my-details-paragraph">First name: {self.first_name}</p>
+        <p className="my-details-paragraph">Surname: {self.last_name}</p>
+        <p className="my-details-paragraph">Email: {self.email}</p>
+        <p className="my-details-paragraph">Linked In Account: {self.linkedin_account == null ? "N/A" : self.linkedin_account}</p>
+        <p className="my-details-paragraph">GitHub Profile: {self.github_profile == null ? "N/A" : self.github_profile}</p>
+        <p className="my-details-paragraph">Social Account: {self.social_account == null ? "N/A" : self.social_account}</p>
+        <p className="my-details-paragraph">Location: {self.location}</p>
+        <p className="my-details-paragraph">
           Have you mentored with us before?{" "}
           {self.has_mentored == false ? "No" : "Yes"}
         </p>
-        <p>
+        <p className="my-details-paragraph">
           Onboarding Status:{" "}
           {self.onboarding_status == "Ready" ? "Onboarded" : "Being reviewed"}{" "}
         </p>
-        <p>Rank: {self.rank}</p>
-        <div>
+        <p className="my-details-paragraph">Rank: {self.rank}</p>
+        <div className="my-details-paragraph" >
           Skills:{" "}
           {skills.map((item, index) => (
             <div key={index}>
@@ -70,8 +71,9 @@ function Profile() {
         </div>
         <br></br>
       </section>
-    </article>
+    </div>
   );
 }
+
 
 export default Profile;
