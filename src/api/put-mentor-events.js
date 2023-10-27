@@ -1,4 +1,4 @@
-async function putMentorEvents(id, confirmed) {
+async function putMentorEvents(id, confirmed, available) {
 
     const url = `${import.meta.env.VITE_API_URL}/mentor-events/${id}/`
     
@@ -13,6 +13,7 @@ async function putMentorEvents(id, confirmed) {
         },
         body: JSON.stringify({
             "confirmed": confirmed,
+            "available" : available
         })
     });
 

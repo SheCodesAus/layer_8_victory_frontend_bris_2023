@@ -14,8 +14,8 @@ import NotFound404Page from './components/NotFound404Page/NotFound404Page.jsx';
 import NavBar from './components/NavBar/NavBar.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import EventDetails from './components/EventDetails/EventDetails.jsx';
-import EventDashboard from './components/EventDashboard/EventDashboard.jsx';
-import MentorDashboard from './components/MentorDashboard/MentorDashboard.jsx';
+import EventDashboard from './pages/EventDashboard/EventDashboard.jsx';
+import MentorDashboard from './pages/MentorDashboard/MentorDashboard.jsx';
 
 
 

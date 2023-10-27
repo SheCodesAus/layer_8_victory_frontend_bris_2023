@@ -1,9 +1,7 @@
 import { useState, setState} from 'react';
 import useEvents from '../../hooks/use-events'
-import EventCard from '../Cards/EventCard'
-import CreateEventForm from '../CreateEventForm/CreateEventForm';
-import EditEventForm from '../EditEventsForm/EditEventsForm';
 import { useNavigate } from 'react-router-dom';
+import { convertLocalDateTime } from '../../utlities/convertLocalDateTime';
 import './EventList.css'
 
 
@@ -50,14 +48,10 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
         navigate(`/events/${eventid}`)
     }
 
-    //TODO should be utils
-    const parseDate=(str_date)=> {
-        return new Date(Date.parse(str_date))
-    }
 
     return (
         <div className='event-list'>
-            <p>Events List</p>
+            <h3>Events List</h3>
             <div className='event-top'>
             <input className='search-box'
                 type='text' 
@@ -74,14 +68,14 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
                 return b.start_date - a.start_date
                 }).filter(o => o.title.includes(searchTerm)).map((eventData, key) => {
 
-                    let formattedDate = parseDate(eventData.start_date)
+                    let formattedDate = convertLocalDateTime(eventData.start_date)
                     
                     return(
                         <div key={key} className='event-detail'>
                             <div className='event-info' >
                                 <button className='event-button' onClick={handleEventClick} value={eventData.id}>
                                 <p>{eventData.title}</p>
-                                <p>{formattedDate.toLocaleDateString()} </p>
+                                <p>{formattedDate} </p>
                                 <p>{eventData.location}</p>
                                 </button>
                             </div>

@@ -3,6 +3,7 @@ import useEvents from "../../hooks/use-events"
 import useMentorEvents from "../../hooks/use-mentor-events"
 import useMentors from "../../hooks/use-mentors"
 import { useParams, useNavigate } from "react-router-dom"
+import { convertLocalDateTime } from "../../utlities/convertLocalDateTime"
 import './EventDetails.css'
 
 function EventDetails () {
@@ -12,11 +13,6 @@ function EventDetails () {
     const { mentors, isMentorsLoading, isMentorsError } = useMentors()
     
 
-    //TODO should be utils
-    const parseDate=(str_date)=> {
-        return new Date(Date.parse(str_date))
-    }
-
     return (
         <div className="event-full-details">
         
@@ -24,21 +20,21 @@ function EventDetails () {
 
             {events.filter(key => (key.id == eventid )).map((eventData, key) => {
 
-                const formattedStartDate = parseDate(eventData.start_date)
-                const formattedEndDate = parseDate(eventData.end_date)
+                const formattedStartDate = convertLocalDateTime(eventData.start_date)
+                const formattedEndDate = convertLocalDateTime(eventData.end_date)
 
                 return(
                     <div>
                         <h2>{eventData.title}</h2>
-                        <h5>Start: {formattedStartDate.toLocaleDateString()}</h5>
-                        <h5>End: {formattedEndDate.toLocaleDateString()}</h5>
+                        <h5>Start: {formattedStartDate}</h5>
+                        <h5>End: {formattedEndDate}</h5>
                         <h5>Location: {eventData.location}</h5>
                 </div>)
 
                 })}
                
         </div>
-        <div className="event-mentors">
+        <div className="event-mentors-detail">
             <h3>Mentors</h3>
             {mentorevents.filter(key => (key.event_id == eventid && key.confirmed == true)).map((mentorData, key) => {
 
@@ -49,9 +45,9 @@ function EventDetails () {
                             {mentorDetails ? 
                                     <div>
                                         {!mentorDetails.rank? 
-                                        <p> Mentor: {mentorDetails.first_name} {mentorDetails.last_name} </p>
+                                        <p> Mentor: <span className="span-bolder">{mentorDetails.first_name} {mentorDetails.last_name}</span> </p>
                                          :
-                                        <p>{mentorDetails.rank} mentor: {mentorDetails.first_name} {mentorDetails.last_name} </p>
+                                        <p>{mentorDetails.rank} mentor: <span className="span-bolder">{mentorDetails.first_name} {mentorDetails.last_name} </span></p>
                                         }
                                     </div>
                                 : 
