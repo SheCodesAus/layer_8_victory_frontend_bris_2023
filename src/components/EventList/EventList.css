@@ -125,7 +125,7 @@
     text-decoration: none;
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
     touch-action: manipulation;
-    width: 180px;
+    width: 160px;
     margin: 4px;
 }
 
@@ -147,7 +147,7 @@
     text-decoration: none;
     transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
     touch-action: manipulation;
-    width: 180px;
+    width: 160px;
     margin: 4px;
     
 }

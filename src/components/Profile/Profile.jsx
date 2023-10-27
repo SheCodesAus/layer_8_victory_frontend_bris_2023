@@ -8,6 +8,7 @@ function Profile() {
 
   useEffect(() =>{
     if (self?.is_staff){
+      window.localStorage.setItem("is_staff", "true")
       setAuth({...auth,
       is_staff:"true"
     }) 

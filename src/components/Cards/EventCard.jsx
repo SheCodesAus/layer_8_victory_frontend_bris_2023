@@ -4,11 +4,12 @@ import postMentorEvents from "../../api/post-mentor-events";
 import { convertLocalDateTime } from "../../utlities/convertLocalDateTime";
 import useSelf from "../../hooks/use-self";
 import Button from "../Buttton/Button";
+import { useNavigate } from "react-router-dom";
 
 const EventCard = (props) => {
     const { self, isLoading, error } = useSelf();
     const [errorMessage, setErrorMessage] = useState("");
-
+    const navigate = useNavigate()
 
     const handleSendApply = (event) => {
         event.preventDefault();
@@ -21,6 +22,11 @@ const EventCard = (props) => {
             setErrorMessage(`${[error.message]}`);
         });
     };
+
+    const handleEventClick = (event) => {
+        let eventid = event.target.value
+        navigate(`/events/${eventid}`)
+    }
     
     const start_date = convertLocalDateTime(props.EventData.start_date)
 
@@ -30,7 +36,8 @@ const EventCard = (props) => {
             <h2>{props.EventData.title}</h2>
             <p>Date: {start_date}</p>
             <p>Location: {props.EventData.location}</p>
-            <Button text={"Apply"} btnClass={self == undefined ? "hidden" : self.onboarding_status == "Ready"? "btn-info" : "hidden"} onClick={handleSendApply} />
+            <button className="button" onClick={handleEventClick} value={props.EventData.id}>Find out more</button>
+            <Button text={"Apply"} btnClass={self == undefined ? "hidden" : self.onboarding_status == "Ready"? "button" : "hidden"} onClick={handleSendApply} />
             <div>{errorMessage}</div>
         </div>
         </>

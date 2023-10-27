@@ -7,6 +7,9 @@
  font-size:30px;
  text-align: center;
  margin-bottom: 10px;
+ font-family: 'Dancing Script', cursive;
+ font-size: 3rem;
+ color: var(--dark-blue);
 
 }
 .label-contact{
@@ -45,8 +48,10 @@
 
 #address  h2{
     text-align: center;
-    font-size: 2rem;
     padding-bottom: 16px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: var(--dark-blue);
 }
 #address  p{
     text-align: center;

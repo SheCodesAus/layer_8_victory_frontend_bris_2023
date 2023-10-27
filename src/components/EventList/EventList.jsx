@@ -44,7 +44,6 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
     const handleEventClick = (event) => {
 
         let eventid = event.target.value
-        console.log(eventid)
         navigate(`/events/${eventid}`)
     }
 

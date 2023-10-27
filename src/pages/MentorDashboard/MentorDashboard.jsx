@@ -2,7 +2,6 @@ import { useState } from 'react'
 import MentorListDetails from '../../components/MentorListDetails/MentorListDetails'
 import EditMentorDetailsForm from '../../components/EditMentorDetailsForm/EditMentorDetailsForm'
 import useAuth from "../../hooks/use-auth";
-import useSelf from '../../hooks/use-self';
 import NotFound404Page from '../../components/NotFound404Page/NotFound404Page';
 import './MentorDashboard.css'
 
@@ -10,7 +9,6 @@ import './MentorDashboard.css'
 function MentorDashboard() {
 
     const { auth, setAuth } = useAuth();
-    const { self, isLoading, error } = useSelf();
     const [activeMentor, setActiveMentor] = useState("")
     const [editMentorOpen, setEditMentorOpen] = useState("false")
 
@@ -24,10 +22,8 @@ function MentorDashboard() {
         setActiveMentor(mentorID)
     }
 
-    console.log(self)
-
     return (<>
-        {auth.token && self?.is_staff ?
+        {auth.token && auth.is_staff ?
 
             <div className='mentor-dashboard'>
 

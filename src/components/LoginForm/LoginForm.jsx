@@ -38,6 +38,7 @@ const LoginForm  = () =>{
                   
                     setAuth({
                         token: response.token,
+                        is_staff:""
                     });
                     navigate("/profile");
                 })
