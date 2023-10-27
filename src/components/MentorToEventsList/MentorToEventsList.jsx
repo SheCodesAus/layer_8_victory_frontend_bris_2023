@@ -50,8 +50,8 @@ function MentorEventsList({ activeEvent,
 
             let mentorCheck = allMentorEvents.find(elm =>
                 elm.mentor_id == mentorsToRemove[mentor] &&
-                elm.event_id == eventID &&
-                elm.confirmed)
+                elm.event_id == eventID
+                )
 
             if (mentorCheck) {
                 mentorsPUTRemoveRequest.push(mentorCheck.id)
@@ -60,19 +60,17 @@ function MentorEventsList({ activeEvent,
 
         //mentor previously assigned, update confirmed to true
         await Promise.all(mentorsPUTRequest.map((mentorID) => {
-            console.log("put ", mentorID)
             putMentorEvents(mentorID, "true", "true")
         }))
 
         //mentor not previously assigned, create new
         await Promise.all(mentorsPOSTRequest.map((mentorID) => {
-            console.log("post", eventID, mentorID)
+
             postMentorEvents(eventID, mentorID, "true", "true")
         }))
 
         // mentor to be removed, put request
         await Promise.all(mentorsPUTRemoveRequest.map((id) => {
-            console.log('put -set to remove/ false', id)
             putMentorEvents(id, "false", "false")
         }))
 
@@ -89,20 +87,21 @@ function MentorEventsList({ activeEvent,
                 
                 {!isMentorEventsLoading && !isMentorsLoading && eventID ?
                     <>
-                        {allMentorEvents.filter(key => key.event_id == eventID && key.confirmed == true).length > 0 ?
+                        {allMentorEvents.filter(key => key.event_id == eventID).length > 0 ?
 
                             <div className="event-mentors-confirmed-container">
 
-                                {allMentorEvents.filter(key => (key.event_id == eventID && key.confirmed == true)).map((mentorData, key) => {
-                                    const mentorDetails = allMentors.find(mentor => (mentor.id === mentorData.mentor_id))
+                                {allMentorEvents.filter(key => (key.event_id == eventID)).map((mentorData, key) => {
+                                    const mentorDetails = allMentors.find(mentor => (mentor.id === mentorData.mentor_id ))
+                                    console.log(key)
                                     return (
 
                                         <div key={key}>
-                                            {mentorDetails ?
+                                            {mentorData.confirmed || mentorData.available  ?
                                                 <div className="mentors-confirmed">
-                                                    {mentorDetails.first_name} {mentorDetails.last_name} ({mentorDetails.rank})
+                                                    {mentorDetails?.first_name} {mentorDetails?.last_name} ({mentorDetails?.rank})
                                                 </div>
-                                                : <div>Loading</div>}
+                                                : <></>}
                                         </div>
                                     )
                                 })

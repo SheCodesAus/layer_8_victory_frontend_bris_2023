@@ -109,7 +109,7 @@ const MentorCard = ({
                     {allMentorEvents.find(mentorevent => (mentorevent.mentor_id == mentorDataDetails.id && mentorevent.event_id == activeEvent)) != undefined ?  
 
                     <>
-                         {allMentorEvents.find(mentorevent => (mentorevent.mentor_id == mentorDataDetails.id && mentorevent.event_id == activeEvent && mentorevent.confirmed))?
+                         {allMentorEvents.find(mentorevent => (mentorevent.mentor_id == mentorDataDetails.id && mentorevent.event_id == activeEvent && (mentorevent.available)))?
                             <button className="removing" onClick={handleRemoveStatus} value={mentorDataDetails.id}>{removedStatus}</button>
                         :
                             <button className="assigning" onClick={handleAssignStatus} value={mentorDataDetails.id}>{assignedStatus}</button>
