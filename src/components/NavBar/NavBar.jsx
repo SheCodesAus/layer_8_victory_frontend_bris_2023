@@ -1,14 +1,14 @@
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import useSelf from '../../hooks/use-self';
+//import useSelf from '../../hooks/use-self';
 import useAuth from "../../hooks/use-auth";
 
 import "./NavBar.css";
 
 function NavBar() {
     const {auth, setAuth} = useAuth();
-    const { self, isLoading, error } = useSelf();
+    // const { self, isLoading, error } = useSelf();
 
     const [activeLink, setActiveLink] = useState("");
 
@@ -18,7 +18,7 @@ function NavBar() {
         window.localStorage.removeItem("token");
         setAuth({
             token: null,
-            userId: null
+            is_staff: null
         });
     };
 
@@ -100,13 +100,26 @@ function NavBar() {
                         >
                             Contact
                         </Link>
+                        
                         {auth.token ? (
                             <>
                             <Link to="/" onClick={handleLogout}>
                                 Log Out
                             </Link>
                             
-                            {self?.is_staff ?
+                            <Link 
+                            to="/profile" 
+                            id="profile"
+                            className={activeLink === "profile" ? "active" : ""}
+                            onClick={() => {
+                                setActive("profile");
+                                handleLinkClick();
+                            }}
+                            >
+                                Profile
+                            </Link>
+
+                            {auth.is_staff == 'true' ?
                              <><Link 
                              to="/event-dashboard" 
                              id="event-dashboard"
@@ -132,21 +145,8 @@ function NavBar() {
                             :
                             <></>
                             }
-
-
-
-                            <Link 
-                            to="/profile" 
-                            id="profile"
-                            className={activeLink === "profile" ? "active" : ""}
-                            onClick={() => {
-                                setActive("profile");
-                                handleLinkClick();
-                            }}
-                            >
-                                Profile
-                            </Link>
                             </>
+
                         ) : (
                             <>
                             <Link 

@@ -1,34 +1,60 @@
 .event-full-details {
+    --dark-pink:#8f647a;
     margin-top: 300px;
     margin-left: 50px;
+    margin-right: 50px;
     margin-bottom: 200px;
     font-size: large;
+    background-color: var(--cream);
+    font-size: 14px;
+    border: solid var(--dark-blue) 4px;
+    border-radius: 15px;
+    display: flex;
+    box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+    -webkit-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+    -moz-box-shadow: 3px 5px 24px -3px rgba(0,0,0,0.41);
+}
+
+.event-summary {
+    padding: 50px;
 }
 
 .event-summary h2{
-    color: #134f5c;
-    font-size: 30px;
-    padding: 0px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    color: var(--dark-blue);
+    font-family: 'Dancing Script';
+    font-size: 60px;
+    padding-bottom: 20px;
+    margin: 20px;
 }
-
-.event-mentors h3 {
-    color: #134f5c;
-    font-size: 20px;
-    padding: 0px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-
-} 
 
 .event-summary h5 {
-    color: #134f5c;
+    color: var(--dark-blue);
     font-size:20px;
-    margin-left: 50px;
+    margin: 20px;
     padding-bottom: 10px;
+    
 }
 
-.event-mentors {
-    margin-left: 50px;
+.event-mentors-detail {
+    padding: 50px;
+}
+
+.event-mentors-detail h3 {
+    color: var(--dark-pink);
+    font-family: 'Dancing Script';
+    font-size: 60px;
+    padding-bottom: 20px;
+    margin: 20px;
+}
+
+.event-mentors-detail p {
+    color: var(--dark-pink);
+    font-size: 20px;
+    padding-bottom: 20px;
+    margin: 20px;
+}
+
+.span-bolder {
+    text-shadow: 0px 0px 4px rgba(125, 78, 133, 0.438);
+    font-weight: bold;
 }

@@ -38,7 +38,7 @@ function EventDetails () {
                 })}
                
         </div>
-        <div className="event-mentors">
+        <div className="event-mentors-detail">
             <h3>Mentors</h3>
             {mentorevents.filter(key => (key.event_id == eventid && key.confirmed == true)).map((mentorData, key) => {
 
@@ -49,9 +49,9 @@ function EventDetails () {
                             {mentorDetails ? 
                                     <div>
                                         {!mentorDetails.rank? 
-                                        <p> Mentor: {mentorDetails.first_name} {mentorDetails.last_name} </p>
+                                        <p> Mentor: <span className="span-bolder">{mentorDetails.first_name} {mentorDetails.last_name}</span> </p>
                                          :
-                                        <p>{mentorDetails.rank} mentor: {mentorDetails.first_name} {mentorDetails.last_name} </p>
+                                        <p>{mentorDetails.rank} mentor: <span className="span-bolder">{mentorDetails.first_name} {mentorDetails.last_name} </span></p>
                                         }
                                     </div>
                                 : 

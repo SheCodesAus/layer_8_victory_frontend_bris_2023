@@ -17,17 +17,32 @@
     font-size: 16px;
     font-style: italic;
 }
-.filter-group {
+/* .filter-group {
     display:flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
+} */
+
+.mentor-filter-l {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.mentor-filter-l p {
+    width: 30%;
+    text-align: left;
+    padding-left:10px;
 }
 
 .filter-group p {
     font-size: 16px;
     margin: 0px;
     align-self: left;
+    width: 30%;
+    
 }
 
 .filter {
@@ -43,4 +58,6 @@
     padding-right: 0px;
 
 }
+
+
 

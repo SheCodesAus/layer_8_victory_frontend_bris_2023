@@ -76,6 +76,7 @@ function MentorList({
                 <p>Find a Mentor</p>
                 <p id="mentor-status-info">Find mentors that are onboarded and ready to mentor!</p>
                 <div className='filter-group'>
+                <div className='mentor-filter-l'>    
                 <p>Location</p>
                 <select className='filter' onChange={(e) => setSearchTermLocation(e.target.value)} value={searchTermLocation}>
                     <option value="All">All</option>
@@ -85,6 +86,8 @@ function MentorList({
                         </option>
                     ))}
                 </select>
+                </div>
+                <div className='mentor-filter-l'>    
                 <p>Skill</p>
                 <select className='filter' onChange={(e) => setSearchTermSkill(e.target.value)} value={searchTermSkill}>
                     <option value="All">All</option>
@@ -94,6 +97,8 @@ function MentorList({
                         </option>
                     ))}
                 </select>
+                </div>
+                <div className='mentor-filter-l'>    
                 <p>Rank</p>
                 <select className='filter' onChange={(e) => setSearchTermRank(e.target.value)} value={searchTermRank}>
                     <option value="All">All</option>
@@ -104,14 +109,12 @@ function MentorList({
                     ))}
                 </select>
                 </div>
+                </div>
                 {filteredMentors === undefined ? <>
                     <ul>No mentors</ul>
 
                 </> :
-                    <ul>{filteredMentors.sort((a, b) => {
-                        return a.first_name - b.first_name
-                    }).map((mentorDataDetails,key) => {
-
+                    <ul>{filteredMentors.map((mentorDataDetails,key) => {
                         return (<div key={key}>
                             <MentorCard mentorDataDetails={mentorDataDetails} 
                                 allMentorEvents={allMentorEvents}

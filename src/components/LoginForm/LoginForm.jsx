@@ -36,7 +36,7 @@ const LoginForm  = () =>{
                     setAuth({
                         token: response.token,
                     });
-                    navigate("/events");
+                    navigate("/profile");
                 });
         }
     };

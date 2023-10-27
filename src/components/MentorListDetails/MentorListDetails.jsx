@@ -1,6 +1,7 @@
 import { useState, setState, useEffect } from 'react'
 import useMentors from '../../hooks/use-mentors'
 import useSkills from "../../hooks/use-skills";
+import MentorCardDetail from '../MentorCardDetail/MentorCardDetail';
 import './MentorListDetails.css'
 
 function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMentor, activeMentor }) {
@@ -19,10 +20,10 @@ function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMe
 
     const [filteredMentors, updatFilteredMentors] = useState()
 
-    const handleOpenMentor = (event) => {
-        onChangeActiveMentor(event.target.value)
-        onEditMentorClick("true")
-    }
+    // const handleOpenMentor = (event) => {
+    //     onChangeActiveMentor(event.target.value)
+    //     onEditMentorClick("true")
+    // }
 
 
     useEffect(() => {
@@ -68,6 +69,7 @@ function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMe
                 <div className='mentor-detail-list'>
                     <p id="mentor-detail-title">Find a Mentor</p>
                     <div className='filter-group-mentor-details-dash'>
+                        <div className='mentor-filter'>
                         <p>Onboarding Status</p>
                         <select className='filter-mentor-details-dash' onChange={(e) => setSearchTermStatus(e.target.value)} value={searchTermStatus}>
                             <option value="All">All</option>
@@ -77,6 +79,8 @@ function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMe
                                 </option>
                             ))}
                         </select>
+                        </div>
+                        <div className='mentor-filter'>
                         <p>Location</p>
                         <select className='filter-mentor-details-dash' onChange={(e) => setSearchTermLocation(e.target.value)} value={searchTermLocation}>
                             <option value="All">All</option>
@@ -86,6 +90,8 @@ function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMe
                                 </option>
                             ))}
                         </select>
+                        </div>
+                        <div className='mentor-filter'>
                         <p>Skill</p>
                         <select className='filter-mentor-details-dash' onChange={(e) => setSearchTermSkill(e.target.value)} value={searchTermSkill}>
                             <option value="All">All</option>
@@ -95,6 +101,8 @@ function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMe
                                 </option>
                             ))}
                         </select>
+                        </div>
+                        <div className='mentor-filter'>
                         <p>Rank</p>
                         <select className='filter-mentor-details-dash' onChange={(e) => setSearchTermRank(e.target.value)} value={searchTermRank}>
                             <option value="All">All</option>
@@ -104,27 +112,16 @@ function MentorListDetails({ onEditMentorClick, editMentorOpen, onChangeActiveMe
                                 </option>
                             ))}
                         </select>
+                        </div>
                     </div>
 
                     {filteredMentors === undefined ? 
                     <>
                         <ul>No mentors</ul>
                     </> :
-                        <ul>{filteredMentors.sort((a, b) => {
-                            return a.first_name - b.first_name
-                        }).map((mentorDataDetails, key) => {
-
-                            // TODO These should be a card component
+                        <ul>{filteredMentors.map((mentorDataDetails, key) => {
                             return (<div key={key}>
-                                <div className='mentors-detail' key={mentorDataDetails.id}>
-                                    <div className='mentor-info'>
-                                        <p>Name: {mentorDataDetails.first_name} {mentorDataDetails.last_name}</p>
-                                        <p>Onboarding Status: {mentorDataDetails.onboarding_status}</p>
-                                        <p>Mobile: {mentorDataDetails.mobile} </p>
-                                        <p>Location: {mentorDataDetails.location}</p>
-                                    </div>
-                                    <button className='manage-mentor-detail' onClick={handleOpenMentor} value={mentorDataDetails.id}>Manage Mentor</button>
-                                </div>
+                                <MentorCardDetail mentorDataDetails={mentorDataDetails} onEditMentorClick={onEditMentorClick} editMentorOpen={editMentorOpen} onChangeActiveMentor={onChangeActiveMentor} activeMentor={activeMentor} />
                             </div>
                             )
                         })}</ul>

@@ -114,19 +114,29 @@ function EditMentorForm({ editMentorOpen, onEditMentorClick, activeMentor, onCha
             {mentordetails ?
                 <div> <h2>{mentordetails?.first_name} {mentordetails?.last_name}</h2>
                     <div className="mentor-information">
-                        <p>Mobile: {mentordetails?.mobile}</p>
-                        <p>Email: {mentordetails?.email} </p>
+                        <div>
+                        <div className="contact-deets">
+                        <p><span className="span-mentor-info ">Mobile:</span> {mentordetails?.mobile}</p>
+                        <p><span className="span-mentor-info ">Email:</span> <a href={mentordetails?.email}>{mentordetails?.email}</a> </p>
+                        </div>
+                        <div className="locations">
+                        <p><span className="span-mentor-info ">Location: </span>{mentordetails?.location}  </p>
+                        <p id="skills"><span className="span-mentor-info "> Skills:</span>{mentordetails.skills ? <div className="mentor-skills">
+                            {mentordetails.skills?.map((skill, key) => {
+                                return (<p>{skill?.name}</p>)
+                            })} </div> : <>No skills selected</>}
+                        </p>
+                        </div>
+                        <div className="user-status">
+                        <p><span className="span-mentor-info ">Has mentored before? </span>  {mentordetails?.has_mentored ? 'Yes' : 'No'}</p>
+                        <p><span className="span-mentor-info ">Available to mentor? </span>{mentordetails?.is_active ? 'Yes' : 'No'}</p>
+                        </div>
+                        </div>
+                        <div className="socials-links">
                         <a href={mentordetails?.github_profile}>GitHub Link</a>
                         <a href={mentordetails?.linkedin_account}>LinkedIn Account</a>
                         <a href={mentordetails?.linkedin_account}>Socials Account</a>
-                        <p>Location: {mentordetails?.location}  </p>
-                        <p>Skills: {mentordetails.skills ? <>
-                            {mentordetails.skills?.map((skill, key) => {
-                                return (<li>{skill?.name}</li>)
-                            })} </> : <>No skills selected</>}
-                        </p>
-                        <p>Has mentored before?  {mentordetails?.has_mentored ? 'Yes' : 'No'}</p>
-                        <p>Available to mentor? {mentordetails?.is_active ? 'Yes' : 'No'}</p>
+                        </div>
                     </div>
                 </div>
                 :

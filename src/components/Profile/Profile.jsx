@@ -1,7 +1,19 @@
 import useSelf from "../../hooks/use-self";
+import useAuth from "../../hooks/use-auth";
+import { useEffect } from "react";
 
 function Profile() {
   const { self, isLoading, error } = useSelf();
+  const {auth, setAuth} = useAuth();
+
+  useEffect(() =>{
+    if (self?.is_staff){
+      setAuth({...auth,
+      is_staff:"true"
+    }) 
+  }
+
+  }, [self])
 
   if (isLoading ) {
     return <p>Loading...</p>;
