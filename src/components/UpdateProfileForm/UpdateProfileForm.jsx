@@ -16,6 +16,7 @@ function UserUpdateForm({editing, setEditing}) {
   const [checkedState, setCheckedState] = useState([]);
   const [urlError, setUrlError] = useState("");
   const [emailError, setEmailError] = useState("");
+  const [mobileError, setMobileError] = useState("");
   const { skills, skillsLoading, skillsError } = useSkills([]);
   const [formData, setFormData ] = useState({
     username: "",
@@ -107,6 +108,13 @@ function UserUpdateForm({editing, setEditing}) {
       } else {
         setEmailError(
           "Please provide a valid email address."
+        );
+      }
+      if (formData.mobile.length == 10) {
+        setMobileError("");
+      } else {
+        setMobileError(
+          "Mobile number must be no more than 10 characters"
         );
       }
       if (
@@ -343,6 +351,7 @@ function UserUpdateForm({editing, setEditing}) {
             </sub>
             {<p>{urlError}</p>}
             {<p>{emailError}</p>}
+            {<p>{mobileError}</p>}
           </div>
         </div>
     </form>
