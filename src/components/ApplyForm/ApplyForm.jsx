@@ -7,6 +7,7 @@ import postCreateAccount from "../../api/post_create_account";
 import postLogin from "../../api/post_login";
 import useSkills from "../../hooks/use-skills";
 import { isSchemeValid, isUrlValid } from "../../utlities/urlValidation";
+import { emailIsValid } from "../../utlities/emailValidation";
 import "./ApplyForm.css";
 
 const ApplyForm = () => {
@@ -18,6 +19,7 @@ const ApplyForm = () => {
   const [checkedState, setCheckedState] = useState([]);
   const [mentored, setMentored] = useState(true);
   const [urlError, setUrlError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const { skills, skillsLoading, skillsError } = useSkills([]);
   const [signupdetails, setSignupDetails] = useState({
     first_name: "",
@@ -95,6 +97,13 @@ const ApplyForm = () => {
           );
         }
       }
+    }
+    if (emailIsValid(signupdetails.email)) {
+      setEmailError("");
+    } else {
+      setEmailError(
+        "Please provide a valid email address."
+      );
     }
     if (
       signupdetails.first_name &&
@@ -329,7 +338,8 @@ const ApplyForm = () => {
             <sub className={errorMessage ? "hidden" : ""}>
               <p>{formInvalid}</p>
             </sub>
-            {urlError && <p>{urlError}</p>}
+            {<p>{urlError}</p>}
+            {<p>{emailError}</p>}
           </div>
         </div>
     </form>
