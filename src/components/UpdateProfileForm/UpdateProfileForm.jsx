@@ -6,6 +6,7 @@ import Button from "../Buttton/Button";
 import Dropdown from "../Dropdown/Dropdown";
 import useSkills from "../../hooks/use-skills";
 import { isSchemeValid, isUrlValid } from "../../utlities/urlValidation";
+import { emailIsValid } from "../../utlities/emailValidation";
 
 function UserUpdateForm({editing, setEditing}) {
 
@@ -14,6 +15,7 @@ function UserUpdateForm({editing, setEditing}) {
   const [formInvalid, setFormInvalid] = useState("");
   const [checkedState, setCheckedState] = useState([]);
   const [urlError, setUrlError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const { skills, skillsLoading, skillsError } = useSkills([]);
   const [formData, setFormData ] = useState({
     username: "",
@@ -99,6 +101,13 @@ function UserUpdateForm({editing, setEditing}) {
             );
           }
         }
+      }
+      if (emailIsValid(formData.email)) {
+        setEmailError("");
+      } else {
+        setEmailError(
+          "Please provide a valid email address."
+        );
       }
       if (
         (formData.skills &&
@@ -296,7 +305,7 @@ function UserUpdateForm({editing, setEditing}) {
                 <label htmlFor="skills" className="label-checkbox">
                   Select skills{" "}
                 </label>
-                <div className="skills-checkbox-container">
+                <div className="skills-checkbox-container skills">
                   {skills.map((item, index) => (
                     <div key={index} className="mini-checkbox-container">
                       <input
@@ -327,11 +336,13 @@ function UserUpdateForm({editing, setEditing}) {
               <Button text={"Submit"} btnClass="btn-info" onClick={handleSubmit} />
           </div>
           <div>
-            <p>{errorMessage}</p>
+            <p className={urlError || emailError ? "hidden" : ""}>{errorMessage}</p> 
+            {/* Filtering out generic error message if form validation errors are set*/}
             <sub className={errorMessage ? "hidden" : ""}>
               <p>{formInvalid}</p>
             </sub>
-            {urlError && <p>{urlError}</p>}
+            {<p>{urlError}</p>}
+            {<p>{emailError}</p>}
           </div>
         </div>
     </form>
