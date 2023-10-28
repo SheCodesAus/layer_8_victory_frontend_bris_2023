@@ -334,7 +334,8 @@ const ApplyForm = () => {
               <Button text={"Submit"} btnClass="btn-info" onClick={handleSubmit} />
           </div>
           <div>
-            <p>{errorMessage}</p>
+          <p className={urlError || emailError ? "hidden" : ""}>{errorMessage}</p> 
+            {/* Filtering out generic error message if form validation errors are set*/}
             <sub className={errorMessage ? "hidden" : ""}>
               <p>{formInvalid}</p>
             </sub>
