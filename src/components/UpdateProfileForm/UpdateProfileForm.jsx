@@ -79,6 +79,7 @@ function UserUpdateForm({editing, setEditing}) {
       setFormData({ ...formData, has_mentored: mentored });
     
     };
+    console.log(document.getElementById('email').value == self.email)
 
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -103,14 +104,14 @@ function UserUpdateForm({editing, setEditing}) {
           }
         }
       }
-      if (emailIsValid(formData.email)) {
+        if (document.getElementById("email").value == self.email || emailIsValid(formData.email)) {
         setEmailError("");
       } else {
         setEmailError(
           "Please provide a valid email address."
         );
       }
-      if (formData.mobile.length == 10) {
+      if (formData.mobile.length == 10 || document.getElementById("mobile").value == self.mobile) {
         setMobileError("");
       } else {
         setMobileError(
