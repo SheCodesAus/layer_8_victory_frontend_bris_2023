@@ -109,14 +109,19 @@ function UserUpdateForm({ editing, setEditing }) {
       } else {
         formValidation.emailError = "Please provide a valid email address.";
       }
-      if (
-        formData.mobile.length == 10 ||
+      if ((new RegExp('^[0-9]$').test(formData.mobile) &&
+        formData.mobile.length == 10) ||
         document.getElementById("mobile").value == self.mobile
       ) {
         formValidation.mobileError = "";
       } else {
-        formValidation.mobileError =
-          "Mobile number must be no more than 10 characters";
+        if (new RegExp('^[0-9]$').test(formData.mobile)){
+          formValidation.mobileError =
+          "Mobile number must be no more than 10 characters.";
+        } else {
+          formValidation.mobileError =
+          "Please enter a valid mobile number.";
+        }
       }
       if (
         (formData.skills && formData.first_name) ||
