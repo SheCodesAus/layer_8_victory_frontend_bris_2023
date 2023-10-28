@@ -100,6 +100,12 @@ const ApplyForm = () => {
       } else {
         formValidation.emailError = "Please provide a valid email address.";
       }
+      if (signupdetails.mobile.length == 10) {
+        formValidation.mobileError = "";
+      } else {
+        formValidation.mobileError =
+          "Mobile number must be no more than 10 characters";
+      }
       if (
         signupdetails.first_name &&
         signupdetails.last_name &&
@@ -349,7 +355,9 @@ const ApplyForm = () => {
           <div>
             <p
               className={
-                formValidation.urlError || formValidation.emailError
+                formValidation.urlError ||
+                formValidation.emailError ||
+                formValidation.mobileError
                   ? "hidden"
                   : ""
               }>
@@ -361,6 +369,7 @@ const ApplyForm = () => {
             </sub>
             {<p>{formValidation.urlError}</p>}
             {<p>{formValidation.emailError}</p>}
+            {<p>{formValidation.mobileError}</p>}
           </div>
         </div>
       </form>
