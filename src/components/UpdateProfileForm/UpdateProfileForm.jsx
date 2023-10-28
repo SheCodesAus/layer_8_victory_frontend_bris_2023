@@ -305,7 +305,7 @@ function UserUpdateForm({editing, setEditing}) {
                 <label htmlFor="skills" className="label-checkbox">
                   Select skills{" "}
                 </label>
-                <div className="skills-checkbox-container skills">
+                <div className="skills-checkbox-container">
                   {skills.map((item, index) => (
                     <div key={index} className="mini-checkbox-container">
                       <input
