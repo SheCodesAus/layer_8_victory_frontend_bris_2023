@@ -68,7 +68,6 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
                 }).filter(o => o.title.includes(searchTerm)).map((eventData, key) => {
 
                     let formattedDate = convertLocalDateTime(eventData.start_date)
-                    
                     return(
                         <div key={key} className='event-detail'>
                             <div className='event-info' >
@@ -79,7 +78,7 @@ function EventsList({activeEvent, onChangeActiveEvent, createEventOpen, onCreate
                                 </button>
                             </div>
                             <div className='action-buttons'>
-                                <button className='assign' onClick={handleAssignMentors} value={eventData.id}>Assign Mentors</button>
+                                <button className={eventData.is_published ? "assign" : "hidden"} onClick={handleAssignMentors} value={eventData.id}>Assign Mentors</button>
                                 <button className='edit-event' onClick={handleEditEventClick} value={eventData.id}>Edit Event</button>
                             </div>
                         </div>)
