@@ -56,9 +56,9 @@ function UserUpdateForm({ editing, setEditing }) {
       }));
     };
 
-    formData.skills = Array.from(
-      document.querySelectorAll('.skills input[type="checkbox"]:checked')
-    ).map((x) => x.value);
+    formData.skills = Array.from(document.querySelectorAll('.skills input[type="checkbox"]:checked')).map(x => x.value)
+    // Here we are querying the DOM to select elements in the skills class that are input types of checkbox with a value of checked.
+    // This is to ensure a successful PUT request, as, without the list of skills, the PUT request will fail.
 
     const handleCheckboxChange = (event) => {
       let updatedList = [...checkedState];
@@ -318,7 +318,8 @@ function UserUpdateForm({ editing, setEditing }) {
                 <label htmlFor="skills" className="label-checkbox">
                   Select skills{" "}
                 </label>
-                <div className="skills-checkbox-container">
+                <div className="skills-checkbox-container skills"> {/* The skills class is used to pull the checkbox information from 
+                the DOM to ensure skill data is submitted in the PUT request. Without this information, the PUT request will fail */}
                   {skills.map((item, index) => (
                     <div key={index} className="mini-checkbox-container">
                       <input
