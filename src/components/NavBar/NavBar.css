@@ -33,7 +33,7 @@ html {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1.2rem 9%;
+    padding: 1.2rem 7%;
     background: transparent;
     backdrop-filter: blur(10px);
     display: flex;
@@ -146,7 +146,7 @@ html {
     }
 }
 
-@media (max-width: 825px) {
+@media (max-width: 850px) {
     .header {
         padding: 1.2rem 4%;
     }
@@ -157,7 +157,7 @@ html {
     }
 
     .logo {
-        height: 45px;
+        height: 40px;
     }
 }
 
