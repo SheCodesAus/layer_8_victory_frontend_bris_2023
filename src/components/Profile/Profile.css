@@ -9,123 +9,48 @@
     height: 100vh;
 }
 
-#profile-page {
+#profile-page{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px;
 }
 
-#profile_container_mentor {
-    margin: 110px 0px 43px 0px;
+#profile_container_mentor{
+    margin-top :12rem;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 14px 28px rgba(105, 99, 99, 0.25), 
+    0 10px 10px rgba(0,0,0,0.22);
+    width: fit-content;
     align-items: center;
-}
-
-.container-profile {
-    background-color: #fff;
-	border-radius: 10px;
-	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
-	position: relative;
-	overflow: hidden;
-	width: 900px;
-	max-width: 100%;
-	min-height: 525px;
+    
 }
 
 .profile_title {
-    margin: 25px 0px;
+    margin-bottom: 25px;
     text-align: center;
     font-family: 'Dancing Script', cursive;
     font-size: 5rem;
     color: var(--dark-blue);
 }
 
-#my-details {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
-
-.details1, .details2 {
+#my-details{
     display: flex;
     flex-direction: column;
+    align-items: baseline;
+
 }
 
-/* .container-profile h3{
+#my-details h3{
     font-family: 'Dancing Script', cursive;
     color: var(--dark-blue);
     font-size: 3rem;
-    padding-left: 20px;
-} */
 
-@media (max-width: 960px) {
-    .container-profile {
-        width: 800px;
-    }
 }
 
-@media (max-width: 860px) {
-    .container-profile {
-        width: 700px;
-    }
-}
-
-@media (max-width: 760px) {
-    .container-profile {
-        width: 600px;
-    }
-}
-
-@media (max-width: 660px) {
-    .container-profile {
-        width: 500px;
-    }
-
-    #my-details {
-        display: flex;
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 560px) {
-    .container-profile {
-        width: 400px;
-    }
-}
-
-@media (max-width: 460px) {
-    .container-profile {
-        width: 360px;
-    }
-
-    .profile_title {
-        font-size: 4.5rem;
-    }
-}
-
-@media (max-width: 400px) {
-    .container-profile {
-        width: 330px;
-    }
-
-    .profile_title {
-        font-size: 4.3rem;
-    }
-}
-
-@media (max-width: 350px) {
-    .container-profile {
-        width: 290px;
-    }
-
-    .profile_title {
-        font-size: 3.7rem;
-    }
-
-    .my-details-paragraph {
-        font-size: 1.8rem;
-    }
+.my-details-paragraph{
+    font-family: 'Urbanist', sans-serif;
+    font-size: 2rem;
 }
