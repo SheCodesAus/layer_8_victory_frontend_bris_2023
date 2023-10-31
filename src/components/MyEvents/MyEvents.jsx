@@ -1,108 +1,102 @@
 import useMyEvents from "../../hooks/use-myevents";
 import useEvents from "../../hooks/use-events";
+import putMentorEvents from "../../api/put-mentor-events";
 import { convertLocalDateTime } from "../../utlities/convertLocalDateTime";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./MyEvents.css";
 
 function MyEventsComponent() {
-  const [myEvents, myEventsLoading, myEventsError] = useMyEvents();
-  const { events, eventsLoading, eventsError } = useEvents();
-  const navigate = useNavigate();
+	const [errorMessage, setErrorMessage] = useState("");
+	const [myEvents, myEventsLoading, myEventsError] = useMyEvents();
+	const { events, eventsLoading, eventsError } = useEvents();
+	const navigate = useNavigate();
 
-  if (myEventsLoading || eventsLoading) {
-    return <p>Loading...</p>;
-  }
+	// Adding event detail fields to myEvents objects
+	for (let myEvent in myEvents) {
+		let thisEvent = events.filter(
+			(event) => event["id"] == myEvents[myEvent]["event_id"]
+		)[0];
+		myEvents[myEvent].title = thisEvent.title;
+		myEvents[myEvent].start_date = thisEvent.start_date;
+		myEvents[myEvent].end_date = thisEvent.end_date;
+		myEvents[myEvent].location = thisEvent.location;
+	}
 
-  if (myEventsError) {
-    return <p>{myEventsError.message}</p>;
-  }
+	if (myEventsLoading || eventsLoading) {
+		return <p>Loading...</p>;
+	}
 
-  if (eventsError) {
-    return <p>{eventsError.message}</p>;
-  }
+	if (myEventsError) {
+		return <p>{myEventsError.message}</p>;
+	}
 
-  const handleEventClick = (event) => {
-    let eventid = event.target.value;
-    navigate(`/events/${eventid}`);
-  };
+	if (eventsError) {
+		return <p>{eventsError.message}</p>;
+	}
 
-  const myEventIds = [];
-  for (let myEvent in myEvents) {
-    myEventIds.push(myEvents[myEvent]["event_id"]);
-  }
+	const handleUpdateClick = (event) => {
+		event.preventDefault();
+		let mentorEvent = myEvents.filter(
+			(myEvent) => myEvent["id"] == event.target.value
+		)[0];
+		mentorEvent.available = !mentorEvent.available;
+		putMentorEvents(
+			mentorEvent.id,
+			mentorEvent.confirmed,
+			mentorEvent.available
+		)
+			.then(() => {
+				window.alert(
+					"You have updated your availibility for the " +
+						mentorEvent.title +
+						" event."
+				);
+				navigate("/profile");
+			})
+			.catch((error) => {
+				setErrorMessage("Error updating availability, please try again later.");
+				window.alert(errorMessage);
+			});
+	};
 
-  for (let myEvent in myEvents) {
-    console.log({id: myEvents[myEvent]["id"], event_id: myEvents[myEvent]["event_id"]})
-  }
+	// Navigating to full event view - after clicking "Find out more" button for a given registered event
+	const handleEventClick = (event) => {
+		let eventid = event.target.value;
+		navigate(`/events/${eventid}`);
+	};
 
-  const availableEventIds = [];
-  for (let myEvent in myEvents) {
-    if (myEvents[myEvent]["available"]) {
-      availableEventIds.push(myEvents[myEvent]["event_id"]);
-    }
-  }
-
-  const confirmedEventIds = [];
-  for (let myEvent in myEvents) {
-    if (myEvents[myEvent]["confirmed"]) {
-      confirmedEventIds.push(myEvents[myEvent]["event_id"]);
-    }
-  }
-
-  const registeredEvents = [];
-  myEventIds.forEach(function (eventid) {
-    registeredEvents.push(events.filter((event) => event["id"] == eventid));
-  });
-
-  const myRegisteredEvents = registeredEvents.flatMap((event) => event);
-
-  return (
-    <section>
-      {myEvents != "" ? (
-        <div id="my-details-events">
-          <h3>Events I`&apos;`ve registered for</h3>
-          {myRegisteredEvents.map((event, key) => {
-            return (
-              <div className="event-single-card" key={key}>
-                <div>
-                  <p>Date: {convertLocalDateTime(event.start_date)}</p>
-                  <p>Title: {event.title}</p>
-                  <p>Location: {event.location}</p>
-                  <p>
-                    Availabile:{" "}
-                    {availableEventIds.includes(event.id) == true
-                      ? "Yes"
-                      : "No"}
-                  </p>
-                  <p>
-                    Confirmed:{" "}
-                    {confirmedEventIds.includes(event.id) == true
-                      ? "Yes"
-                      : "No"}
-                  </p>
-                </div>
-                <button
-                  className="button-profile-event"
-                  onClick={handleEventClick}
-                  value={event.id}>
-                  Find out more
-                </button>
-                {/* <button
-                  className="button"
-                  onClick={handleEventClick}
-                  value={event.id}>
-                    {availableEventIds.includes(event.id) == true ? "No longer available?" : "No longer unavailable?"}
-                </button> */}
-                <br></br>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        ""
-      )}
-    </section>
-  );
+	return (
+		<div id="my-details-events">
+			<h3>Events I`&apos;`ve registered for</h3>
+			{myEvents.map((event, key) => {
+				return (
+					<div className="event-single-card" key={key}>
+						<div>
+							<p>Date: {convertLocalDateTime(event.start_date)}</p>
+							<p>Title: {event.title}</p>
+							<p>Location: {event.location}</p>
+							<p>Availabile: {event.available == true ? "Yes" : "No"}</p>
+							<p>Confirmed: {event.confirmed == true ? "Yes" : "No"}</p>
+						</div>
+						<button
+							className="button-profile-event"
+							onClick={handleEventClick}
+							value={event.event_id}>
+							Find out more
+						</button>
+						<button
+							className="button"
+							onClick={handleUpdateClick}
+							value={event.id}>
+							{event.available ? "I'm not available" : "Update to available"}
+						</button>
+						<br></br>
+					</div>
+				);
+			})}
+		</div>
+	);
 }
 
 export default MyEventsComponent;
