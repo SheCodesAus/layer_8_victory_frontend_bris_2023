@@ -66,36 +66,42 @@ function MyEventsComponent() {
 		navigate(`/events/${eventid}`);
 	};
 
-	return (
-		<div id="my-details-events">
-			<h3>Events I`&apos;`ve registered for</h3>
-			{myEvents.map((event, key) => {
-				return (
-					<div className="event-single-card" key={key}>
-						<div>
-							<p>Date: {convertLocalDateTime(event.start_date)}</p>
-							<p>Title: {event.title}</p>
-							<p>Location: {event.location}</p>
-							<p>Availabile: {event.available == true ? "Yes" : "No"}</p>
-							<p>Confirmed: {event.confirmed == true ? "Yes" : "No"}</p>
-						</div>
-						<button
-							className="button-profile-event"
-							onClick={handleEventClick}
-							value={event.event_id}>
-							Find out more
-						</button>
-						<button
-							className="button"
-							onClick={handleUpdateClick}
-							value={event.id}>
-							{event.available ? "I'm not available" : "Update to available"}
-						</button>
-						<br></br>
-					</div>
-				);
-			})}
-		</div>
+return (
+	<section>
+		{myEvents != "" ? (
+			<div id="my-details-events">
+				<h3>Events I`&apos;`ve registered for</h3>
+					{myEvents.map((event, key) => {
+						return (
+							<div className="event-single-card" key={key}>
+								<div>
+									<p>Date: {convertLocalDateTime(event.start_date)}</p>
+									<p>Title: {event.title}</p>
+									<p>Location: {event.location}</p>
+									<p>Availabile: {event.available == true ? "Yes" : "No"}</p>
+									<p>Confirmed: {event.confirmed == true ? "Yes" : "No"}</p>
+								</div>
+								<button
+									className="button-profile-event"
+									onClick={handleEventClick}
+									value={event.event_id}>
+									Find out more
+								</button>
+								<button
+									className="button"
+									onClick={handleUpdateClick}
+									value={event.id}>
+									{event.available ? "I'm not available" : "Update to available"}
+								</button>
+								<br></br>
+							</div>
+						);
+					})}
+				</div>
+			) : (
+				""
+			)}
+		</section>
 	);
 }
 
